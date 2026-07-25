@@ -1,0 +1,50 @@
+# Baut die Website bei jedem Push auf main und veroeffentlicht sie auf GitHub Pages.
+# Muster uebernommen aus dem Achievewear-Blog.
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  # Einzige Quelle fuer URL und Base-Pfad (siehe CLAUDE.md).
+  # Bei eigener Domain spaeter: SITE_URL=https://<domain> und BASE_PATH=/
+  SITE_URL: https://jgc-coding.github.io
+  BASE_PATH: /caro-pantarei
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # Rote Typen sollen den Deploy stoppen, BEVOR eine kaputte Seite live geht.
+      - run: npm run check
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

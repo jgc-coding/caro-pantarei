@@ -8,7 +8,7 @@ import '../styles/basis.css';
 
 import Kopfzeile from '../components/Kopfzeile.astro';
 import Fusszeile from '../components/Fusszeile.astro';
-import { marke } from '../config/marke';
+import { marke, pfad, ENTWURF } from '../config/marke';
 
 interface Props {
   titel: string;
@@ -30,12 +30,17 @@ const kanonisch = new URL(Astro.url.pathname, Astro.site);
     <title>{seitentitel}</title>
     <meta name="description" content={beschreibung} />
     <link rel="canonical" href={kanonisch} />
+    {/* Entwurf: nicht in Suchmaschinen aufnehmen. Schalter in src/config/marke.ts */}
+    {ENTWURF && <meta name="robots" content="noindex, nofollow" />}
     <meta property="og:title" content={seitentitel} />
     <meta property="og:description" content={beschreibung} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />
+    {/* Ueber pfad(), nicht per Textverkettung: BASE_URL hat mal einen abschliessenden
+        Schraegstrich und mal nicht — direkt zusammengeklebt entsteht daraus
+        "/caro-pantareisitemap-index.xml". */}
+    <link rel="sitemap" href={pfad('/sitemap-index.xml')} />
 
     <!--
       Laeuft vor dem ersten Zeichnen. Setzt zwei Schalter:

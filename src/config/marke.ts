@@ -7,6 +7,16 @@
  * still Falsches online gehen.
  */
 
+/**
+ * Solange `true`, ist die Seite ein Entwurf zur Abstimmung:
+ * Sie traegt ein Verbotsschild fuer Suchmaschinen (`noindex` + `robots.txt`) und ist
+ * damit nur ueber die Adresse erreichbar, die man kennt.
+ *
+ * Auf `false` stellen, wenn die Seite wirklich live geht — und zwar erst, wenn
+ * Impressum, Datenschutz und die Bildfreigaben stehen.
+ */
+export const ENTWURF = true;
+
 /** Praefix, an dem die Oberflaeche einen offenen Punkt erkennt. */
 export const PLATZHALTER = 'PLATZHALTER:';
 

@@ -24,6 +24,18 @@ Unterseiten, kein Backend.
 - Bauen: `npm run build` → `dist/`
 - Vorschau des Baus: `npm run preview`
 - Pruefen: `npm run check` (= `astro check`, auch Inhalt von `.claude/pruefen.txt`)
+- Bauen wie auf dem Server (Pflichttest vor jedem Deploy-Umbau):
+  `$env:SITE_URL='https://jgc-coding.github.io'; $env:BASE_PATH='/caro-pantarei'; npm run build`
+
+## Deploy
+
+Push auf `main` → GitHub Actions baut und veroeffentlicht auf GitHub Pages.
+Live: https://jgc-coding.github.io/caro-pantarei/ · Repo: `jgc-coding/caro-pantarei`
+
+`ENTWURF` in `src/config/marke.ts` steht auf `true`: Alle Seiten tragen `noindex`, und
+`robots.txt` verbietet das Einlesen. Die Seite ist damit nur ueber die bekannte Adresse
+erreichbar, nicht ueber eine Suche. **Erst auf `false` stellen, wenn Impressum,
+Datenschutz und die Bildfreigaben stehen.**
 
 ## Die zwei Tauschstellen
 

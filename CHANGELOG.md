@@ -2,6 +2,13 @@
 
 Alle nennenswerten Aenderungen dieses Projekts. Neueste zuerst.
 
+## v0.3.1 — 2026-07-25
+
+- Impressum: doppeltes Leerzeichen in der Zaehlzeile („5 von  6 Feldern") entfernt.
+- Eigener Versionssprung, obwohl es nur ein Zeichen ist: Die Zahl im Seitenfuss und der
+  Git-Tag muessen auf denselben Stand zeigen, sonst holt ein Rollback nicht das zurueck,
+  was online war. Genau das war Befund V9.
+
 ## v0.3.0 — 2026-07-25
 
 Ergebnisse der ersten `/improve`-Runde. Details zu jedem Punkt in `verbesserungen.md`.

@@ -26,6 +26,7 @@ Unterseiten, kein Backend.
 - Pruefen: `npm run check` (= `astro check`, auch Inhalt von `.claude/pruefen.txt`)
 - Bauen wie auf dem Server (Pflichttest vor jedem Deploy-Umbau):
   `$env:SITE_URL='https://jgc-coding.github.io'; $env:BASE_PATH='/caro-pantarei'; npm run build`
+- Links der gebauten Ausgabe pruefen: `npm run pruefe:links` (laeuft auch im Deploy mit)
 
 ## Deploy
 
@@ -62,6 +63,11 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
 - **Theming ueber `data-*`**: `data-welt="still"` (Pantarei, Lavendel) bzw.
   `data-welt="wild"` (Playfight, Ton) am Abschnitt oder `<body>` schaltet die Akzentfarbe.
   Nie eine Akzentfarbe direkt in ein Bauteil schreiben.
+- **Bilder: `src/assets/bilder/` ist die einzige Quelle der Website.** `Bildmaterial/`
+  ist die unangetastete Ablage dessen, was Caro geliefert hat — daraus wird kopiert, nie
+  umgekehrt. Kommen neue oder korrigierte Fotos, muessen BEIDE Ordner nachgezogen werden;
+  wer nur `Bildmaterial/` aktualisiert, sieht auf der Website weiter die alten Bilder,
+  ohne dass irgendetwas warnt.
 - **Zeilenleiter** ist das Erkennungsmerkmal der Seite: gestapelte kurze Zeilen mit
   senkrechter Haarlinie. Kommt aus Caros eigenem Schreibrhythmus. Sparsam einsetzen —
   wenn sie ueberall steht, wirkt sie nirgends.
@@ -103,3 +109,11 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   nicht: `gh api repos/jgc-coding/caro-pantarei/pages -X POST -f build_type=workflow`.
   Der Schluessel eines Workflows darf veroeffentlichen, aber nicht anlegen. Hier erledigt;
   bei einem kuenftigen neuen Repo ist es wieder der erste Schritt.
+- **`BASE_PATH` unter Git Bash immer quoten.** Unquotiert macht Git Bash aus
+  `/caro-pantarei` still `C:/Program Files/Git/caro-pantarei` — `npm run pruefe:links`
+  meldete daraufhin 85 gesunde Links als kaputt. Das Skript bricht bei so einem Wert
+  inzwischen ab statt zu raten, aber der Aufruf bleibt trotzdem falsch.
+- **Farben, die Text tragen, muessen nachgerechnet werden.** `--farbe-still-tief` und
+  `--farbe-offen` in `ci.css` erfuellen aktuell 4.5:1 auf Leinen UND auf Sand. Die erste
+  Fassung lag bei 4.38:1 bzw. 2.92:1 und war auf dem Handy im Sonnenlicht kaum lesbar.
+  Beim CI-Tausch also nicht nur schauen, sondern rechnen.

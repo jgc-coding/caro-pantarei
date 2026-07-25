@@ -1,0 +1,211 @@
+---
+import { marke, pfad, istOffen, ohnePraefix } from '../config/marke';
+
+/**
+ * Kontaktformular.
+ *
+ * Eine statische Website hat keinen Server, der eine Nachricht verschicken koennte.
+ * Solange in `marke.formular.endpunkt` kein Versanddienst hinterlegt ist, wird das
+ * Formular deshalb SICHTBAR, aber ABGESCHALTET gezeigt: Man sieht die Gestaltung, aber
+ * niemand kann etwas abschicken, das dann still verschwindet.
+ *
+ * Zwei Dinge, die leicht vergessen werden und hier absichtlich drin sind:
+ * - Der Entwurf wird laufend im Browser gesichert. Ein versehentlicher Reload darf eine
+ *   halb geschriebene Anfrage nicht vernichten.
+ * - Fehler kommen zweistufig: ein menschlicher Satz oben, darunter eine Diagnose-Zeile
+ *   mit Fehler-ID. Ein Screenshot davon reicht zur Ferndiagnose.
+ */
+const endpunkt = marke.formular.endpunkt;
+const abgeschaltet = istOffen(endpunkt);
+
+const anliegen = [
+  'Pantarei-Sitzung',
+  'Playfight',
+  'Festival, Event oder Jugendgruppe',
+  'Etwas anderes',
+];
+---
+
+{
+  abgeschaltet && (
+    <p class="platzhalter platzhalter--block" style="margin-bottom: var(--raum-4)">
+      Formular ist absichtlich abgeschaltet — {ohnePraefix(endpunkt)}. Ohne ihn sähe es
+      versandbereit aus und würde Anfragen still verschlucken.
+    </p>
+  )
+}
+
+<form
+  class="formular"
+  method="post"
+  action={abgeschaltet ? undefined : endpunkt}
+  data-formular
+  data-abgeschaltet={abgeschaltet ? 'ja' : undefined}
+  novalidate
+>
+  <fieldset class="formular__satz" disabled={abgeschaltet}>
+    <legend class="visuell-versteckt">Anfrage an {marke.vorname}</legend>
+
+    <div class="feld">
+      <label class="feld__marke" for="feld-name">Dein Name</label>
+      <input class="feld__eingabe" id="feld-name" name="name" type="text" autocomplete="name" required />
+    </div>
+
+    <div class="feld">
+      <label class="feld__marke" for="feld-mail">Deine E-Mail-Adresse</label>
+      <input
+        class="feld__eingabe"
+        id="feld-mail"
+        name="email"
+        type="email"
+        autocomplete="email"
+        required
+      />
+      <p class="feld__hinweis">Damit ich Dir antworten kann.</p>
+    </div>
+
+    <div class="feld">
+      <label class="feld__marke" for="feld-anliegen">Worum geht es?</label>
+      <select class="feld__eingabe" id="feld-anliegen" name="anliegen">
+        {anliegen.map((a) => <option value={a}>{a}</option>)}
+      </select>
+    </div>
+
+    <div class="feld">
+      <label class="feld__marke" for="feld-nachricht">Deine Nachricht</label>
+      <textarea class="feld__eingabe" id="feld-nachricht" name="nachricht" rows="7" required />
+      <p class="feld__hinweis">
+        Schreib gern dazu, was Dich beschäftigt und was Du Dir wünschst — das erspart uns
+        eine Runde hin und her.
+      </p>
+    </div>
+
+    {/* Falle fuer automatisierte Anfragen: Menschen sehen dieses Feld nicht und lassen
+        es leer. Ist es ausgefuellt, wird nicht gesendet. Kostet keinen fremden Dienst. */}
+    <div class="visuell-versteckt" aria-hidden="true">
+      <label for="feld-website">Bitte nicht ausfüllen</label>
+      <input id="feld-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="feld feld--haken">
+      <input class="feld__haken" id="feld-einwilligung" name="einwilligung" type="checkbox" required />
+      <label class="feld__hakenmarke" for="feld-einwilligung">
+        Ich bin einverstanden, dass meine Angaben zur Beantwortung meiner Anfrage
+        verarbeitet werden. Mehr dazu im <a href={pfad('/datenschutz')}>Datenschutz</a>.
+      </label>
+    </div>
+
+    <button class="knopf" type="submit">Nachricht senden</button>
+  </fieldset>
+
+  {/* Rueckmeldung nach dem Absenden. Bleibt leer, bis wirklich etwas passiert ist. */}
+  <p class="formular__meldung" data-meldung role="status" aria-live="polite" hidden></p>
+  <p class="formular__diagnose" data-diagnose hidden></p>
+</form>
+
+<script>
+  const formulare = document.querySelectorAll<HTMLFormElement>('[data-formular]');
+
+  for (const formular of formulare) {
+    const meldung = formular.querySelector<HTMLElement>('[data-meldung]');
+    const diagnose = formular.querySelector<HTMLElement>('[data-diagnose]');
+    const schluessel = 'caro-anfrage-entwurf';
+    const abgeschaltet = formular.dataset.abgeschaltet === 'ja';
+
+    const felder = () =>
+      Array.from(
+        formular.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
+          'input[name], textarea[name], select[name]',
+        ),
+      ).filter((f) => f.type !== 'checkbox' && f.name !== 'website');
+
+    // --- Entwurf sichern: ein Reload darf keine halb geschriebene Anfrage vernichten ---
+    if (!abgeschaltet) {
+      try {
+        const gesichert = JSON.parse(localStorage.getItem(schluessel) ?? '{}');
+        for (const feld of felder()) {
+          if (typeof gesichert[feld.name] === 'string') feld.value = gesichert[feld.name];
+        }
+      } catch {
+        // Kaputter oder blockierter Speicher darf das Formular nicht lahmlegen.
+      }
+
+      formular.addEventListener('input', () => {
+        try {
+          const stand: Record<string, string> = {};
+          for (const feld of felder()) stand[feld.name] = feld.value;
+          localStorage.setItem(schluessel, JSON.stringify(stand));
+        } catch {
+          // Kein Speicher verfuegbar (privates Fenster) — dann eben ohne Sicherung.
+        }
+      });
+    }
+
+    function zeige(text: string, art: 'gut' | 'schlecht', technisch?: string) {
+      if (!meldung) return;
+      meldung.textContent = text;
+      meldung.dataset.art = art;
+      meldung.hidden = false;
+      if (diagnose) {
+        diagnose.textContent = technisch ?? '';
+        diagnose.hidden = !technisch;
+      }
+    }
+
+    formular.addEventListener('submit', async (ereignis) => {
+      ereignis.preventDefault();
+      if (abgeschaltet) return;
+
+      // Automatisierte Anfrage: still verwerfen, ohne dem Absender etwas vorzuspielen.
+      const falle = formular.querySelector<HTMLInputElement>('input[name="website"]');
+      if (falle && falle.value !== '') return;
+
+      if (!formular.checkValidity()) {
+        formular.reportValidity();
+        return;
+      }
+
+      const knopf = formular.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const start = performance.now();
+      if (knopf) {
+        knopf.disabled = true;
+        knopf.textContent = 'Wird gesendet …';
+      }
+
+      try {
+        const antwort = await fetch(formular.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(formular),
+        });
+
+        if (!antwort.ok) throw new Error(`HTTP ${antwort.status}`);
+
+        formular.reset();
+        try {
+          localStorage.removeItem(schluessel);
+        } catch {
+          // Nicht schlimm — die Nachricht ist raus, darauf kommt es an.
+        }
+        zeige('Danke, Deine Nachricht ist angekommen. Ich melde mich.', 'gut');
+        formular.querySelector('fieldset')?.setAttribute('hidden', '');
+      } catch (fehler) {
+        const dauer = Math.round(performance.now() - start);
+        const kennung = Math.random().toString(36).slice(2, 8);
+        const ursache = fehler instanceof Error ? fehler.message : 'Netzwerk';
+        // Zweistufig: oben ein menschlicher Satz, darunter die Diagnose fuer den Screenshot.
+        zeige(
+          'Das hat gerade nicht geklappt. Bitte versuch es in einer Minute noch einmal — oder schreib mir direkt eine E-Mail.',
+          'schlecht',
+          `Technische Ursache: ${ursache}/${dauer}ms · ID ${kennung}`,
+        );
+        console.error(`[Caro-Website] [ERROR] Formularversand fehlgeschlagen · ID ${kennung} · ${ursache}`);
+      } finally {
+        if (knopf) {
+          knopf.disabled = false;
+          knopf.textContent = 'Nachricht senden';
+        }
+      }
+    });
+  }
+</script>

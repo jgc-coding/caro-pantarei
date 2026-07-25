@@ -2,6 +2,52 @@
 
 Alle nennenswerten Aenderungen dieses Projekts. Neueste zuerst.
 
+## v0.3.0 — 2026-07-25
+
+Ergebnisse der ersten `/improve`-Runde. Details zu jedem Punkt in `verbesserungen.md`.
+
+**Lesbarkeit und Barrierefreiheit**
+- **V5** Leitfarbe `--farbe-still-tief` von `#7D7090` auf `#6E617F`. Sie traegt Eyebrows,
+  Knoepfe und Links auf jeder Seite und verfehlte mit 4.38:1 (Leinen) bzw. 3.89:1 (Sand)
+  den Mindestkontrast. Jetzt 5.47:1 bzw. 4.85:1, Farbton unveraendert.
+- **V6** Etikett „offen" von `#B8863C` auf `#8C6228` — von 2.92:1 auf 4.89:1.
+
+**Neue Seiten und Inhalte**
+- **V4** Eigene 404-Seite (`src/pages/404.astro`). Bisher landete jeder Tippfehler auf
+  einer fremden englischen GitHub-Seite ohne Weg zurueck.
+- **V1** Datenschutzerklaerung ausformuliert: Hosting bei GitHub Pages inkl.
+  US-Uebermittlung, Kontaktaufnahme, lokale Entwurfssicherung, Betroffenenrechte, und was
+  ausdruecklich NICHT passiert. Impressum um Bildnachweis, Streitbeilegung, Haftung fuer
+  Links und Hinweistexte je Pflichtfeld ergaenzt. Personenbezogene Angaben bleiben
+  markierte Platzhalter — sie werden nicht geraten.
+- **V7** Vorschaubild fuers Teilen (`og:image`, 1200x630 aus Caros Einzelfoto) plus
+  `og:url` und `twitter:card`. Ein verschickter Link zeigte bisher eine graue Flaeche.
+- **I3** Kontaktformular mit Anliegen-Auswahl, Einwilligung, Spam-Falle und laufender
+  Entwurfssicherung im Browser. **Absichtlich abgeschaltet**, solange in
+  `marke.formular.endpunkt` kein Versanddienst steht — ein Formular ohne Versand saehe
+  funktionsfaehig aus und wuerde Anfragen still verschlucken.
+
+**Absicherung**
+- **I2** `npm run pruefe:links` prueft die gebaute Ausgabe auf interne Verweise ohne
+  Unterordner-Pfad und auf Links ins Leere; laeuft im Deploy zwischen Bau und
+  Veroeffentlichung. Genau die Luecke, durch die v0.2.0 ein kaputter Sitemap-Verweis
+  gerutscht waere — `astro check` kann das nicht sehen.
+  Das Skript bricht ab, wenn `BASE_PATH` kein Web-Pfad ist: Git Bash verbiegt einen
+  unquotierten Wert still zu einem Windows-Dateipfad, was 85 Fehlalarme erzeugte.
+
+**Aufraeumen**
+- **V10** `marke.claim` entfernt. Der Satz wurde nirgends angezeigt und lag mit
+  „Innehalten. Spueren. In Verbindung kommen." zu dicht an
+  „Innehalten. Spueren. Veraendern." von weber-jessica.de. Jetzt offener Punkt fuer Caro.
+- **V8** In der CLAUDE.md festgeschrieben, dass `src/assets/bilder/` die einzige Quelle
+  der Website ist und `Bildmaterial/` die unangetastete Ablage.
+- **V9** Dieses Release traegt seinen Tag am ausgelieferten Stand. Bei v0.2.0 zeigte der
+  Tag zwei Commits daneben, ein Rollback haette nicht das Laufende zurueckgeholt.
+
+**Offen geblieben:** V2 (Bildfreigaben — braucht die Einwilligung der abgebildeten
+Personen), der personenbezogene Teil von V1, V3 (Paket-Schwachstellen, bewusst liegen
+gelassen) und V11 (Jahreszahl im Fuss).
+
 ## v0.2.0 — 2026-07-25
 
 Entwurf online stellen, damit Gabriel und Caro ihn auf dem Handy anschauen koennen.

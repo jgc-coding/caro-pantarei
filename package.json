@@ -1,6 +1,6 @@
 {
   "name": "caro-pantarei-website",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "Website fuer Caro - Pantarei-Koerperarbeit und Playfight nach Matteo Tangi.",
@@ -8,7 +8,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "pruefe:links": "node skripte/pruefe-links.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

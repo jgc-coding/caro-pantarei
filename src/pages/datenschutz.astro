@@ -2,20 +2,20 @@
 import Grundgeruest from '../layouts/Grundgeruest.astro';
 import Abschnitt from '../components/Abschnitt.astro';
 import Platzhalter from '../components/Platzhalter.astro';
+import { marke, istOffen } from '../config/marke';
 
-// Bewusst NICHT ausgefuellt. Eine Datenschutzerklaerung muss zur tatsaechlichen
-// Technik passen (Hoster, Logfiles, Kontaktweg) — die steht erst mit dem Deploy fest.
-const punkte = [
-  'Verantwortliche Person und Kontakt (dieselben Angaben wie im Impressum)',
-  'Hosting: wer betreibt den Server, welche Server-Protokolle fallen an, wie lange werden sie gespeichert?',
-  'Kontaktaufnahme per E-Mail: welche Daten, wozu, wie lange aufbewahrt?',
-  'Rechte der Besucher: Auskunft, Berichtigung, Löschung, Widerspruch, Beschwerde bei der Aufsichtsbehörde',
-];
+// Diese Erklaerung beschreibt die TATSAECHLICH eingesetzte Technik: statische Seiten auf
+// GitHub Pages, keine Cookies, keine Analysewerkzeuge, Schriften lokal ausgeliefert.
+// Aendert sich der Hoster oder kommt ein Dienst dazu (z. B. der Versanddienst fuers
+// Kontaktformular), MUSS dieser Text mitgezogen werden.
+//
+// Kein Ersatz fuer eine anwaltliche Pruefung — das steht auch sichtbar auf der Seite.
+const formularAktiv = !istOffen(marke.formular.endpunkt);
 ---
 
 <Grundgeruest
   titel="Datenschutz"
-  beschreibung="Hinweise zum Umgang mit personenbezogenen Daten auf dieser Website."
+  beschreibung="Wie diese Website mit personenbezogenen Daten umgeht: kein Tracking, keine Cookies, keine externen Dienste."
 >
   <Abschnitt>
     <div class="schmal">
@@ -24,28 +24,130 @@ const punkte = [
 
       <div class="fliesstext" style="margin-top: var(--raum-5)">
         <p>
-          Diese Seite ist noch nicht ausgefüllt. Die Erklärung muss zur tatsächlich
-          eingesetzten Technik passen und steht deshalb erst fest, wenn klar ist, wo die
-          Website läuft.
+          Der Schutz Deiner Daten ist mir wichtig. Diese Website ist bewusst so gebaut, dass
+          sie so wenig Daten wie möglich berührt: <strong>keine Cookies, keine
+          Analysewerkzeuge, keine Werbenetzwerke und keine Inhalte von fremden Servern.</strong>
+          Auch die Schriftarten liegen auf demselben Server wie die Seite und werden nicht
+          von Dritten nachgeladen. Deshalb braucht diese Seite auch kein Zustimmungsbanner.
+        </p>
+      </div>
+
+      <h2 style="margin-top: var(--raum-7)">Wer ist verantwortlich?</h2>
+      <dl class="eckdaten" style="margin-top: var(--raum-4)">
+        <div class="eckdaten__zeile">
+          <dt class="eckdaten__titel">Name</dt>
+          <dd class="eckdaten__wert">{marke.name}</dd>
+        </div>
+        <div class="eckdaten__zeile">
+          <dt class="eckdaten__titel">Anschrift</dt>
+          <dd class="eckdaten__wert"><Platzhalter text={marke.kontakt.anschrift} /></dd>
+        </div>
+        <div class="eckdaten__zeile">
+          <dt class="eckdaten__titel">E-Mail</dt>
+          <dd class="eckdaten__wert"><Platzhalter text={marke.kontakt.email} /></dd>
+        </div>
+      </dl>
+
+      <h2 style="margin-top: var(--raum-7)">Was beim Aufrufen der Seite passiert</h2>
+      <div class="fliesstext" style="margin-top: var(--raum-4)">
+        <p>
+          Diese Website wird bei <strong>GitHub Pages</strong> gehostet, einem Dienst der
+          GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Wenn Du
+          die Seite aufrufst, verarbeitet GitHub technisch notwendige Verbindungsdaten —
+          insbesondere Deine IP-Adresse, Datum und Uhrzeit des Abrufs, die aufgerufene
+          Adresse sowie Angaben zu Browser und Betriebssystem. Ohne diese Übertragung könnte
+          die Seite nicht an Deinen Browser ausgeliefert werden.
         </p>
         <p>
-          Was heute schon feststeht und die Sache einfach hält: Diese Website lädt
-          <strong>keine externen Dienste</strong>. Die Schriften liegen auf demselben Server
-          wie die Seite, es gibt keine Karten, keine Videos von fremden Anbietern, keine
-          Analysewerkzeuge und keine Cookies. Damit braucht sie auch kein Zustimmungsbanner.
+          Rechtsgrundlage ist mein berechtigtes Interesse an einer sicheren und
+          funktionsfähigen Darstellung dieser Website (Art. 6 Abs. 1 lit. f DSGVO). Die
+          Verarbeitung findet dabei auch auf Servern in den USA statt. GitHub stützt diese
+          Übermittlung auf Standardvertragsklauseln. Näheres beschreibt GitHub in seiner
+          eigenen Datenschutzerklärung.
+        </p>
+        <p>
+          Ich selbst erhalte von diesen Verbindungsdaten <strong>keine Kopie</strong> und
+          kann sie weder einsehen noch auswerten.
         </p>
       </div>
 
-      <div style="margin-top: var(--raum-6)">
-        <p class="marke-zeile">Noch zu ergänzen</p>
-        <ul class="gegenueber__liste">
-          {punkte.map((punkt) => <li class="gegenueber__punkt">{punkt}</li>)}
-        </ul>
+      <h2 style="margin-top: var(--raum-7)">Wenn Du mir schreibst</h2>
+      <div class="fliesstext" style="margin-top: var(--raum-4)">
+        <p>
+          Schreibst Du mir eine E-Mail, verarbeite ich Deine Absenderadresse und alles, was
+          Du mir mitteilst — ausschließlich, um Deine Anfrage zu beantworten. Rechtsgrundlage
+          ist Art. 6 Abs. 1 lit. b DSGVO, wenn es um eine Sitzung oder Buchung geht,
+          ansonsten mein berechtigtes Interesse an der Beantwortung (lit. f).
+        </p>
+        <p>
+          Ich gebe diese Angaben nicht weiter und lösche sie, sobald Deine Anfrage
+          abschließend erledigt ist und keine gesetzliche Aufbewahrungspflicht entgegensteht.
+        </p>
+        {
+          formularAktiv ? (
+            <p>
+              Nutzt Du das Kontaktformular, wird Deine Nachricht über einen Versanddienst an
+              meine E-Mail-Adresse weitergeleitet. Dabei verarbeitet dieser Dienst die von
+              Dir eingegebenen Angaben und Deine IP-Adresse.
+            </p>
+          ) : null
+        }
       </div>
 
-      <div style="margin-top: var(--raum-6)">
+      {
+        !formularAktiv && (
+          <div style="margin-top: var(--raum-4)">
+            <Platzhalter
+              text="Sobald das Kontaktformular scharf geschaltet wird, muss hier ein Absatz zum Versanddienst ergänzt werden — Name, Sitz und was er verarbeitet."
+              block
+            />
+          </div>
+        )
+      }
+
+      <h2 style="margin-top: var(--raum-7)">Entwurf im Browser</h2>
+      <div class="fliesstext" style="margin-top: var(--raum-4)">
+        <p>
+          Während Du das Kontaktformular ausfüllst, sichert die Seite Deine Eingaben im
+          Speicher Deines eigenen Browsers, damit ein versehentliches Neuladen keine halb
+          geschriebene Nachricht vernichtet. Diese Sicherung <strong>verlässt Dein Gerät
+          nicht</strong> und wird gelöscht, sobald die Nachricht abgeschickt ist. Du kannst
+          sie jederzeit selbst entfernen, indem Du die Websitedaten in Deinem Browser löschst.
+        </p>
+      </div>
+
+      <h2 style="margin-top: var(--raum-7)">Was hier NICHT passiert</h2>
+      <ul class="gegenueber__liste" style="margin-top: var(--raum-4)">
+        <li class="gegenueber__punkt gegenueber__punkt--nicht">Keine Cookies</li>
+        <li class="gegenueber__punkt gegenueber__punkt--nicht">
+          Keine Reichweitenmessung, kein Google Analytics, keine Werbenetzwerke
+        </li>
+        <li class="gegenueber__punkt gegenueber__punkt--nicht">
+          Keine Schriften, Karten oder Videos von fremden Servern
+        </li>
+        <li class="gegenueber__punkt gegenueber__punkt--nicht">
+          Keine Weitergabe oder Verkauf von Daten, keine automatisierte Entscheidungsfindung
+        </li>
+      </ul>
+
+      <h2 style="margin-top: var(--raum-7)">Deine Rechte</h2>
+      <div class="fliesstext" style="margin-top: var(--raum-4)">
+        <p>
+          Du hast das Recht auf Auskunft über die zu Dir gespeicherten Daten, auf
+          Berichtigung, auf Löschung, auf Einschränkung der Verarbeitung, auf
+          Datenübertragbarkeit sowie das Recht, einer Verarbeitung zu widersprechen
+          (Art. 15 bis 21 DSGVO). Eine formlose Nachricht an die oben genannte Adresse
+          genügt.
+        </p>
+        <p>
+          Außerdem kannst Du Dich bei einer Datenschutz-Aufsichtsbehörde beschweren,
+          in der Regel bei der Behörde Deines Wohnorts oder der meines Sitzes.
+        </p>
+      </div>
+
+      <div style="margin-top: var(--raum-7)">
         <Platzhalter
-          text="Fertigen Text erst nach der Deploy-Entscheidung erstellen — Hoster und Kontaktweg müssen darin stimmen."
+          text="Dieser Text beschreibt die tatsächlich eingesetzte Technik, ersetzt aber keine anwaltliche Prüfung. Vor dem Livegang von Caro gegenlesen lassen."
           block
         />
       </div>

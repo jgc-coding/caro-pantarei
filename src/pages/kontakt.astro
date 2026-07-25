@@ -3,6 +3,7 @@ import Grundgeruest from '../layouts/Grundgeruest.astro';
 import Abschnitt from '../components/Abschnitt.astro';
 import Knopf from '../components/Knopf.astro';
 import Platzhalter from '../components/Platzhalter.astro';
+import Kontaktformular from '../components/Kontaktformular.astro';
 import { marke, istOffen } from '../config/marke';
 
 const kontaktzeilen = [
@@ -50,20 +51,14 @@ const mailZiel = istOffen(marke.kontakt.email)
         }
       </dl>
 
-      <div class="fliesstext" style="margin-top: var(--raum-6)">
-        <p>
-          Wenn Du magst, schreib mir gleich dazu, worum es geht und was Du Dir wünschst —
-          das erspart uns eine Runde hin und her.
-        </p>
-      </div>
     </div>
   </Abschnitt>
 
-  <!--
-    Hinweis fuer die Uebergabe (nicht fuer Caros Besucher gedacht, siehe Bericht):
-    Diese Seite hat bewusst KEIN Formular. Eine statische Website hat keinen Server,
-    der eine Nachricht verschicken koennte — ein Formular saehe funktionsfaehig aus und
-    wuerde Anfragen still verschlucken. Wenn ein echtes Formular gewuenscht ist, ist das
-    ein eigener Schritt (z. B. Netlify Forms oder Formspree).
-  -->
+  <Abschnitt eng>
+    <div class="schmal">
+      <p class="marke-zeile">Oder direkt hier</p>
+      <h2 style="margin-bottom: var(--raum-5)">Schreib mir eine Nachricht</h2>
+      <Kontaktformular />
+    </div>
+  </Abschnitt>
 </Grundgeruest>

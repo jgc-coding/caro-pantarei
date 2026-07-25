@@ -1,0 +1,45 @@
+---
+import Grundgeruest from '../layouts/Grundgeruest.astro';
+import Abschnitt from '../components/Abschnitt.astro';
+import Knopf from '../components/Knopf.astro';
+import { pfad, navigation } from '../config/marke';
+
+// Wer sich vertippt oder einem alten Link folgt, landete bisher auf einer fremden,
+// englischsprachigen Seite von GitHub — ohne Caros Gestaltung und ohne Weg zurueck.
+// Diese Seite faengt das ab. GitHub Pages sucht dafuer eine Datei "404.html" direkt
+// im Wurzelverzeichnis der Ausgabe; Astro legt sie aus dieser Datei genau dort an.
+---
+
+<Grundgeruest
+  titel="Seite nicht gefunden"
+  beschreibung="Diese Seite gibt es nicht. Hier geht es zurück zum Anfang."
+>
+  <Abschnitt>
+    <div class="schmal">
+      <p class="marke-zeile">Nicht gefunden</p>
+      <h1>Hier ist nichts.</h1>
+      <p class="vorlauf" style="margin-top: var(--raum-5)">
+        Vielleicht hat sich ein Tippfehler eingeschlichen, vielleicht ist der Link alt.
+        Beides halb so wild — such Dir aus, wo Du hinmöchtest.
+      </p>
+
+      <nav aria-label="Alle Seiten" style="margin-top: var(--raum-6)">
+        <ul class="gegenueber__liste">
+          {
+            navigation.map((punkt) => (
+              <li class="gegenueber__punkt">
+                <a class="weiter" href={pfad(punkt.ziel)}>
+                  {punkt.titel} <span aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="knopf-reihe">
+        <Knopf ziel={pfad('/')}>Zur Startseite</Knopf>
+      </div>
+    </div>
+  </Abschnitt>
+</Grundgeruest>

@@ -41,6 +41,11 @@ jobs:
       # Rote Typen sollen den Deploy stoppen, BEVOR eine kaputte Seite live geht.
       - run: npm run check
       - run: npm run build
+      # Prueft die gebaute Ausgabe auf interne Verweise ohne Unterordner-Pfad und auf
+      # Links ins Leere. `astro check` kann das nicht sehen — es prueft Typen, nicht das
+      # Ergebnis. Genau diese Luecke hatte am 2026-07-25 einen kaputten Sitemap-Verweis
+      # durchgelassen.
+      - run: npm run pruefe:links
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

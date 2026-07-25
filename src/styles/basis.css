@@ -638,6 +638,137 @@ main > .abschnitt:first-child {
   order: -1;
 }
 
+/* --- 12b Formular -------------------------------------------------------- */
+
+/* Nur fuer Vorlesewerkzeuge sichtbar — nicht `display:none`, das wuerde sie ausblenden. */
+.visuell-versteckt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Kinder duerfen die 1-Pixel-Box nicht verlassen. Ein Eingabefeld bringt von sich aus
+   rund 200 px mit und ragt sonst rechnerisch ueber den Bildschirmrand — sichtbar ist das
+   nie, aber jede Ueberlauf-Pruefung meldet dann dauerhaft einen Treffer und wird dadurch
+   wertlos. */
+.visuell-versteckt * {
+  max-width: 100%;
+}
+
+.formular {
+  max-width: 34rem;
+}
+
+.formular__satz {
+  display: grid;
+  gap: var(--raum-4);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0; /* sonst sprengt ein langes Feld den fieldset auf schmalen Schirmen */
+}
+
+/* Abgeschaltet: sichtbar, aber erkennbar nicht bedienbar. */
+.formular__satz:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.feld {
+  display: grid;
+  gap: var(--raum-1);
+}
+
+.feld__marke {
+  font-size: var(--gr-marke);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--farbe-ton);
+}
+
+.feld__eingabe {
+  width: 100%;
+  background: var(--farbe-grund);
+  color: var(--farbe-tinte);
+  border: 1px solid var(--farbe-linie);
+  border-radius: 8px;
+  padding: 0.7em 0.85em;
+  font-size: var(--gr-text);
+  line-height: 1.5;
+  transition: border-color 0.2s ease;
+}
+
+.feld__eingabe:hover:enabled {
+  border-color: var(--farbe-ton);
+}
+
+.feld__eingabe:focus-visible {
+  border-color: var(--akzent-tief);
+}
+
+textarea.feld__eingabe {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.feld__hinweis {
+  font-size: var(--gr-klein);
+  color: var(--farbe-ton);
+}
+
+.feld--haken {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--raum-2);
+}
+
+.feld__haken {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.35em;
+  accent-color: var(--akzent-tief);
+}
+
+.feld__hakenmarke {
+  font-size: var(--gr-klein);
+  line-height: 1.6;
+  color: var(--farbe-ton);
+}
+
+.feld__hakenmarke a {
+  color: var(--akzent-tief);
+  text-underline-offset: 0.2em;
+}
+
+.formular__meldung {
+  margin-top: var(--raum-4);
+  padding: var(--raum-3) var(--raum-4);
+  border-radius: 8px;
+  border-left: 3px solid var(--akzent-tief);
+  background: var(--farbe-flaeche);
+  line-height: 1.6;
+}
+
+.formular__meldung[data-art='schlecht'] {
+  border-left-color: var(--farbe-wild-tief);
+}
+
+/* Diagnose-Zeile: bewusst klein und unaufdringlich. Sie ist fuer den Screenshot da,
+   nicht fuer die Lektuere — die eigentliche Aussage steht darueber. */
+.formular__diagnose {
+  margin-top: var(--raum-1);
+  font-size: var(--gr-klein);
+  color: var(--farbe-ton);
+  font-variant-numeric: tabular-nums;
+}
+
 /* --- 13 Fusszeile -------------------------------------------------------- */
 
 .fusszeile {

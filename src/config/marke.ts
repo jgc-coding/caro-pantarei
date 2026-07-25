@@ -44,7 +44,14 @@ export const marke = {
    * Ausbildung allein reicht nicht.
    */
   rolle: offen('Berufsbezeichnung — erst eintragen, wenn die Heilpraktiker-Erlaubnis vorliegt'),
-  claim: 'Innehalten. Spüren. In Verbindung kommen.',
+  /**
+   * Der Satz unter dem Namen. BEWUSST offen statt vorbelegt: Der erste Entwurf trug
+   * „Innehalten. Spueren. In Verbindung kommen." — das lag zu dicht an
+   * „Innehalten. Spueren. Veraendern." von weber-jessica.de, einer Seite, die Caro selbst
+   * als Vorbild genannt hat und deren Publikum sich mit ihrem ueberschneidet.
+   * Ein eigener Satz muss von Caro kommen.
+   */
+  claim: offen('Ein Satz unter dem Namen — in Caros eigenen Worten'),
 
   // --- Kontakt -------------------------------------------------------------
   kontakt: {
@@ -52,6 +59,19 @@ export const marke = {
     telefon: offen('Telefonnummer (oder streichen, wenn nicht gewünscht)'),
     anschrift: offen('Anschrift für das Impressum'),
     rechtsform: offen('Rechtsform / Umsatzsteuer-Angabe'),
+  },
+
+  /**
+   * Kontaktformular. Eine statische Website hat keinen Server, der eine Nachricht
+   * verschicken koennte — dafuer braucht es einen Versanddienst, der eine Adresse zum
+   * Hinschicken liefert (z. B. Formspree oder Web3Forms, beide mit Gratis-Kontingent).
+   *
+   * Solange `endpunkt` offen ist, wird das Formular SICHTBAR, aber ABGESCHALTET
+   * gezeigt. Grund: Ein Formular, das versendet aussieht und nichts verschickt,
+   * verschluckt echte Anfragen still — das ist schlimmer als gar keins.
+   */
+  formular: {
+    endpunkt: offen('Adresse des Versanddienstes (Formspree oder Web3Forms)'),
   },
 
   // --- Pantarei ------------------------------------------------------------

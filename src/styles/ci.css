@@ -19,8 +19,11 @@
 
   /* --- Die zwei Welten ---------------------------------------------------- */
   /* still = Pantarei. Lavendel, aus dem Shirt, das Caro auf jedem Foto traegt. */
-  --farbe-still: #9e93ac;
-  --farbe-still-tief: #7d7090; /* dunklere Variante fuer Text auf hellem Grund */
+  --farbe-still: #9e93ac; /* nur Linien und Flaechen, nie Text */
+  /* Textvariante. Muss auf Leinen UND auf Sand mindestens 4.5:1 erreichen — sie traegt
+     Eyebrows, Knoepfe und Links auf jeder Seite. Aktuell 5.47:1 bzw. 4.85:1.
+     Beim Tauschen der CI nachrechnen, sonst wird der Hauptknopf im Sonnenlicht unlesbar. */
+  --farbe-still-tief: #6e617f;
   /* wild = Playfight. Warmer Ton. */
   --farbe-wild: #c4714e;
   --farbe-wild-tief: #a55938;
@@ -28,8 +31,10 @@
   /* --- Linien und Hinweise ------------------------------------------------ */
   --farbe-linie: rgb(42 39 36 / 14%);
   --farbe-linie-zart: rgb(42 39 36 / 8%);
-  /* Nur fuer sichtbare Platzhalter im Entwurf — kein CI-Wert. */
-  --farbe-offen: #b8863c;
+  /* Nur fuer sichtbare Platzhalter im Entwurf — kein CI-Wert.
+     4.89:1 auf der hellen Flaeche: Ausgerechnet der Hinweis auf fehlende Angaben
+     darf nicht die schlechtest lesbare Stelle der Seite sein. */
+  --farbe-offen: #8c6228;
   --farbe-offen-flaeche: #fbf3e4;
 
   /* --- Schriften ---------------------------------------------------------- */

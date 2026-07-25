@@ -2,21 +2,39 @@
 import Grundgeruest from '../layouts/Grundgeruest.astro';
 import Abschnitt from '../components/Abschnitt.astro';
 import Platzhalter from '../components/Platzhalter.astro';
-import { marke } from '../config/marke';
+import { marke, istOffen } from '../config/marke';
 
-// Bewusst NICHT ausgefuellt. Anschrift, Rechtsform und Aufsichtsbehoerde kann
-// niemand erfinden — sie muessen von Caroline kommen. Bis dahin bleibt die Seite
-// sichtbar unfertig, statt falsch zu wirken.
+// Struktur und Pflichtfelder stehen. Was fehlt, sind ausschliesslich Angaben, die nur
+// Caroline liefern kann — die werden NICHT geraten, sondern sichtbar markiert.
+//
+// Achtung bei der Berufsbezeichnung: Wer „Heilpraktikerin fuer Psychotherapie" fuehrt,
+// muss zusaetzlich die zustaendige Aufsichtsbehoerde, die Berufsbezeichnung und den Staat
+// nennen, in dem sie verliehen wurde. Solange die Erlaubnis nicht bestaetigt ist, bleibt
+// dieser Block offen.
 const pflichtangaben = [
-  { titel: 'Name', wert: marke.name, hinweis: 'Schreibweise noch bestätigen' },
-  { titel: 'Anschrift', wert: marke.kontakt.anschrift, hinweis: null },
+  { titel: 'Name', wert: marke.name, hinweis: 'Schreibweise noch von Caroline bestätigen' },
+  { titel: 'Anschrift', wert: marke.kontakt.anschrift, hinweis: 'Ladungsfähige Anschrift, kein Postfach' },
   { titel: 'E-Mail', wert: marke.kontakt.email, hinweis: null },
-  { titel: 'Telefon', wert: marke.kontakt.telefon, hinweis: null },
-  { titel: 'Rechtsform / Umsatzsteuer', wert: marke.kontakt.rechtsform, hinweis: null },
+  { titel: 'Telefon', wert: marke.kontakt.telefon, hinweis: 'Entfällt, wenn nicht gewünscht' },
+  {
+    titel: 'Rechtsform / Umsatzsteuer',
+    wert: marke.kontakt.rechtsform,
+    hinweis: 'Umsatzsteuer-Identifikationsnummer, oder Hinweis auf die Kleinunternehmerregelung',
+  },
+  {
+    titel: 'Berufsbezeichnung',
+    wert: marke.rolle,
+    hinweis: 'Nur eintragen, wenn die Erlaubnis des Gesundheitsamts vorliegt — dann zusammen mit Aufsichtsbehörde und verleihendem Staat',
+  },
 ];
+
+const offeneAnzahl = pflichtangaben.filter((z) => istOffen(z.wert)).length;
 ---
 
-<Grundgeruest titel="Impressum" beschreibung="Anbieterkennzeichnung nach Paragraf 5 DDG.">
+<Grundgeruest
+  titel="Impressum"
+  beschreibung="Anbieterkennzeichnung nach Paragraf 5 Digitale-Dienste-Gesetz."
+>
   <Abschnitt>
     <div class="schmal">
       <p class="marke-zeile">Rechtliches</p>
@@ -24,9 +42,9 @@ const pflichtangaben = [
 
       <div class="fliesstext" style="margin-top: var(--raum-5)">
         <p>
-          Diese Seite ist noch nicht ausgefüllt. Die Angaben unten sind gesetzlich
-          vorgeschrieben (§ 5 DDG) und müssen vor dem Livegang der Website eingetragen
-          werden.
+          Angaben nach § 5 Digitale-Dienste-Gesetz (DDG). {offeneAnzahl} von{' '}
+          {pflichtangaben.length} Feldern warten noch auf Caroline und sind unten markiert —
+          sie müssen vor dem Livegang ausgefüllt sein.
         </p>
       </div>
 
@@ -36,7 +54,7 @@ const pflichtangaben = [
             <div class="eckdaten__zeile">
               <dt class="eckdaten__titel">{zeile.titel}</dt>
               <dd class="eckdaten__wert">
-                <Platzhalter text={zeile.wert} />
+                {istOffen(zeile.wert) ? <Platzhalter text={zeile.wert} /> : zeile.wert}
                 {zeile.hinweis && <p class="bildunterschrift">{zeile.hinweis}</p>}
               </dd>
             </div>
@@ -44,13 +62,37 @@ const pflichtangaben = [
         }
       </dl>
 
-      <div class="fliesstext" style="margin-top: var(--raum-6)">
+      <h2 style="margin-top: var(--raum-7)">Bildnachweis</h2>
+      <div style="margin-top: var(--raum-4)">
+        <Platzhalter
+          text="Wer hat die Fotos gemacht? Fotografin oder Fotograf nennen — und die Einwilligung aller erkennbaren Personen einholen, bevor die Seite auffindbar wird."
+          block
+        />
+      </div>
+
+      <h2 style="margin-top: var(--raum-7)">Streitbeilegung</h2>
+      <div class="fliesstext" style="margin-top: var(--raum-4)">
         <p>
-          Zusätzlich zu prüfen: Wird eine Berufsbezeichnung geführt (etwa
-          „Heilpraktikerin für Psychotherapie"), müssen die zuständige Aufsichtsbehörde,
-          die Berufsbezeichnung und der Staat, in dem sie verliehen wurde, mit angegeben
-          werden.
+          Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
         </p>
+      </div>
+
+      <h2 style="margin-top: var(--raum-7)">Haftung für Links</h2>
+      <div class="fliesstext" style="margin-top: var(--raum-4)">
+        <p>
+          Diese Seite verweist an einzelnen Stellen auf externe Websites. Auf deren Inhalte
+          habe ich keinen Einfluss; für sie ist ausschließlich der jeweilige Anbieter
+          verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.
+          Werde ich auf einen hingewiesen, entferne ich den Link umgehend.
+        </p>
+      </div>
+
+      <div style="margin-top: var(--raum-7)">
+        <Platzhalter
+          text="Struktur und Pflichtfelder stehen, ersetzen aber keine anwaltliche Prüfung. Vor dem Livegang von Caro gegenlesen lassen."
+          block
+        />
       </div>
     </div>
   </Abschnitt>

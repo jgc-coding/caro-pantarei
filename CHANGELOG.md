@@ -2,6 +2,28 @@
 
 Alle nennenswerten Aenderungen dieses Projekts. Neueste zuerst.
 
+## v0.4.0 — 2026-07-25
+
+Design-Verfeinerung: mehr Finesse, kleine dezente Spielereien — alle aus einem Motiv
+(Atem und Welle, „Panta rhei"), nah an den Vorbild-Seiten.
+
+- **Wellen-Marke**: Welle im Kreis als Inline-SVG neben dem Namen und im Seitenfuss.
+  Echo auf das Kreiszeichen von weber-jessica.de; faerbt sich ueber `currentColor`
+  automatisch mit der Welt um (Lavendel auf stillen Seiten, Ton auf der Playfight-Seite).
+- **Der Atem**: das erste Bild jeder Seite hebt und senkt sich um ~1 % in 8 s — an der
+  Wahrnehmungsgrenze. Animiert `scale` statt `transform`, damit es der Einblendung nicht
+  in die Quere kommt.
+- **Zeilenleiter**: die Haarlinie zeichnet sich beim Hereinscrollen von oben, bevor die
+  Zeilen erscheinen (border-left → eigenes ::before-Element).
+- **Ein kursives Wort je Seite**: „Schön, dass *Du* da bist." — Newsreader-Kursive als
+  Betonung genau eines Wortes je Seite (Du · gleichzeitig · gegeneinander · Caroline ·
+  nichts).
+- **Mikro-Bewegungen**: Navigation mit sich von links aufbauender Linie, Pfeile ruecken
+  beim Zeigen 3 px vor, Wegkarten-Bilder wachsen beim Zeigen minimal (1.4 s, `scale`).
+- **Kleinigkeiten**: kurzer Haarstrich vor den Abschnittsmarken (Echo auf die Labels von
+  eunike-erbe.eu), Textmarkierung in zartem Lavendel statt Browser-Blau.
+- Alles hinter `prefers-reduced-motion`, weiterhin null externe Requests.
+
 ## v0.3.1 — 2026-07-25
 
 - Impressum: doppeltes Leerzeichen in der Zaehlzeile („5 von  6 Feldern") entfernt.

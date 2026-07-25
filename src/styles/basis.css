@@ -142,6 +142,23 @@ strong {
   border-radius: 2px;
 }
 
+/* Markierter Text wird zart lavendel statt Browser-Blau — kleine Stelle, grosser
+   Unterschied im Gesamteindruck. */
+::selection {
+  background: rgb(158 147 172 / 30%);
+  color: var(--farbe-tinte);
+}
+
+/* Genau EIN kursives Wort je Seite darf betont werden („Schön, dass Du da bist.").
+   Die Newsreader-Kursive traegt viel Waerme — darum sparsam: mehr als ein Wort je
+   Seite, und die Betonung ist keine mehr. */
+h1 em,
+h2 em,
+h3 em {
+  font-style: italic;
+  font-weight: inherit;
+}
+
 /* --- 4 Huellen ----------------------------------------------------------- */
 
 .huelle {
@@ -179,14 +196,26 @@ strong {
   max-width: 46ch;
 }
 
-/* Kleine gesperrte Auszeichnung ueber Ueberschriften. */
+/* Kleine gesperrte Auszeichnung ueber Ueberschriften. Der kurze Strich davor ist das
+   Echo auf die unterstrichenen Abschnitts-Labels von eunike-erbe.eu. */
 .marke-zeile {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   font-size: var(--gr-marke);
   text-transform: uppercase;
   letter-spacing: 0.17em;
   font-weight: 600;
   color: var(--akzent-tief);
   margin-bottom: var(--raum-3);
+}
+
+.marke-zeile::before {
+  content: '';
+  width: 1.4rem;
+  height: 1px;
+  background: var(--akzent);
+  flex-shrink: 0;
 }
 
 .sprungmarke {
@@ -220,12 +249,22 @@ strong {
 }
 
 .kopfzeile__marke {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-family: var(--schrift-display);
   font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 0.04em;
   text-decoration: none;
   white-space: nowrap;
+}
+
+/* Die Wellen-Marke erbt die Weltfarbe: Lavendel auf den stillen Seiten,
+   warmer Ton auf der Playfight-Seite — data-welt am <body> steuert das. */
+.kopfzeile__zeichen {
+  color: var(--akzent-tief);
+  flex-shrink: 0;
 }
 
 .kopfzeile__nav {
@@ -235,6 +274,7 @@ strong {
 }
 
 .kopfzeile__link {
+  position: relative;
   font-size: var(--gr-marke);
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -242,19 +282,34 @@ strong {
   text-decoration: none;
   color: var(--farbe-ton);
   padding-block: 0.35rem;
-  border-bottom: 1px solid transparent;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  transition: color 0.25s ease;
+}
+
+/* Die Linie baut sich von links auf, statt nur zu erscheinen — Echo auf den
+   Underline-Stil der Vorbild-Seiten, eine Spur lebendiger. */
+.kopfzeile__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--akzent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
 }
 
 .kopfzeile__link:hover,
-.kopfzeile__link:focus-visible {
-  color: var(--farbe-tinte);
-  border-bottom-color: var(--akzent);
-}
-
+.kopfzeile__link:focus-visible,
 .kopfzeile__link[aria-current='page'] {
   color: var(--farbe-tinte);
-  border-bottom-color: var(--akzent);
+}
+
+.kopfzeile__link:hover::after,
+.kopfzeile__link:focus-visible::after,
+.kopfzeile__link[aria-current='page']::after {
+  transform: scaleX(1);
 }
 
 .menue-knopf {
@@ -336,15 +391,28 @@ main > .abschnitt:first-child {
    Dieses Bauteil macht genau diesen Rhythmus sichtbar. Sparsam einsetzen. */
 
 .zeilenleiter {
+  position: relative;
   display: grid;
   gap: 0.35em;
   padding-left: clamp(1.1rem, 0.6rem + 1.4vw, 1.9rem);
-  border-left: 1px solid var(--akzent);
   font-family: var(--schrift-display);
   font-weight: 300;
   font-size: var(--gr-display-m);
   line-height: 1.3;
   letter-spacing: -0.01em;
+}
+
+/* Die Haarlinie ist ein eigenes Element statt border-left, damit sie sich beim
+   Hereinscrollen von oben nach unten zeichnen kann (Abschnitt 14) — wie ein
+   Atemzug, bevor die Zeilen sprechen. Ohne JavaScript steht sie einfach da. */
+.zeilenleiter::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 1px;
+  background: var(--akzent);
 }
 
 .zeilenleiter--gross {
@@ -428,6 +496,16 @@ main > .abschnitt:first-child {
   border-bottom-color: var(--farbe-tinte);
 }
 
+/* Der Pfeil rueckt beim Zeigen ein Stueck vor — eine Einladung, kein Effekt. */
+.weiter span {
+  transition: transform 0.3s ease;
+}
+
+.weiter:hover span,
+.weiter:focus-visible span {
+  transform: translateX(3px);
+}
+
 /* --- 9 Wegkarte — die zwei Wege auf der Startseite ----------------------- */
 
 .wege {
@@ -447,6 +525,21 @@ main > .abschnitt:first-child {
   width: 100%;
   object-fit: cover;
   border-radius: 999px 999px 10px 10px;
+}
+
+/* Sehr langsames, minimales Wachsen beim Zeigen — im Tempo der Seite.
+   Bewusst `scale` statt `transform`: Die Einblend-Animation (Abschnitt 14) setzt
+   `transform` und wuerde ein transform-basiertes Hover-Wachsen ueberschreiben —
+   beide Eigenschaften wirken unabhaengig voneinander. */
+@media (prefers-reduced-motion: no-preference) {
+  .wegkarte__bild {
+    transition: scale 1.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+
+  .wegkarte:hover .wegkarte__bild,
+  .wegkarte:focus-within .wegkarte__bild {
+    scale: 1.02;
+  }
 }
 
 .wegkarte__titel {
@@ -777,6 +870,15 @@ textarea.feld__eingabe {
   margin-top: var(--raum-8);
 }
 
+/* Die Wellen-Marke schliesst die Seite, wie sie sie oeffnet. */
+.fusszeile__zeichen {
+  display: flex;
+  justify-content: center;
+  color: var(--farbe-ton);
+  opacity: 0.8;
+  margin-bottom: var(--raum-6);
+}
+
 .fusszeile__raster {
   display: grid;
   gap: var(--raum-6);
@@ -844,6 +946,37 @@ textarea.feld__eingabe {
   transition:
     opacity 0.8s ease var(--verzoegerung, 0ms),
     transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) var(--verzoegerung, 0ms);
+}
+
+/* Die Zeilenleiter-Linie zeichnet sich von oben, bevor die Zeilen erscheinen. */
+[data-animiert] .zeilenleiter::before {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+[data-animiert] .zeilenleiter.ist-sichtbar::before {
+  transform: scaleY(1);
+  transition: transform 1s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* Der Atem der Seite: genau EIN Bild je Seite (das erste) hebt und senkt sich um
+   gut ein Prozent — an der Wahrnehmungsgrenze, wie ruhiges Atmen. Nur bei
+   erwuenschter Bewegung; der Block unten schaltet es fuer alle anderen ab. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes atmen {
+    from {
+      scale: 1;
+    }
+
+    to {
+      scale: 1.012;
+    }
+  }
+
+  .atmet {
+    animation: atmen 8s ease-in-out infinite alternate;
+    transform-origin: 50% 60%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

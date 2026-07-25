@@ -1,0 +1,33 @@
+---
+/**
+ * Die Wellen-Marke: eine ruhige Welle im Kreis.
+ *
+ * Panta rhei — alles fliesst. Das Zeichen steht neben dem Namen in der Kopfzeile und
+ * im Seitenfuss. Es ist ein Platzhalter mit Haltung, bis Caro ein echtes Logo hat:
+ * Inline-SVG ohne Datei und ohne Request, Farbe ueber `currentColor` — dadurch faerbt
+ * es sich mit der Welt (`data-welt`) um: Lavendel auf den stillen Seiten, warmer Ton
+ * auf der Playfight-Seite.
+ */
+interface Props {
+  groesse?: number;
+  klasse?: string;
+}
+
+const { groesse = 22, klasse } = Astro.props;
+---
+
+<svg
+  class={klasse}
+  width={groesse}
+  height={groesse}
+  viewBox="0 0 32 32"
+  fill="none"
+  aria-hidden="true"
+>
+  <circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1.4" opacity="0.5"></circle>
+  <path
+    d="M6.5 16 C 9.5 11.8, 12.5 11.8, 16 16 S 22.5 20.2, 25.5 16"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="round"></path>
+</svg>

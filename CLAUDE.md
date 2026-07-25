@@ -69,10 +69,18 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   wer nur `Bildmaterial/` aktualisiert, sieht auf der Website weiter die alten Bilder,
   ohne dass irgendetwas warnt.
 - **Zeilenleiter** ist das Erkennungsmerkmal der Seite: gestapelte kurze Zeilen mit
-  senkrechter Haarlinie. Kommt aus Caros eigenem Schreibrhythmus. Sparsam einsetzen —
-  wenn sie ueberall steht, wirkt sie nirgends.
-- Bewegung nur an drei Stellen (Zeilenleiter, Bild-Einblendung, Hover) und immer hinter
-  `prefers-reduced-motion`.
+  senkrechter Haarlinie, die sich beim Hereinscrollen von oben zeichnet. Kommt aus Caros
+  eigenem Schreibrhythmus. Sparsam einsetzen — wenn sie ueberall steht, wirkt sie nirgends.
+- **Wellen-Marke** (`WellenMarke.astro`): Inline-SVG, Farbe ueber `currentColor` — sie
+  faerbt sich mit `data-welt` um. Steht in Kopfzeile und Fusszeile, sonst nirgends.
+  Platzhalter mit Haltung, bis Caro ein echtes Logo hat.
+- **Der Atem:** Genau EIN Bild je Seite (das erste, Klasse `atmet`) hebt und senkt sich
+  um ~1 % in 8 s. Nie auf mehrere Bilder ausweiten — der Reiz liegt darin, dass man es
+  kaum sieht. Animiert wird `scale`, nie `transform` (das gehoert der Einblendung).
+- **Genau EIN kursives `<em>`-Wort je Seite** in einer Ueberschrift („Schön, dass *Du*
+  da bist."). Mehr als eines, und die Betonung ist keine mehr.
+- Bewegung nur an diesen Stellen (Zeilenleiter, Einblendung, Atem, Hover) und immer
+  hinter `prefers-reduced-motion`.
 
 ## Inhaltliche Regeln (nicht verhandelbar)
 

@@ -1,4 +1,5 @@
 ---
+import WellenMarke from './WellenMarke.astro';
 import { marke, navigation, pfad, istOffen } from '../config/marke';
 import { VERSION } from '../config/version';
 import Platzhalter from './Platzhalter.astro';
@@ -8,6 +9,9 @@ const jahr = new Date().getFullYear();
 
 <footer class="fusszeile">
   <div class="huelle">
+    <div class="fusszeile__zeichen">
+      <WellenMarke groesse={24} />
+    </div>
     <div class="fusszeile__raster">
       <div>
         <p class="fusszeile__titel">Seiten</p>

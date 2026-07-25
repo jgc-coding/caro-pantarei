@@ -1,0 +1,38 @@
+---
+import { marke, navigation, pfad } from '../config/marke';
+
+// Der aktuelle Pfad, ohne Base-Prefix und ohne abschliessenden Schraegstrich —
+// damit "aktuelle Seite" auch unter einem Unterordner-Deploy stimmt.
+const basis = import.meta.env.BASE_URL.replace(/\/$/, '');
+const hier = (Astro.url.pathname.slice(basis.length) || '/').replace(/\/$/, '') || '/';
+---
+
+<header class="kopfzeile">
+  <div class="huelle kopfzeile__innen">
+    <a class="kopfzeile__marke" href={pfad('/')}>{marke.name}</a>
+
+    <button
+      class="menue-knopf"
+      type="button"
+      data-menue-knopf
+      aria-expanded="false"
+      aria-controls="hauptnavigation"
+    >
+      Menue
+    </button>
+
+    <nav class="kopfzeile__nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      {
+        navigation.map((punkt) => (
+          <a
+            class="kopfzeile__link"
+            href={pfad(punkt.ziel)}
+            aria-current={hier === punkt.ziel ? 'page' : undefined}
+          >
+            {punkt.titel}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

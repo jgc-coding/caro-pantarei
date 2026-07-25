@@ -1,0 +1,171 @@
+---
+import { Image } from 'astro:assets';
+import Grundgeruest from '../layouts/Grundgeruest.astro';
+import Abschnitt from '../components/Abschnitt.astro';
+import Zeilenleiter from '../components/Zeilenleiter.astro';
+import Wegkarte from '../components/Wegkarte.astro';
+import Knopf from '../components/Knopf.astro';
+import Platzhalter from '../components/Platzhalter.astro';
+import { marke, pfad } from '../config/marke';
+
+import bildCaro from '../assets/bilder/caro-sitzend.jpg';
+import bildHaende from '../assets/bilder/haende-halten.jpg';
+import bildBegegnung from '../assets/bilder/begegnung-zwei.jpg';
+import bildKreis from '../assets/bilder/kreis-gespraech.jpg';
+---
+
+<Grundgeruest
+  titel="Willkommen"
+  beschreibung="Pantarei-Körperarbeit in der Einzelsitzung und Playfight nach Matteo Tangi in der Gruppe. Innehalten, spüren, in Verbindung kommen."
+>
+  <!-- Auftakt -->
+  <Abschnitt>
+    <div class="gespann">
+      <div>
+        <p class="marke-zeile">Willkommen</p>
+        <h1>Schön, dass Du da bist.</h1>
+        <p class="vorlauf" style="margin-top: var(--raum-5)">
+          Ich begleite Menschen dabei, wieder wahrzunehmen, was in ihnen lebendig werden
+          möchte — leise in der Einzelsitzung, wild und spielerisch in der Gruppe.
+        </p>
+        <div class="knopf-reihe">
+          <Knopf ziel={pfad('/pantarei')}>Pantarei kennenlernen</Knopf>
+          <Knopf ziel={pfad('/playfight')} still>Playfight kennenlernen</Knopf>
+        </div>
+      </div>
+      <div class="gespann__bild">
+        <Image
+          class="bild--bogen einblenden"
+          src={bildCaro}
+          alt="Caroline sitzt im Schneidersitz auf einem hellen Boden und lacht."
+          widths={[420, 640, 853]}
+          sizes="(max-width: 55rem) 88vw, 28rem"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Die eigene Stimme: Caros Rhythmus als Zeilenleiter -->
+  <Abschnitt flaeche>
+    <div class="schmal">
+      <p class="vorlauf" style="margin-bottom: var(--raum-6)">
+        Ich glaube, dass Du bereits alles in Dir trägst, was Du brauchst. Manchmal geht der
+        Kontakt zu diesem Wissen verloren. Meine Arbeit setzt genau dort an — beim
+        Wiederinverbindungkommen.
+      </p>
+      <Zeilenleiter
+        zeilen={[
+          'Mit Deinen Gefühlen.',
+          'Mit Deinem Körper.',
+          'Mit Deinen Bedürfnissen.',
+          'Mit Deiner eigenen Wahrheit.',
+        ]}
+        groesse="gross"
+      />
+    </div>
+  </Abschnitt>
+
+  <!-- Die zwei Wege -->
+  <Abschnitt>
+    <div class="abschnitt__kopf">
+      <p class="marke-zeile">Zwei Wege</p>
+      <h2>Leise oder laut — beides führt nach innen.</h2>
+    </div>
+    <div class="wege">
+      <Wegkarte
+        welt="still"
+        unterzeile="Einzeln, im geschützten Raum"
+        titel="Pantarei"
+        text="Gespräch und Körperarbeit in einer Sitzung. Wir hören zu, was Dein Körper zu erzählen hat — ohne etwas wegmachen zu wollen."
+        ziel={pfad('/pantarei')}
+        linktext="Mehr über Pantarei"
+        bild={bildHaende}
+        alt="Zwei Menschen sitzen sich gegenüber und halten die Hände ineinander."
+      />
+      <Wegkarte
+        welt="wild"
+        unterzeile="In der Gruppe, auf der Matte"
+        titel="Playfight"
+        text="Spielerisches Kämpfen in einem klaren Rahmen. Kraft spüren, Grenzen setzen, in Kontakt bleiben. Nach Matteo Tangi."
+        ziel={pfad('/playfight')}
+        linktext="Mehr über Playfight"
+        bild={bildBegegnung}
+        alt="Zwei Menschen gehen lachend in die Hocke und schauen sich an."
+      />
+    </div>
+  </Abschnitt>
+
+  <!-- Kurzporträt -->
+  <Abschnitt flaeche>
+    <div class="gespann gespann--bild-links">
+      <div class="gespann__bild">
+        <Image
+          class="bild--kreis einblenden"
+          src={bildKreis}
+          alt="Eine Gruppe sitzt im Kreis auf dem Boden, eine Person spricht."
+          widths={[380, 560, 760]}
+          sizes="(max-width: 55rem) 80vw, 22rem"
+          format="webp"
+          quality={78}
+        />
+      </div>
+      <div>
+        <p class="marke-zeile">Über mich</p>
+        <h2>Ich bin {marke.vorname}.</h2>
+        <div class="fliesstext" style="margin-top: var(--raum-4)">
+          <p>
+            Mich bewegt die Frage, was Menschen dabei unterstützt, sich lebendig, verbunden
+            und zu Hause in sich selbst zu fühlen.
+          </p>
+          <p>
+            Ich sehe meine Aufgabe nicht darin, Menschen zu verändern. Sondern darin, sie
+            dabei zu begleiten, wieder mit sich selbst in Verbindung zu kommen.
+          </p>
+          <p>
+            <a class="weiter" href={pfad('/ueber-mich')}
+              >Meinen Weg lesen <span aria-hidden="true">→</span></a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Weitere Angebote — Inhalt steht noch aus -->
+  <Abschnitt eng>
+    <div class="schmal">
+      <p class="marke-zeile">Weitere Angebote</p>
+      <h2 style="margin-bottom: var(--raum-4)">Und sonst?</h2>
+      <Platzhalter text={marke.weitereAngebote} block />
+    </div>
+  </Abschnitt>
+
+  <!-- Stimmen — noch nichts freigegeben -->
+  <Abschnitt flaeche eng>
+    <div class="schmal">
+      <p class="marke-zeile">Stimmen</p>
+      <h2 style="margin-bottom: var(--raum-4)">Was Menschen berichten</h2>
+      <Platzhalter
+        text="Möchtest Du Klienten-Stimmen zeigen? Dann brauchen wir Text und schriftliche Freigabe der Person."
+        block
+      />
+    </div>
+  </Abschnitt>
+
+  <!-- Abschluss -->
+  <Abschnitt>
+    <div class="schmal" style="text-align: center">
+      <h2>Du bist mit allem willkommen.</h2>
+      <p class="vorlauf" style="margin: var(--raum-4) auto 0">
+        Vielleicht fühlst Du Dich gerade kraftvoll und neugierig. Vielleicht hast Du den
+        Kontakt zu Dir selbst verloren. Beides ist ein guter Anfang.
+      </p>
+      <div class="knopf-reihe" style="justify-content: center">
+        <Knopf ziel={pfad('/kontakt')}>Schreib mir</Knopf>
+      </div>
+    </div>
+  </Abschnitt>
+</Grundgeruest>

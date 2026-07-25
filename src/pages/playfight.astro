@@ -1,0 +1,236 @@
+---
+import { Image } from 'astro:assets';
+import Grundgeruest from '../layouts/Grundgeruest.astro';
+import Abschnitt from '../components/Abschnitt.astro';
+import Knopf from '../components/Knopf.astro';
+import Platzhalter from '../components/Platzhalter.astro';
+import { marke, pfad, istOffen } from '../config/marke';
+
+import bildBegegnung from '../assets/bilder/begegnung-zwei.jpg';
+import bildGruppe from '../assets/bilder/gruppe-liegend.jpg';
+import bildKreis from '../assets/bilder/kreis-gespraech.jpg';
+
+const rituale = [
+  {
+    titel: 'Die Einladung',
+    text: 'Eine Person lädt ein, eine Person antwortet. Ohne Worte. Ein Nein ist genauso vollständig wie ein Ja und braucht keine Begründung.',
+  },
+  {
+    titel: 'Die Begegnung',
+    text: 'Ihr kommt an, schaut euch an, spürt, was zwischen euch möglich ist. Hier entscheidet sich, wie wild oder wie weich es wird.',
+  },
+  {
+    titel: 'Der Playfight',
+    text: 'Ringen, schieben, ausweichen, lachen — und dabei in Kontakt bleiben. Es geht nicht darum zu gewinnen. Es gibt nichts zu gewinnen.',
+  },
+  {
+    titel: 'Das Feedback',
+    text: 'Danach nehmt ihr euch Zeit füreinander. Was war da? Was hat gutgetan, was war zu viel? So wird aus einem Spiel eine Erfahrung.',
+  },
+];
+
+const wofuer = [
+  'Verbindung — mit Dir selbst und mit anderen',
+  'Deine Kraft spüren, ohne jemandem zu schaden',
+  'Körperwahrnehmung: Was passiert gerade in mir?',
+  'Grenzen spüren, benennen und halten',
+];
+
+const istNicht = [
+  'Kein Kampfsport und kein Wettkampf',
+  'Keine Selbstverteidigung',
+  'Keine Therapie',
+  'Kein Ort, an dem Grenzen übergangen werden',
+];
+
+const eckdaten = [
+  { titel: 'Wo', wert: marke.playfight.ort },
+  { titel: 'Wie oft', wert: marke.playfight.rhythmus },
+  { titel: 'Beitrag', wert: marke.playfight.preis },
+];
+---
+
+<Grundgeruest
+  welt="wild"
+  titel="Playfight"
+  beschreibung="Playfight nach Matteo Tangi: spielerisches Kämpfen in einem klaren Rahmen. Die vier Rituale, Termine und Anmeldung."
+>
+  <!-- Auftakt -->
+  <Abschnitt>
+    <div class="gespann">
+      <div>
+        <p class="marke-zeile">In der Gruppe</p>
+        <h1>Playfight</h1>
+        <p class="vorlauf" style="margin-top: var(--raum-5)">
+          Spielerisches Kämpfen in einem klaren Rahmen. Kraft spüren, Grenzen setzen,
+          in Kontakt bleiben — nach Matteo Tangi.
+        </p>
+        <div class="knopf-reihe">
+          <Knopf ziel={marke.playfight.anmeldung}>Zur Anmeldung</Knopf>
+        </div>
+      </div>
+      <div class="gespann__bild">
+        <Image
+          class="bild--bogen einblenden"
+          src={bildBegegnung}
+          alt="Zwei Menschen gehen einander gegenüber in die Hocke und lachen."
+          widths={[420, 640, 853]}
+          sizes="(max-width: 55rem) 88vw, 26rem"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Was ist das? -->
+  <Abschnitt flaeche>
+    <div class="zweispalt">
+      <div class="abschnitt__kopf">
+        <p class="marke-zeile">Was ist das?</p>
+        <h2>Kämpfen, ohne gegeneinander zu sein.</h2>
+      </div>
+      <div class="fliesstext">
+        <p>
+          Zwei Menschen begegnen sich auf der Matte. Sie ringen, schieben, weichen aus,
+          lachen — und bleiben dabei miteinander in Kontakt. Playfight ist keine
+          Auseinandersetzung mit einem Gegner, sondern eine Übung im Miteinander: mit dem
+          eigenen Körper und mit dem Körper des anderen.
+        </p>
+        <p>
+          Die Praxis geht auf <strong>Matteo Tangi</strong> zurück. Ihr Rückgrat sind vier
+          Rituale, die jede Begegnung tragen. Dazwischen liegen Übungen zur
+          Körperwahrnehmung und Spiele.
+        </p>
+        <p>
+          Ein Playfight kann wild sein. Er kann genauso gut langsam, weich und tänzerisch
+          sein. Beides ist richtig. Was in jedem Moment zählt, ist das Ja von beiden Seiten.
+        </p>
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Die vier Rituale: echte Reihenfolge, deshalb nummeriert -->
+  <Abschnitt>
+    <div class="abschnitt__kopf">
+      <p class="marke-zeile">Der Rahmen</p>
+      <h2>Die vier Rituale.</h2>
+    </div>
+    <div class="gespann">
+      <div class="schritte">
+        {
+          rituale.map((ritual) => (
+            <div class="schritt">
+              <div>
+                <h3 class="schritt__titel">{ritual.titel}</h3>
+                <p>{ritual.text}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="gespann__bild">
+        <Image
+          class="bild--bogen einblenden"
+          src={bildGruppe}
+          alt="Mehrere Menschen liegen auf dem Boden, halten ihre Füße und lachen."
+          widths={[380, 560, 853]}
+          sizes="(max-width: 55rem) 88vw, 24rem"
+          format="webp"
+          quality={78}
+        />
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Wofür / Was es nicht ist -->
+  <Abschnitt flaeche>
+    <div class="gegenueber">
+      <div>
+        <p class="marke-zeile">Wofür</p>
+        <h3>Was Du hier üben kannst</h3>
+        <ul class="gegenueber__liste">
+          {wofuer.map((punkt) => <li class="gegenueber__punkt">{punkt}</li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="marke-zeile">Und was nicht</p>
+        <h3>Damit keine Erwartung schiefliegt</h3>
+        <ul class="gegenueber__liste">
+          {istNicht.map((punkt) => <li class="gegenueber__punkt gegenueber__punkt--nicht">{punkt}</li>)}
+        </ul>
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Wann & Wo -->
+  <Abschnitt>
+    <div class="abschnitt__kopf">
+      <p class="marke-zeile">Wann & Wo</p>
+      <h2>Die nächsten Termine.</h2>
+    </div>
+
+    <div class="gespann">
+      <div>
+        {
+          marke.playfight.termine.length > 0 ? (
+            <ul class="eckdaten">
+              {marke.playfight.termine.map((termin) => (
+                <li class="eckdaten__zeile">{termin}</li>
+              ))}
+            </ul>
+          ) : (
+            <Platzhalter
+              text="Termine noch offen — sobald sie feststehen, erscheinen sie hier."
+              block
+            />
+          )
+        }
+
+        <dl class="eckdaten" style="margin-top: var(--raum-6)">
+          {
+            eckdaten.map((zeile) => (
+              <div class="eckdaten__zeile">
+                <dt class="eckdaten__titel">{zeile.titel}</dt>
+                <dd class="eckdaten__wert">
+                  {istOffen(zeile.wert) ? <Platzhalter text={zeile.wert} /> : zeile.wert}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <div class="knopf-reihe">
+          <Knopf ziel={marke.playfight.anmeldung}>Zur Anmeldung</Knopf>
+        </div>
+      </div>
+
+      <div class="gespann__bild">
+        <Image
+          class="bild--kreis einblenden"
+          src={bildKreis}
+          alt="Eine Gruppe sitzt im Kreis auf dem Boden und spricht miteinander."
+          widths={[360, 560, 760]}
+          sizes="(max-width: 55rem) 80vw, 22rem"
+          format="webp"
+          quality={78}
+        />
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Buchung für Gruppen -->
+  <Abschnitt flaeche eng>
+    <div class="schmal">
+      <h2>Für Festivals, Events und Jugendgruppen</h2>
+      <p class="vorlauf" style="margin-top: var(--raum-4)">
+        Playfight lässt sich auch als Format für Gruppen halten. Schreib mir, was Ihr vorhabt
+        — dann finden wir heraus, ob es passt.
+      </p>
+      <div class="knopf-reihe">
+        <Knopf ziel={pfad('/kontakt')}>Anfrage stellen</Knopf>
+      </div>
+    </div>
+  </Abschnitt>
+</Grundgeruest>

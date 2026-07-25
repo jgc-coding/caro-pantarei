@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/** Einer der zwei Wege auf der Startseite: Pantarei (still) oder Playfight (wild). */
+interface Props {
+  titel: string;
+  unterzeile: string;
+  text: string;
+  ziel: string;
+  linktext: string;
+  bild: ImageMetadata;
+  alt: string;
+  welt: 'still' | 'wild';
+}
+
+const { titel, unterzeile, text, ziel, linktext, bild, alt, welt } = Astro.props;
+---
+
+<article class="wegkarte einblenden" data-welt={welt}>
+  <Image
+    class="wegkarte__bild"
+    src={bild}
+    alt={alt}
+    widths={[400, 640, 860]}
+    sizes="(max-width: 55rem) 92vw, 30rem"
+    format="webp"
+    quality={78}
+  />
+  <div>
+    <p class="marke-zeile">{unterzeile}</p>
+    <h3 class="wegkarte__titel">{titel}</h3>
+  </div>
+  <p class="wegkarte__text">{text}</p>
+  <div class="wegkarte__fuss">
+    <a class="weiter" href={ziel}>{linktext} <span aria-hidden="true">→</span></a>
+  </div>
+</article>

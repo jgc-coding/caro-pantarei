@@ -1,0 +1,69 @@
+---
+import Grundgeruest from '../layouts/Grundgeruest.astro';
+import Abschnitt from '../components/Abschnitt.astro';
+import Knopf from '../components/Knopf.astro';
+import Platzhalter from '../components/Platzhalter.astro';
+import { marke, istOffen } from '../config/marke';
+
+const kontaktzeilen = [
+  { titel: 'E-Mail', wert: marke.kontakt.email },
+  { titel: 'Telefon', wert: marke.kontakt.telefon },
+];
+
+const mailZiel = istOffen(marke.kontakt.email)
+  ? marke.kontakt.email
+  : `mailto:${marke.kontakt.email}`;
+---
+
+<Grundgeruest
+  titel="Kontakt"
+  beschreibung="Sitzung anfragen, Playfight-Termine erfragen oder Caroline für Festival, Event und Jugendgruppe buchen."
+>
+  <Abschnitt>
+    <div class="schmal">
+      <p class="marke-zeile">Kontakt</p>
+      <h1>Schreib mir.</h1>
+      <p class="vorlauf" style="margin-top: var(--raum-5)">
+        Du möchtest eine Sitzung anfragen, hast eine Frage zum Playfight — oder Du möchtest
+        mich für ein Festival, ein Event oder eine Jugendgruppe buchen? Dann melde Dich.
+        Ich antworte, so schnell ich kann.
+      </p>
+
+      <div class="knopf-reihe">
+        <Knopf ziel={mailZiel}>E-Mail schreiben</Knopf>
+      </div>
+    </div>
+  </Abschnitt>
+
+  <Abschnitt flaeche>
+    <div class="schmal">
+      <dl class="eckdaten">
+        {
+          kontaktzeilen.map((zeile) => (
+            <div class="eckdaten__zeile">
+              <dt class="eckdaten__titel">{zeile.titel}</dt>
+              <dd class="eckdaten__wert">
+                {istOffen(zeile.wert) ? <Platzhalter text={zeile.wert} /> : zeile.wert}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="fliesstext" style="margin-top: var(--raum-6)">
+        <p>
+          Wenn Du magst, schreib mir gleich dazu, worum es geht und was Du Dir wünschst —
+          das erspart uns eine Runde hin und her.
+        </p>
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!--
+    Hinweis fuer die Uebergabe (nicht fuer Caros Besucher gedacht, siehe Bericht):
+    Diese Seite hat bewusst KEIN Formular. Eine statische Website hat keinen Server,
+    der eine Nachricht verschicken koennte — ein Formular saehe funktionsfaehig aus und
+    wuerde Anfragen still verschlucken. Wenn ein echtes Formular gewuenscht ist, ist das
+    ein eigener Schritt (z. B. Netlify Forms oder Formspree).
+  -->
+</Grundgeruest>

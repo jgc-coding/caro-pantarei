@@ -1,0 +1,55 @@
+/* =============================================================================
+   TAUSCHSTELLE 2 von 2 — Farben und Schriften.
+   (Tauschstelle 1 sind die Inhalte in `src/config/marke.ts`.)
+
+   Kommen echte CI-Farben von Caro: NUR die Werte in diesem :root-Block tauschen.
+   Sonst nichts anfassen — jede andere Datei rechnet nur noch mit diesen Namen.
+   ============================================================================= */
+
+:root {
+  /* --- Grundflaechen ------------------------------------------------------ */
+  /* Leinen: warm-helles Fast-Weiss, wie der Mattenboden auf Caros Fotos. */
+  --farbe-grund: #fbfaf7;
+  /* Sand: fuer abgesetzte Abschnitte, damit die Seite atmet ohne Linien. */
+  --farbe-flaeche: #f1ece4;
+
+  /* --- Schrift ------------------------------------------------------------ */
+  --farbe-tinte: #2a2724; /* warmes Fast-Schwarz, Fliesstext */
+  --farbe-ton: #6e6a63; /* gedaempftes Warmgrau, Nebentext */
+
+  /* --- Die zwei Welten ---------------------------------------------------- */
+  /* still = Pantarei. Lavendel, aus dem Shirt, das Caro auf jedem Foto traegt. */
+  --farbe-still: #9e93ac;
+  --farbe-still-tief: #7d7090; /* dunklere Variante fuer Text auf hellem Grund */
+  /* wild = Playfight. Warmer Ton. */
+  --farbe-wild: #c4714e;
+  --farbe-wild-tief: #a55938;
+
+  /* --- Linien und Hinweise ------------------------------------------------ */
+  --farbe-linie: rgb(42 39 36 / 14%);
+  --farbe-linie-zart: rgb(42 39 36 / 8%);
+  /* Nur fuer sichtbare Platzhalter im Entwurf — kein CI-Wert. */
+  --farbe-offen: #b8863c;
+  --farbe-offen-flaeche: #fbf3e4;
+
+  /* --- Schriften ---------------------------------------------------------- */
+  /* Selbst gehostet ueber @fontsource-variable, niemals CDN (DSGVO). */
+  --schrift-display: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
+  --schrift-text: 'Karla Variable', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* -----------------------------------------------------------------------------
+   Die Akzentfarbe wird NIE direkt gesetzt, sondern ueber die Welt gewaehlt.
+   `data-welt` steht am <body> oder an einem einzelnen Abschnitt.
+   Default ist "still" — die Seite ist im Grundton ruhig.
+   -------------------------------------------------------------------------- */
+:root,
+[data-welt='still'] {
+  --akzent: var(--farbe-still);
+  --akzent-tief: var(--farbe-still-tief);
+}
+
+[data-welt='wild'] {
+  --akzent: var(--farbe-wild);
+  --akzent-tief: var(--farbe-wild-tief);
+}

@@ -37,7 +37,8 @@ Alles, was sich beim Klienten aendert, liegt an genau **zwei** Orten. Kein Wert 
 Kommen echte CI-Farben von Caro: nur die Variablen im `:root`-Block von `ci.css` tauschen,
 sonst nichts anfassen. Aendert sich der Name: nur `marke.ts`.
 
-Version ist Single Source of Truth in `src/config/version.ts` und im Seitenfuss sichtbar.
+Die Version wird an genau einer Stelle gepflegt: in `package.json`. `src/config/version.ts`
+leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht doppelt steht.
 
 ## Konventionen
 
@@ -76,3 +77,13 @@ Version ist Single Source of Truth in `src/config/version.ts` und im Seitenfuss 
 - Interne Links **immer** ueber den Helfer aus `src/config/marke.ts` bzw. mit
   `import.meta.env.BASE_URL` bauen, nie als nacktes `/pantarei` — sonst funktioniert die
   Seite lokal und bricht unter einem Unterordner-Deploy.
+- **`img { height: auto }` im Reset ist Pflicht.** Astros `<Image>` schreibt ein
+  `height`-Attribut (bei unseren Fotos bis 1280). Ohne `height: auto` nimmt der Browser
+  diesen Wert und streckt das Bild — der Auftakt sah dadurch leer aus.
+- Der Einblend-Effekt versteckt Elemente per CSS und zeigt sie per JavaScript. Deshalb gilt:
+  `data-animiert` wird nur gesetzt, wenn JS laeuft **und** Bewegung erwuenscht ist, und der
+  IntersectionObserver nutzt `threshold: 0`. Jede Aenderung daran kann Inhalte dauerhaft
+  unsichtbar machen — vorher pruefen, ob ohne JS noch alles sichtbar ist.
+- Chrome friert laufende CSS-Uebergaenge ein, wenn sein Fenster verdeckt ist. Screenshots
+  wirken dann blass oder leer. Zum Pruefen `data-animiert` am `<html>` entfernen — das ist
+  derselbe Zustand, den auch Nutzer mit „weniger Bewegung" sehen.

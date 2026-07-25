@@ -1,0 +1,186 @@
+---
+import { Image } from 'astro:assets';
+import Grundgeruest from '../layouts/Grundgeruest.astro';
+import Abschnitt from '../components/Abschnitt.astro';
+import Zeilenleiter from '../components/Zeilenleiter.astro';
+import Knopf from '../components/Knopf.astro';
+import Platzhalter from '../components/Platzhalter.astro';
+import { marke, pfad, istOffen } from '../config/marke';
+
+import bildBeruehrung from '../assets/bilder/beruehrung-stehend.jpg';
+import bildHaende from '../assets/bilder/haende-halten.jpg';
+
+const eckdaten = [
+  { titel: 'Wo', wert: marke.pantarei.ort },
+  { titel: 'Wann', wert: marke.pantarei.tage },
+  { titel: 'Dauer', wert: marke.pantarei.dauer },
+  { titel: 'Preis', wert: marke.pantarei.preis },
+  { titel: 'Kennenlernen', wert: marke.pantarei.kennenlernen },
+];
+---
+
+<Grundgeruest
+  welt="still"
+  titel="Pantarei"
+  beschreibung="Pantarei Approach: Gespräch und Körperarbeit in einer Sitzung. Ablauf, Rahmen und Anfrage."
+>
+  <!-- Auftakt -->
+  <Abschnitt>
+    <div class="gespann">
+      <div>
+        <p class="marke-zeile">Einzelsitzung</p>
+        <h1>Pantarei</h1>
+        <p class="vorlauf" style="margin-top: var(--raum-5)">
+          Panta rhei — alles fließt. Eine Sitzung verbindet Gespräch und Körperarbeit.
+          Was Du erzählst, darf sich zeigen. Was Dein Körper erzählt, hört mit zu.
+        </p>
+        <div class="knopf-reihe">
+          <Knopf ziel={pfad('/kontakt')}>Sitzung anfragen</Knopf>
+        </div>
+      </div>
+      <div class="gespann__bild">
+        <Image
+          class="bild--bogen einblenden"
+          src={bildBeruehrung}
+          alt="Eine Person legt einer stehenden Person mit geschlossenen Augen die Hand auf die Schulter."
+          widths={[420, 640, 853]}
+          sizes="(max-width: 55rem) 88vw, 26rem"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Was ist das? -->
+  <Abschnitt flaeche>
+    <div class="zweispalt">
+      <div class="abschnitt__kopf">
+        <p class="marke-zeile">Was ist das?</p>
+        <h2>Reden und spüren, gleichzeitig.</h2>
+      </div>
+      <div class="fliesstext">
+        <p>
+        Der Pantarei Approach verbindet zwei Dinge, die sonst meist getrennt bleiben: das
+        Gespräch und die Arbeit mit dem Körper. Du erzählst mir, was gerade bei Dir los ist.
+        Und statt nur darüber zu sprechen, beziehen wir Deinen Körper mit ein — wie fühlt
+        sich das an, wo spürst Du es, was verändert sich, wenn wir hinschauen?
+      </p>
+      <p>
+        Die Körperarbeit findet am <strong>bekleideten Körper</strong> statt: im Sitzen, in
+        Bewegung oder auf der Liege. Ich berühre Dich dabei, und wir bleiben im Gespräch.
+      </p>
+      <p>
+        Es geht nicht darum, etwas wegzumachen oder zu reparieren. Es geht darum
+        wahrzunehmen, was da ist, den eigenen Empfindungen zuzuhören und Schritt für Schritt
+        wieder in Beziehung mit sich selbst zu kommen.
+        </p>
+      </div>
+    </div>
+
+    <div class="schmal" style="margin-top: var(--raum-7)">
+      <Zeilenleiter
+        zeilen={[
+          'Sie verbindet Gespräch und Körper.',
+          'Verstehen und Fühlen.',
+          'Den Verstand mit dem Atem.',
+          'Sprache mit Empfindung.',
+        ]}
+        kursiv
+      />
+    </div>
+  </Abschnitt>
+
+  <!-- Ablauf: hier ist die Reihenfolge echte Information, deshalb nummeriert -->
+  <Abschnitt>
+    <div class="abschnitt__kopf">
+      <p class="marke-zeile">Ablauf</p>
+      <h2>Wie eine Sitzung geht.</h2>
+    </div>
+
+    <div class="gespann">
+      <div class="schritte">
+        <div class="schritt">
+          <div>
+            <h3 class="schritt__titel">Ankommen</h3>
+            <p>
+              Wir sitzen uns gegenüber. Du erzählst, was Dich gerade beschäftigt. Ich höre
+              zu und frage nach. Du bestimmst, wie viel Du teilen möchtest.
+            </p>
+          </div>
+        </div>
+        <div class="schritt">
+          <div>
+            <h3 class="schritt__titel">Körperarbeit</h3>
+            <p>
+              Wir führen das Gespräch fort und nehmen den Körper dazu — im Sitzen, in
+              Bewegung oder auf der Liege. Berührung ist Teil der Arbeit, und sie geschieht
+              immer nur so weit, wie es für Dich stimmt.
+            </p>
+          </div>
+        </div>
+        <div class="schritt">
+          <div>
+            <h3 class="schritt__titel">Nachspüren</h3>
+            <p>
+              Am Ende bekommst Du Zeit, die Erfahrung sacken zu lassen. Wenn Du magst,
+              teilst Du noch ein paar Eindrücke — Du musst aber nichts erklären.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gespann__bild">
+        <Image
+          class="bild--bogen einblenden"
+          src={bildHaende}
+          alt="Zwei Menschen sitzen im Schneidersitz und halten die Hände ineinander."
+          widths={[380, 560, 853]}
+          sizes="(max-width: 55rem) 88vw, 24rem"
+          format="webp"
+          quality={78}
+        />
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Rahmen -->
+  <Abschnitt flaeche>
+    <div class="abschnitt__kopf">
+      <p class="marke-zeile">Rahmen</p>
+      <h2>Kosten und Rahmenbedingungen.</h2>
+    </div>
+
+    <dl class="eckdaten schmal" style="margin-inline: 0">
+      {
+        eckdaten.map((zeile) => (
+          <div class="eckdaten__zeile">
+            <dt class="eckdaten__titel">{zeile.titel}</dt>
+            <dd class="eckdaten__wert">
+              {istOffen(zeile.wert) ? <Platzhalter text={zeile.wert} /> : zeile.wert}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="knopf-reihe">
+      <Knopf ziel={pfad('/kontakt')}>Sitzung anfragen</Knopf>
+    </div>
+  </Abschnitt>
+
+  <!-- Einordnung -->
+  <Abschnitt eng>
+    <div class="schmal">
+      <p class="marke-zeile">Gut zu wissen</p>
+      <div class="fliesstext">
+        <p>
+          Pantarei ist Begleitung und Selbsterfahrung. Es ersetzt keine ärztliche
+          Behandlung und keine Psychotherapie. Wenn Du Dir unsicher bist, ob die Arbeit
+          gerade das Richtige für Dich ist, schreib mir — dann schauen wir gemeinsam.
+        </p>
+      </div>
+    </div>
+  </Abschnitt>
+</Grundgeruest>

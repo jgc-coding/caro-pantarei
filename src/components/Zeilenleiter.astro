@@ -1,0 +1,40 @@
+---
+/**
+ * Das Erkennungsmerkmal der Seite.
+ *
+ * Caro schreibt ihre wichtigsten Stellen selbst als gestapelte kurze Zeilen
+ * („Mit ihren Gefuehlen. / Mit ihrem Koerper. / Mit ihren Beduerfnissen.").
+ * Dieses Bauteil macht genau diesen Rhythmus sichtbar: eine senkrechte Haarlinie,
+ * grosse Zeilenhoehe, und die Zeilen erscheinen nacheinander.
+ *
+ * Sparsam einsetzen — steht es ueberall, wirkt es nirgends.
+ */
+interface Props {
+  zeilen: readonly string[];
+  groesse?: 'gross' | 'normal' | 'klein';
+  kursiv?: boolean;
+  /** Abstand zwischen den Zeilen beim Einblenden, in Millisekunden. */
+  takt?: number;
+}
+
+const { zeilen, groesse = 'normal', kursiv = false, takt = 90 } = Astro.props;
+
+const klassen = [
+  'zeilenleiter',
+  groesse === 'gross' ? 'zeilenleiter--gross' : '',
+  groesse === 'klein' ? 'zeilenleiter--klein' : '',
+  kursiv ? 'zeilenleiter--kursiv' : '',
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<ul class={klassen}>
+  {
+    zeilen.map((zeile, i) => (
+      <li class="zeilenleiter__zeile" style={`--verzoegerung:${i * takt}ms`}>
+        {zeile}
+      </li>
+    ))
+  }
+</ul>

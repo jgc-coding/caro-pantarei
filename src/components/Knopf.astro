@@ -1,0 +1,30 @@
+---
+import { istOffen, ohnePraefix } from '../config/marke';
+
+/**
+ * Knopf oder Link.
+ *
+ * Wichtig: Ist das Ziel noch ein offener Punkt (z. B. der Registrationslink),
+ * wird KEIN toter Link gebaut, sondern sichtbar gezeigt, dass die Angabe fehlt.
+ * Ein Knopf, der ins Leere fuehrt, sieht funktionsfaehig aus und ist es nicht.
+ */
+interface Props {
+  ziel: string;
+  still?: boolean;
+}
+
+const { ziel, still = false } = Astro.props;
+const klassen = ['knopf', still ? 'knopf--still' : ''].filter(Boolean).join(' ');
+---
+
+{
+  istOffen(ziel) ? (
+    <span class="platzhalter">
+      <slot /> — {ohnePraefix(ziel)}
+    </span>
+  ) : (
+    <a class={klassen} href={ziel}>
+      <slot />
+    </a>
+  )
+}

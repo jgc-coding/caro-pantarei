@@ -1,0 +1,54 @@
+---
+import { marke, navigation, pfad, istOffen } from '../config/marke';
+import { VERSION } from '../config/version';
+import Platzhalter from './Platzhalter.astro';
+
+const jahr = new Date().getFullYear();
+---
+
+<footer class="fusszeile">
+  <div class="huelle">
+    <div class="fusszeile__raster">
+      <div>
+        <p class="fusszeile__titel">Seiten</p>
+        <ul class="fusszeile__liste">
+          {
+            navigation.map((punkt) => (
+              <li>
+                <a class="fusszeile__link" href={pfad(punkt.ziel)}>
+                  {punkt.titel}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <p class="fusszeile__titel">Kontakt</p>
+        {
+          istOffen(marke.kontakt.email) ? (
+            <Platzhalter text={marke.kontakt.email} />
+          ) : (
+            <a class="fusszeile__link" href={`mailto:${marke.kontakt.email}`}>
+              {marke.kontakt.email}
+            </a>
+          )
+        }
+      </div>
+
+      <div>
+        <p class="fusszeile__titel">Rechtliches</p>
+        <ul class="fusszeile__liste">
+          <li><a class="fusszeile__link" href={pfad('/impressum')}>Impressum</a></li>
+          <li><a class="fusszeile__link" href={pfad('/datenschutz')}>Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fusszeile__schluss">
+      <span>© {jahr} {marke.name}</span>
+      <span>Entwurf v{VERSION} · JGC Lumen</span>
+    </div>
+  </div>
+</footer>

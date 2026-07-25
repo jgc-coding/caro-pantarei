@@ -1,0 +1,28 @@
+---
+/**
+ * Ein Seitenabschnitt. Traegt den Abstand nach oben und unten — deshalb setzen
+ * die Bauteile darin selbst keine Aussenabstaende. So koennen sich zwei
+ * Abstandsregeln nicht gegenseitig aufheben.
+ */
+interface Props {
+  /** Sandfarbener Hintergrund statt Leinen. */
+  flaeche?: boolean;
+  /** Weniger Luft oben und unten. */
+  eng?: boolean;
+  /** Faerbt nur diesen Abschnitt um. */
+  welt?: 'still' | 'wild';
+  id?: string;
+}
+
+const { flaeche = false, eng = false, welt, id } = Astro.props;
+
+const klassen = ['abschnitt', flaeche ? 'abschnitt--flaeche' : '', eng ? 'abschnitt--eng' : '']
+  .filter(Boolean)
+  .join(' ');
+---
+
+<section class={klassen} data-welt={welt} id={id}>
+  <div class="huelle">
+    <slot />
+  </div>
+</section>

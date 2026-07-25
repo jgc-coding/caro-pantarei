@@ -1,0 +1,54 @@
+---
+import Grundgeruest from '../layouts/Grundgeruest.astro';
+import Abschnitt from '../components/Abschnitt.astro';
+import Platzhalter from '../components/Platzhalter.astro';
+
+// Bewusst NICHT ausgefuellt. Eine Datenschutzerklaerung muss zur tatsaechlichen
+// Technik passen (Hoster, Logfiles, Kontaktweg) — die steht erst mit dem Deploy fest.
+const punkte = [
+  'Verantwortliche Person und Kontakt (dieselben Angaben wie im Impressum)',
+  'Hosting: wer betreibt den Server, welche Server-Protokolle fallen an, wie lange werden sie gespeichert?',
+  'Kontaktaufnahme per E-Mail: welche Daten, wozu, wie lange aufbewahrt?',
+  'Rechte der Besucher: Auskunft, Berichtigung, Löschung, Widerspruch, Beschwerde bei der Aufsichtsbehörde',
+];
+---
+
+<Grundgeruest
+  titel="Datenschutz"
+  beschreibung="Hinweise zum Umgang mit personenbezogenen Daten auf dieser Website."
+>
+  <Abschnitt>
+    <div class="schmal">
+      <p class="marke-zeile">Rechtliches</p>
+      <h1>Datenschutz</h1>
+
+      <div class="fliesstext" style="margin-top: var(--raum-5)">
+        <p>
+          Diese Seite ist noch nicht ausgefüllt. Die Erklärung muss zur tatsächlich
+          eingesetzten Technik passen und steht deshalb erst fest, wenn klar ist, wo die
+          Website läuft.
+        </p>
+        <p>
+          Was heute schon feststeht und die Sache einfach hält: Diese Website lädt
+          <strong>keine externen Dienste</strong>. Die Schriften liegen auf demselben Server
+          wie die Seite, es gibt keine Karten, keine Videos von fremden Anbietern, keine
+          Analysewerkzeuge und keine Cookies. Damit braucht sie auch kein Zustimmungsbanner.
+        </p>
+      </div>
+
+      <div style="margin-top: var(--raum-6)">
+        <p class="marke-zeile">Noch zu ergänzen</p>
+        <ul class="gegenueber__liste">
+          {punkte.map((punkt) => <li class="gegenueber__punkt">{punkt}</li>)}
+        </ul>
+      </div>
+
+      <div style="margin-top: var(--raum-6)">
+        <Platzhalter
+          text="Fertigen Text erst nach der Deploy-Entscheidung erstellen — Hoster und Kontaktweg müssen darin stimmen."
+          block
+        />
+      </div>
+    </div>
+  </Abschnitt>
+</Grundgeruest>

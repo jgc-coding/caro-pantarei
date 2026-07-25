@@ -1,0 +1,19 @@
+---
+import { ohnePraefix } from '../config/marke';
+
+/**
+ * Zeigt einen offenen Punkt sichtbar an, statt einen Wert zu erfinden.
+ * Nichts, was Caro noch nicht geliefert hat, darf wie eine Tatsache aussehen.
+ */
+interface Props {
+  text: string;
+  /** Ueber die volle Breite statt inline. */
+  block?: boolean;
+}
+
+const { text, block = false } = Astro.props;
+---
+
+<span class={block ? 'platzhalter platzhalter--block' : 'platzhalter'}>
+  {ohnePraefix(text)}
+</span>

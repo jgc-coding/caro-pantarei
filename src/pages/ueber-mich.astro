@@ -1,0 +1,225 @@
+---
+import { Image } from 'astro:assets';
+import Grundgeruest from '../layouts/Grundgeruest.astro';
+import Abschnitt from '../components/Abschnitt.astro';
+import Zeilenleiter from '../components/Zeilenleiter.astro';
+import Knopf from '../components/Knopf.astro';
+import Platzhalter from '../components/Platzhalter.astro';
+import { marke, pfad, istOffen } from '../config/marke';
+
+import bildCaro from '../assets/bilder/caro-sitzend.jpg';
+import bildGruppe from '../assets/bilder/gruppe-liegend.jpg';
+
+// Alle Texte dieser Seite stammen woertlich von Caroline.
+// Korrigiert wurden ausschliesslich Tippfehler — die Liste steht im Uebergabe-Bericht.
+const erfahrungen = [
+  'Wutarbeit',
+  'Breathwork',
+  'Selbstregulation',
+  'Yoga und Tanz',
+  'Körper- und Emotionsarbeit',
+  'Consent im Bereich der Sexualität',
+  'Gemeinschaftsbildung und Gruppenprozesse',
+  'Das Halten von Playfight-Räumen nach Matteo Tangi',
+];
+---
+
+<Grundgeruest
+  titel="Über mich"
+  beschreibung="Caroline über ihren Weg: Selbsterfahrung, Ausbildungen und die Begegnung mit dem Pantarei Approach."
+>
+  <!-- Auftakt -->
+  <Abschnitt>
+    <div class="gespann">
+      <div>
+        <p class="marke-zeile">Über mich</p>
+        <h1>Ich bin {marke.vorname}.</h1>
+        <p class="vorlauf" style="margin-top: var(--raum-5)">
+          Mich bewegt die Frage, was Menschen dabei unterstützt, sich lebendig, verbunden und
+          zu Hause in sich selbst zu fühlen.
+        </p>
+        {
+          istOffen(marke.rolle) && (
+            <p style="margin-top: var(--raum-4)">
+              <Platzhalter text={marke.rolle} />
+            </p>
+          )
+        }
+      </div>
+      <div class="gespann__bild">
+        <Image
+          class="bild--bogen einblenden"
+          src={bildCaro}
+          alt="Caroline sitzt im Schneidersitz auf einem hellen Boden und lacht."
+          widths={[420, 640, 853]}
+          sizes="(max-width: 55rem) 88vw, 26rem"
+          format="webp"
+          quality={80}
+          loading="eager"
+        />
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Über mich -->
+  <Abschnitt flaeche>
+    <div class="fliesstext">
+      <p>
+        Ich glaube, dass jeder Mensch bereits alles in sich trägt, was er für ein erfülltes
+        Leben braucht. Manchmal verlieren wir jedoch den Kontakt zu diesem inneren Wissen —
+        durch Erfahrungen, Verletzungen, Stress oder die Anforderungen des Alltags.
+      </p>
+      <p>
+        Ich sehe meine Aufgabe nicht darin, Menschen zu verändern. Sondern darin, sie dabei
+        zu begleiten, wieder mit sich selbst in Verbindung zu kommen.
+      </p>
+    </div>
+
+    <div class="schmal" style="margin-top: var(--raum-6)">
+      <Zeilenleiter
+        zeilen={[
+          'Mit ihren Gefühlen.',
+          'Mit ihrem Körper.',
+          'Mit ihren Bedürfnissen.',
+          'Mit ihrer eigenen Wahrheit.',
+        ]}
+      />
+    </div>
+
+    <div class="fliesstext" style="margin-top: var(--raum-7)">
+      <p>
+        Ich wünsche mir eine Welt, in der Menschen sich selbst mit mehr Mitgefühl begegnen
+        und dadurch auch anderen offener, friedlicher und liebevoller begegnen können. Jede
+        innere Veränderung wirkt nach außen — in Beziehungen, Familien, Gemeinschaften und
+        letztlich in unsere Gesellschaft hinein. Deshalb verstehe ich jede Begegnung als
+        einen kleinen Beitrag zu etwas Größerem.
+      </p>
+      <p>
+        Vielleicht bist Du gerade an einem Punkt, an dem Du Dich kraftvoll und neugierig
+        fühlst. Vielleicht erlebst Du aber auch eine Zeit, in der Du den Kontakt zu Dir
+        selbst verloren hast. <strong>Du bist mit beidem willkommen.</strong>
+      </p>
+      <p>
+        Ich begleite Dich dabei, wieder wahrzunehmen, was in Dir lebendig werden möchte.
+        Wie eine Knospe, die ihren ganz eigenen Zeitpunkt kennt, um sich zu öffnen.
+      </p>
+    </div>
+  </Abschnitt>
+
+  <!-- Mein Weg -->
+  <Abschnitt>
+    <div class="abschnitt__kopf">
+      <p class="marke-zeile">Mein Weg</p>
+      <h2>Der Weg nach innen.</h2>
+    </div>
+
+    <div class="gespann">
+      <div class="fliesstext">
+        <p>
+          Zu Beginn der Pandemie geriet ich selbst in eine persönlich sehr herausfordernde
+          Lebensphase. Rückblickend war sie ein Wendepunkt. Sie brachte mich auf einen Weg,
+          der bis heute anhält: den Weg nach innen.
+        </p>
+        <p>
+          Es folgten Jahre intensiver Selbsterfahrung, therapeutischer Prozesse und
+          Ausbildungen. Ich beschäftigte mich unter anderem mit:
+        </p>
+        <ul class="gegenueber__liste">
+          {erfahrungen.map((punkt) => <li class="gegenueber__punkt">{punkt}</li>)}
+        </ul>
+        <p>
+          Mit jeder Erfahrung wurde deutlicher, dass ich Menschen nicht nur begleiten,
+          sondern ihnen Räume eröffnen möchte, in denen echte Veränderung möglich wird.
+        </p>
+        <p>
+          Deshalb absolvierte ich die Ausbildung zur Heilpraktikerin für Psychotherapie
+          sowie im Systemischen Familienaufstellen und begegnete schließlich dem Pantarei
+          Approach.
+        </p>
+      </div>
+
+      <div class="gespann__bild">
+        <Image
+          class="bild--bogen einblenden"
+          src={bildGruppe}
+          alt="Mehrere Menschen liegen auf dem Boden, halten ihre Füße und lachen."
+          widths={[380, 560, 853]}
+          sizes="(max-width: 55rem) 88vw, 24rem"
+          format="webp"
+          quality={78}
+        />
+      </div>
+    </div>
+  </Abschnitt>
+
+  <!-- Pantarei -->
+  <Abschnitt flaeche>
+    <div class="fliesstext">
+      <p>
+        Bereits während meiner ersten Pantarei-Sitzung spürte ich, dass ich angekommen war.
+        Diese Methode verbindet für mich alles, was mir wichtig ist.
+      </p>
+    </div>
+
+    <div class="schmal" style="margin-block: var(--raum-6)">
+      <Zeilenleiter
+        zeilen={[
+          'Sie verbindet Gespräch und Körper.',
+          'Verstehen und Fühlen.',
+          'Den Verstand mit dem Atem.',
+          'Sprache mit Empfindung.',
+        ]}
+        kursiv
+      />
+    </div>
+
+    <div class="fliesstext">
+      <p>
+        Denn unser Körper erzählt oft längst die Geschichte, für die uns noch die Worte
+        fehlen.
+      </p>
+      <p>
+        Im Pantarei Approach geht es nicht darum, etwas wegzumachen oder zu reparieren. Es
+        geht darum, wahrzunehmen, was da ist, den eigenen Empfindungen zuzuhören und Schritt
+        für Schritt wieder in Beziehung mit sich selbst zu kommen. Aus dieser Verbindung
+        entsteht Veränderung meist ganz von selbst.
+      </p>
+      <p>
+        Heute fließt all das, was ich gelernt, erlebt und durchlebt habe, in meine Arbeit
+        ein. Nicht, weil ich Antworten auf alle Fragen habe. Sondern weil ich weiß, wie
+        wertvoll es sein kann, wenn jemand den Weg ein Stück mitgeht.
+      </p>
+      <p>
+        <a class="weiter" href={pfad('/pantarei')}
+          >Mehr über Pantarei <span aria-hidden="true">→</span></a
+        >
+      </p>
+    </div>
+  </Abschnitt>
+
+  <!-- Was mir wichtig ist -->
+  <Abschnitt>
+    <div class="schmal">
+      <p class="marke-zeile">Was mir wichtig ist</p>
+      <h2 style="margin-bottom: var(--raum-6)">Woran ich glaube.</h2>
+      <Zeilenleiter
+        zeilen={[
+          'Ich glaube an Ehrlichkeit und Mut.',
+          'An Langsamkeit.',
+          'An Körperweisheit.',
+          'An Mitgefühl.',
+        ]}
+        groesse="gross"
+      />
+      <div class="fliesstext" style="margin-top: var(--raum-6)">
+        <p>
+          Und daran, dass Veränderung dort beginnt, wo wir aufhören, gegen uns selbst zu
+          kämpfen.
+        </p>
+      </div>
+      <div class="knopf-reihe">
+        <Knopf ziel={pfad('/kontakt')}>Schreib mir</Knopf>
+      </div>
+    </div>
+  </Abschnitt>
+</Grundgeruest>

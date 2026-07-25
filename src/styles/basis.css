@@ -1,0 +1,730 @@
+/* =============================================================================
+   BASIS — Raster, Typografie, Bauteile.
+   Farben und Schriftnamen kommen aus `ci.css` und werden hier nur verwendet.
+   Reihenfolge der Abschnitte:
+     1 Reset · 2 Skalen · 3 Grundtypografie · 4 Huellen · 5 Kopfzeile
+     6 Abschnitt · 7 Zeilenleiter · 8 Knopf · 9 Wegkarte · 10 Bilder
+     11 Platzhalter · 12 Kleinteile · 13 Fusszeile · 14 Bewegung
+   ============================================================================= */
+
+/* --- 1 Reset ------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+  /* Ohne height:auto zieht der Browser die Hoehe aus dem height-Attribut des Bildes
+     (bei uns bis 1280 px) und streckt es. Das hat den Auftakt leergeraeumt. */
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* --- 2 Skalen ------------------------------------------------------------ */
+
+:root {
+  /* Schriftgroessen — fliessend, ohne Sprung zwischen Handy und Desktop */
+  --gr-display-xl: clamp(2.7rem, 1.55rem + 4.6vw, 5.25rem);
+  --gr-display-l: clamp(2rem, 1.45rem + 2.3vw, 3.15rem);
+  --gr-display-m: clamp(1.5rem, 1.25rem + 1.1vw, 2.05rem);
+  --gr-vorlauf: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
+  --gr-text: 1.0625rem;
+  --gr-klein: 0.9375rem;
+  --gr-marke: 0.72rem;
+
+  /* Raum */
+  --raum-1: 0.5rem;
+  --raum-2: 0.75rem;
+  --raum-3: 1rem;
+  --raum-4: 1.5rem;
+  --raum-5: 2rem;
+  --raum-6: 3rem;
+  --raum-7: clamp(3.5rem, 2rem + 5vw, 5.5rem);
+  --raum-8: clamp(4.5rem, 2.5rem + 6vw, 7rem);
+
+  /* Breiten */
+  --breite-huelle: 68rem;
+  --breite-schmal: 44rem;
+  --breite-lesen: 60ch;
+}
+
+/* --- 3 Grundtypografie --------------------------------------------------- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--farbe-grund);
+  color: var(--farbe-tinte);
+  font-family: var(--schrift-text);
+  font-size: var(--gr-text);
+  line-height: 1.75;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--schrift-display);
+  font-weight: 300;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--gr-display-xl);
+}
+
+h2 {
+  font-size: var(--gr-display-l);
+}
+
+h3 {
+  font-size: var(--gr-display-m);
+  line-height: 1.25;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+strong {
+  font-weight: 700;
+}
+
+/* Sichtbarer Fokus — Pflicht, nicht Kosmetik. */
+:focus-visible {
+  outline: 2px solid var(--akzent-tief);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- 4 Huellen ----------------------------------------------------------- */
+
+.huelle {
+  width: 100%;
+  max-width: var(--breite-huelle);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 0.5rem + 3vw, 2.5rem);
+}
+
+.schmal {
+  max-width: var(--breite-schmal);
+  margin-inline: auto;
+}
+
+/* Fliesstext: begrenzte Lesebreite und ruhiger Abstand zwischen Absaetzen. */
+.fliesstext {
+  max-width: var(--breite-lesen);
+  color: var(--farbe-tinte);
+}
+
+.fliesstext > * + * {
+  margin-top: var(--raum-4);
+}
+
+.fliesstext a {
+  color: var(--akzent-tief);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.vorlauf {
+  font-size: var(--gr-vorlauf);
+  line-height: 1.65;
+  color: var(--farbe-ton);
+  max-width: 46ch;
+}
+
+/* Kleine gesperrte Auszeichnung ueber Ueberschriften. */
+.marke-zeile {
+  font-size: var(--gr-marke);
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  font-weight: 600;
+  color: var(--akzent-tief);
+  margin-bottom: var(--raum-3);
+}
+
+.sprungmarke {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--farbe-tinte);
+  color: var(--farbe-grund);
+  padding: var(--raum-2) var(--raum-4);
+  z-index: 20;
+}
+
+.sprungmarke:focus {
+  left: var(--raum-3);
+  top: var(--raum-3);
+}
+
+/* --- 5 Kopfzeile --------------------------------------------------------- */
+
+.kopfzeile {
+  padding-block: var(--raum-4);
+  border-bottom: 1px solid var(--farbe-linie-zart);
+}
+
+.kopfzeile__innen {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--raum-4);
+  flex-wrap: wrap;
+}
+
+.kopfzeile__marke {
+  font-family: var(--schrift-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.kopfzeile__nav {
+  display: flex;
+  gap: clamp(1rem, 0.4rem + 1.6vw, 2rem);
+  align-items: center;
+}
+
+.kopfzeile__link {
+  font-size: var(--gr-marke);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--farbe-ton);
+  padding-block: 0.35rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.kopfzeile__link:hover,
+.kopfzeile__link:focus-visible {
+  color: var(--farbe-tinte);
+  border-bottom-color: var(--akzent);
+}
+
+.kopfzeile__link[aria-current='page'] {
+  color: var(--farbe-tinte);
+  border-bottom-color: var(--akzent);
+}
+
+.menue-knopf {
+  display: none;
+  align-items: center;
+  gap: var(--raum-2);
+  background: none;
+  border: 1px solid var(--farbe-linie);
+  border-radius: 999px;
+  padding: 0.4rem 0.95rem;
+  font-size: var(--gr-marke);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--farbe-ton);
+  cursor: pointer;
+}
+
+/* Das eingeklappte Menue gibt es nur, wenn JavaScript laeuft.
+   Ohne JS bleibt die Navigation immer sichtbar — nichts wird unerreichbar. */
+@media (max-width: 55rem) {
+  [data-js] .menue-knopf {
+    display: inline-flex;
+  }
+
+  [data-js][data-menue='zu'] .kopfzeile__nav {
+    display: none;
+  }
+
+  .kopfzeile__nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--raum-2);
+    width: 100%;
+    padding-top: var(--raum-3);
+    border-top: 1px solid var(--farbe-linie-zart);
+  }
+}
+
+/* --- 6 Abschnitt --------------------------------------------------------- */
+
+.abschnitt {
+  padding-block: var(--raum-8);
+}
+
+/* Der erste Abschnitt braucht oben weniger Luft — die Kopfzeile steht ja schon da. */
+main > .abschnitt:first-child {
+  padding-top: var(--raum-6);
+}
+
+.abschnitt--eng {
+  padding-block: var(--raum-7);
+}
+
+.abschnitt--flaeche {
+  background: var(--farbe-flaeche);
+}
+
+.abschnitt__kopf {
+  max-width: 34ch;
+  margin-bottom: var(--raum-6);
+}
+
+/* Ueberschrift links, Fliesstext rechts. Fuellt die Breite, ohne die Lesespalte
+   zu dehnen — sonst steht die rechte Haelfte der Seite leer. */
+.zweispalt {
+  display: grid;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  align-items: start;
+}
+
+.zweispalt > .abschnitt__kopf {
+  margin-bottom: 0;
+}
+
+/* --- 7 Zeilenleiter — das Erkennungsmerkmal ------------------------------ */
+/* Caro schreibt ihre wichtigsten Stellen selbst als gestapelte kurze Zeilen.
+   Dieses Bauteil macht genau diesen Rhythmus sichtbar. Sparsam einsetzen. */
+
+.zeilenleiter {
+  display: grid;
+  gap: 0.35em;
+  padding-left: clamp(1.1rem, 0.6rem + 1.4vw, 1.9rem);
+  border-left: 1px solid var(--akzent);
+  font-family: var(--schrift-display);
+  font-weight: 300;
+  font-size: var(--gr-display-m);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.zeilenleiter--gross {
+  font-size: var(--gr-display-l);
+  gap: 0.18em;
+}
+
+.zeilenleiter--klein {
+  font-size: var(--gr-vorlauf);
+  line-height: 1.45;
+  gap: 0.3em;
+}
+
+.zeilenleiter--kursiv {
+  font-style: italic;
+}
+
+.zeilenleiter__zeile {
+  color: var(--farbe-tinte);
+}
+
+/* --- 8 Knopf ------------------------------------------------------------- */
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  background: var(--akzent-tief);
+  color: var(--farbe-grund);
+  border: 1px solid var(--akzent-tief);
+  border-radius: 999px;
+  padding: 0.78em 1.6em;
+  font-size: var(--gr-klein);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.knopf:hover,
+.knopf:focus-visible {
+  background: var(--farbe-tinte);
+  border-color: var(--farbe-tinte);
+}
+
+.knopf--still {
+  background: transparent;
+  color: var(--akzent-tief);
+}
+
+.knopf--still:hover,
+.knopf--still:focus-visible {
+  background: var(--akzent-tief);
+  color: var(--farbe-grund);
+}
+
+.knopf-reihe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--raum-3);
+  margin-top: var(--raum-5);
+}
+
+/* Textlink mit Pfeil — fuer weiterfuehrende Verweise ohne Knopf-Gewicht. */
+.weiter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  font-size: var(--gr-klein);
+  font-weight: 600;
+  color: var(--akzent-tief);
+  text-decoration: none;
+  border-bottom: 1px solid var(--akzent);
+  padding-bottom: 0.15em;
+}
+
+.weiter:hover,
+.weiter:focus-visible {
+  color: var(--farbe-tinte);
+  border-bottom-color: var(--farbe-tinte);
+}
+
+/* --- 9 Wegkarte — die zwei Wege auf der Startseite ----------------------- */
+
+.wege {
+  display: grid;
+  gap: var(--raum-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+}
+
+.wegkarte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--raum-4);
+}
+
+.wegkarte__bild {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 999px 999px 10px 10px;
+}
+
+.wegkarte__titel {
+  margin-top: var(--raum-1);
+}
+
+.wegkarte__text {
+  color: var(--farbe-ton);
+  max-width: 38ch;
+}
+
+.wegkarte__fuss {
+  margin-top: auto;
+  padding-top: var(--raum-3);
+}
+
+/* --- 10 Bilder ----------------------------------------------------------- */
+
+/* Bogen: oben halbrund, unten gerade. Eine Tuer, kein Rahmen —
+   Caro schreibt selbst davon, Menschen „Raeume eroeffnen" zu wollen. */
+.bild--bogen {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 999px 999px 10px 10px;
+}
+
+.bild--kreis {
+  aspect-ratio: 1;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.bild--breit {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.bildzeile {
+  display: grid;
+  gap: var(--raum-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+}
+
+.bildunterschrift {
+  margin-top: var(--raum-2);
+  font-size: var(--gr-klein);
+  color: var(--farbe-ton);
+}
+
+/* --- 11 Platzhalter ------------------------------------------------------ */
+/* Sichtbar markiert, damit im Entwurf kein geratener Wert fuer echt gehalten wird. */
+
+.platzhalter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55em;
+  background: var(--farbe-offen-flaeche);
+  border: 1px dashed var(--farbe-offen);
+  border-radius: 6px;
+  padding: 0.3em 0.7em;
+  color: #6b4f1c;
+  font-size: var(--gr-klein);
+  line-height: 1.5;
+}
+
+.platzhalter::before {
+  content: 'offen';
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--farbe-offen);
+}
+
+.platzhalter--block {
+  display: flex;
+  width: 100%;
+}
+
+/* --- 12 Kleinteile ------------------------------------------------------- */
+
+/* Eckdaten (Ort, Dauer, Preis) — Beschreibungsliste statt Tabelle. */
+.eckdaten {
+  display: grid;
+  gap: var(--raum-4);
+  margin: 0;
+}
+
+.eckdaten__zeile {
+  display: grid;
+  gap: var(--raum-1);
+  padding-bottom: var(--raum-4);
+  border-bottom: 1px solid var(--farbe-linie-zart);
+}
+
+.eckdaten__titel {
+  font-size: var(--gr-marke);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--farbe-ton);
+}
+
+.eckdaten__wert {
+  margin: 0;
+}
+
+/* Schritte eines Ablaufs — nummeriert, weil die Reihenfolge hier wirklich zaehlt. */
+.schritte {
+  display: grid;
+  gap: var(--raum-6);
+  counter-reset: schritt;
+}
+
+.schritt {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  gap: var(--raum-4);
+  align-items: start;
+}
+
+.schritt::before {
+  counter-increment: schritt;
+  content: counter(schritt, decimal-leading-zero);
+  font-family: var(--schrift-display);
+  font-size: 1.15rem;
+  color: var(--akzent-tief);
+  padding-top: 0.15em;
+  border-top: 1px solid var(--akzent);
+}
+
+.schritt__titel {
+  font-family: var(--schrift-display);
+  font-size: var(--gr-display-m);
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: var(--raum-2);
+}
+
+/* Gegenueberstellung „ist / ist nicht" */
+.gegenueber {
+  display: grid;
+  gap: var(--raum-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+}
+
+.gegenueber__liste {
+  display: grid;
+  gap: var(--raum-3);
+  margin-top: var(--raum-4);
+}
+
+.gegenueber__punkt {
+  display: grid;
+  grid-template-columns: 1.2rem 1fr;
+  gap: var(--raum-2);
+  color: var(--farbe-ton);
+}
+
+.gegenueber__punkt::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.6em;
+  border-radius: 50%;
+  background: var(--akzent);
+}
+
+.gegenueber__punkt--nicht::before {
+  border-radius: 0;
+  height: 1px;
+  margin-top: 0.85em;
+  background: var(--farbe-ton);
+}
+
+/* Zweispaltiges Gespann Text/Bild */
+.gespann {
+  display: grid;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+}
+
+.gespann--bild-links > .gespann__bild {
+  order: -1;
+}
+
+/* --- 13 Fusszeile -------------------------------------------------------- */
+
+.fusszeile {
+  background: var(--farbe-flaeche);
+  padding-block: var(--raum-7) var(--raum-5);
+  margin-top: var(--raum-8);
+}
+
+.fusszeile__raster {
+  display: grid;
+  gap: var(--raum-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+}
+
+.fusszeile__titel {
+  font-size: var(--gr-marke);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--farbe-ton);
+  margin-bottom: var(--raum-3);
+}
+
+.fusszeile__liste {
+  display: grid;
+  gap: var(--raum-2);
+}
+
+.fusszeile__link {
+  text-decoration: none;
+  color: var(--farbe-tinte);
+  border-bottom: 1px solid transparent;
+}
+
+.fusszeile__link:hover,
+.fusszeile__link:focus-visible {
+  border-bottom-color: var(--akzent);
+}
+
+.fusszeile__schluss {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--raum-3) var(--raum-5);
+  justify-content: space-between;
+  margin-top: var(--raum-7);
+  padding-top: var(--raum-4);
+  border-top: 1px solid var(--farbe-linie);
+  font-size: var(--gr-klein);
+  color: var(--farbe-ton);
+}
+
+/* --- 14 Bewegung --------------------------------------------------------- */
+/* Der Ruhezustand wird nur gesetzt, wenn JS laeuft UND der Nutzer Bewegung mag.
+   Sonst ist alles von Anfang an sichtbar — kein leerer Bildschirm als Ausfall. */
+
+[data-animiert] .zeilenleiter__zeile,
+[data-animiert] .einblenden {
+  opacity: 0;
+}
+
+[data-animiert] .zeilenleiter__zeile {
+  transform: translateY(0.5rem);
+}
+
+[data-animiert] .einblenden {
+  transform: translateY(1rem);
+}
+
+[data-animiert] .ist-sichtbar .zeilenleiter__zeile,
+[data-animiert] .einblenden.ist-sichtbar {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.8s ease var(--verzoegerung, 0ms),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) var(--verzoegerung, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

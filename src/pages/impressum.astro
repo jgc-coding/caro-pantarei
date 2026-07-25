@@ -1,0 +1,57 @@
+---
+import Grundgeruest from '../layouts/Grundgeruest.astro';
+import Abschnitt from '../components/Abschnitt.astro';
+import Platzhalter from '../components/Platzhalter.astro';
+import { marke } from '../config/marke';
+
+// Bewusst NICHT ausgefuellt. Anschrift, Rechtsform und Aufsichtsbehoerde kann
+// niemand erfinden — sie muessen von Caroline kommen. Bis dahin bleibt die Seite
+// sichtbar unfertig, statt falsch zu wirken.
+const pflichtangaben = [
+  { titel: 'Name', wert: marke.name, hinweis: 'Schreibweise noch bestätigen' },
+  { titel: 'Anschrift', wert: marke.kontakt.anschrift, hinweis: null },
+  { titel: 'E-Mail', wert: marke.kontakt.email, hinweis: null },
+  { titel: 'Telefon', wert: marke.kontakt.telefon, hinweis: null },
+  { titel: 'Rechtsform / Umsatzsteuer', wert: marke.kontakt.rechtsform, hinweis: null },
+];
+---
+
+<Grundgeruest titel="Impressum" beschreibung="Anbieterkennzeichnung nach Paragraf 5 DDG.">
+  <Abschnitt>
+    <div class="schmal">
+      <p class="marke-zeile">Rechtliches</p>
+      <h1>Impressum</h1>
+
+      <div class="fliesstext" style="margin-top: var(--raum-5)">
+        <p>
+          Diese Seite ist noch nicht ausgefüllt. Die Angaben unten sind gesetzlich
+          vorgeschrieben (§ 5 DDG) und müssen vor dem Livegang der Website eingetragen
+          werden.
+        </p>
+      </div>
+
+      <dl class="eckdaten" style="margin-top: var(--raum-6)">
+        {
+          pflichtangaben.map((zeile) => (
+            <div class="eckdaten__zeile">
+              <dt class="eckdaten__titel">{zeile.titel}</dt>
+              <dd class="eckdaten__wert">
+                <Platzhalter text={zeile.wert} />
+                {zeile.hinweis && <p class="bildunterschrift">{zeile.hinweis}</p>}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="fliesstext" style="margin-top: var(--raum-6)">
+        <p>
+          Zusätzlich zu prüfen: Wird eine Berufsbezeichnung geführt (etwa
+          „Heilpraktikerin für Psychotherapie"), müssen die zuständige Aufsichtsbehörde,
+          die Berufsbezeichnung und der Staat, in dem sie verliehen wurde, mit angegeben
+          werden.
+        </p>
+      </div>
+    </div>
+  </Abschnitt>
+</Grundgeruest>

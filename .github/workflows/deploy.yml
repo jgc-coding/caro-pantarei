@@ -27,12 +27,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      # Schaltet GitHub Pages beim ersten Lauf selbst ein (enablement), damit das
-      # Veroeffentlichen nicht an einem vergessenen Haken in den Repo-Einstellungen
-      # scheitert. Beim zweiten Lauf ist der Schritt wirkungslos.
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      # Hinweis fuer ein kuenftiges neues Repo: GitHub Pages muss EINMALIG von aussen
+      # eingeschaltet werden, dieser Workflow kann das nicht selbst.
+      #   gh api repos/<owner>/<repo>/pages -X POST -f build_type=workflow
+      # Der Schluessel eines Workflows darf eine Pages-Seite veroeffentlichen, aber nicht
+      # anlegen ("Resource not accessible by integration"). actions/configure-pages mit
+      # enablement:true scheitert aus demselben Grund und wurde deshalb wieder entfernt.
       - uses: actions/setup-node@v6
         with:
           node-version: 24

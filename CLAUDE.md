@@ -99,3 +99,7 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
 - Chrome friert laufende CSS-Uebergaenge ein, wenn sein Fenster verdeckt ist. Screenshots
   wirken dann blass oder leer. Zum Pruefen `data-animiert` am `<html>` entfernen — das ist
   derselbe Zustand, den auch Nutzer mit „weniger Bewegung" sehen.
+- **GitHub Pages muss einmalig von aussen eingeschaltet werden**, der Workflow kann das
+  nicht: `gh api repos/jgc-coding/caro-pantarei/pages -X POST -f build_type=workflow`.
+  Der Schluessel eines Workflows darf veroeffentlichen, aber nicht anlegen. Hier erledigt;
+  bei einem kuenftigen neuen Repo ist es wieder der erste Schritt.

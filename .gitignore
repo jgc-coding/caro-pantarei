@@ -1,0 +1,22 @@
+# Erzeugtes — entsteht beim Bauen neu, gehoert nie ins Repo
+node_modules/
+dist/
+.astro/
+.vercel/
+.netlify/
+
+# Umgebung und Geheimnisse — nur Vorlagen duerfen bleiben
+.env
+.env.*
+!.env.example
+
+# Betriebssystem und Editor
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.log
+npm-debug.log*
+
+# Claude Code — hier liegen vollstaendige Code-Kopien
+.claude/worktrees/

@@ -1,0 +1,78 @@
+# Caro Pantarei Website
+
+**Prozess-Stufe: Produkt** — volles Programm (Version, CHANGELOG, Regressionscheck).
+
+Website fuer Caro (vermutlich „Caroline Schulz"), die zwei Dinge anbietet:
+**Pantarei-Koerperarbeit** (ruhige Einzelsitzung) und **Playfight nach Matteo Tangi**
+(Gruppen-Praxis). Erstes Pilot-/Referenzprojekt von JGC Lumen. Statische Seite, sieben
+Unterseiten, kein Backend.
+
+## Tech-Stack
+
+- **Astro 5** (`^5`, statisch, kein SSR) — Ausgabe ist reines HTML in `dist/`
+- **Vanilla CSS** mit Custom Properties, kein Tailwind, kein CSS-Framework
+- Schriften **selbst gehostet** ueber `@fontsource-variable/newsreader` und
+  `@fontsource-variable/karla` — **niemals CDN** (DSGVO)
+- Bilder ueber `astro:assets` (`<Image />`) aus `src/assets/bilder/` — Astro erzeugt
+  WebP und `srcset` beim Bauen
+- `@astrojs/sitemap`
+- Node 24, npm 11
+
+## Befehle
+
+- Entwickeln: `npm run dev` (Port 4321)
+- Bauen: `npm run build` → `dist/`
+- Vorschau des Baus: `npm run preview`
+- Pruefen: `npm run check` (= `astro check`, auch Inhalt von `.claude/pruefen.txt`)
+
+## Die zwei Tauschstellen
+
+Alles, was sich beim Klienten aendert, liegt an genau **zwei** Orten. Kein Wert steht doppelt.
+
+| Was | Wo |
+|---|---|
+| Name, Claim, Kontakt, Orte, Preise, Termine, Registrationslink | `src/config/marke.ts` |
+| CI-Farben und Schriftnamen | `src/styles/ci.css` |
+
+Kommen echte CI-Farben von Caro: nur die Variablen im `:root`-Block von `ci.css` tauschen,
+sonst nichts anfassen. Aendert sich der Name: nur `marke.ts`.
+
+Version ist Single Source of Truth in `src/config/version.ts` und im Seitenfuss sichtbar.
+
+## Konventionen
+
+- Sprache der Oberflaeche: **Deutsch**, mit echten Umlauten. Caro wird durchgehend
+  **geduzt** („Du", grossgeschrieben) — so schreibt sie selbst.
+- **Ordner englisch** (Astro erwartet `src/pages`, `src/layouts`, `src/components`),
+  **Bauteilnamen, CSS-Variablen und Kommentare deutsch** (`Zeilenleiter.astro`,
+  `--farbe-still`). Diese Mischung ist Absicht, nicht Schlamperei.
+- **Theming ueber `data-*`**: `data-welt="still"` (Pantarei, Lavendel) bzw.
+  `data-welt="wild"` (Playfight, Ton) am Abschnitt oder `<body>` schaltet die Akzentfarbe.
+  Nie eine Akzentfarbe direkt in ein Bauteil schreiben.
+- **Zeilenleiter** ist das Erkennungsmerkmal der Seite: gestapelte kurze Zeilen mit
+  senkrechter Haarlinie. Kommt aus Caros eigenem Schreibrhythmus. Sparsam einsetzen —
+  wenn sie ueberall steht, wirkt sie nirgends.
+- Bewegung nur an drei Stellen (Zeilenleiter, Bild-Einblendung, Hover) und immer hinter
+  `prefers-reduced-motion`.
+
+## Inhaltliche Regeln (nicht verhandelbar)
+
+- **Keine Heilversprechen.** Fuer Gesundheitsangebote gilt das Heilmittelwerbegesetz;
+  „hilft gegen ..." oder „loest ..." sind angreifbar. Immer als Einladung formulieren.
+- **Titel „Heilpraktikerin fuer Psychotherapie" erst schreiben, wenn Caro die Erlaubnis
+  des Gesundheitsamts bestaetigt hat.** Ausbildung != Erlaubnis.
+- **Keine erfundenen Fakten.** Preise, Orte, Termine, Anschrift stehen als sichtbarer
+  Platzhalter in `marke.ts` (Praefix `PLATZHALTER:`), nie als geratener Wert.
+- Bilder mit erkennbaren fremden Personen duerfen erst online, wenn schriftliche
+  Einwilligungen vorliegen.
+
+## Stolperfallen
+
+- **Astro auf `^5` gepinnt.** Ein blankes `npm install` oder `npm update` wuerde Astro 7
+  ziehen. Nicht ungefragt hochziehen (gleiche Falle wie im Achievewear-Blog).
+- `astro.config.mjs` liest `SITE_URL` und `BASE_PATH` aus der Umgebung. Lokal Defaults
+  (`http://localhost:4321`, Base `/`). Fuer GitHub Pages muessen beide gesetzt werden,
+  sonst brechen alle Pfade — Muster stammt aus dem Achievewear-Blog.
+- Interne Links **immer** ueber den Helfer aus `src/config/marke.ts` bzw. mit
+  `import.meta.env.BASE_URL` bauen, nie als nacktes `/pantarei` — sonst funktioniert die
+  Seite lokal und bricht unter einem Unterordner-Deploy.

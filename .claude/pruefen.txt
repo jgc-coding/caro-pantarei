@@ -1,0 +1,3 @@
+# Schnellpruefung fuer das Done-Gate (siehe C:\Projekte\Claude-Skills\hooks\donecheck.ps1)
+# Eine Zeile = ein Befehl. Nur Schnelles, keine komplette Testsuite.
+npm run check

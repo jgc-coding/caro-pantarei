@@ -42,9 +42,9 @@ const offeneAnzahl = pflichtangaben.filter((z) => istOffen(z.wert)).length;
 
       <div class="fliesstext" style="margin-top: var(--raum-5)">
         <p>
-          Angaben nach § 5 Digitale-Dienste-Gesetz (DDG). {offeneAnzahl} von{' '}
-          {pflichtangaben.length} Feldern warten noch auf Caroline und sind unten markiert —
-          sie müssen vor dem Livegang ausgefüllt sein.
+          Angaben nach § 5 Digitale-Dienste-Gesetz (DDG). {`${offeneAnzahl} von ${pflichtangaben.length}`}
+          Feldern warten noch auf Caroline und sind unten markiert — sie müssen vor dem
+          Livegang ausgefüllt sein.
         </p>
       </div>
 

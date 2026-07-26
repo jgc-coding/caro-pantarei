@@ -27,10 +27,17 @@ const kanonisch = new URL(Astro.url.pathname, Astro.site);
 // nur eine graue Flaeche. Bewusst Caros Einzelfoto: Auf den Gruppenbildern sind
 // fremde Personen erkennbar, deren Einwilligung noch fehlt.
 // Die Adresse MUSS vollstaendig sein (mit Domain) — ein relativer Pfad wird ignoriert.
+// Masse werden aus dem Bild ABGELEITET, nicht behauptet: Astro vergroessert nie ueber die
+// Quellaufloesung hinaus. Fest eingetragene 1200x630 ergaben real eine Datei von 853x900 —
+// die Angaben im <meta> stimmten dann nicht mehr mit der Datei ueberein.
+// Der Schnitt sitzt oben, weil die untere Bildhaelfte nur Boden zeigt.
+const vorschauBreite = Math.min(1200, bildVorschau.width);
+const vorschauHoehe = Math.min(900, bildVorschau.height);
+
 const vorschau = await getImage({
   src: bildVorschau,
-  width: 1200,
-  height: 630,
+  width: vorschauBreite,
+  height: vorschauHoehe,
   fit: 'cover',
   position: 'top',
   format: 'jpg',
@@ -55,8 +62,8 @@ const vorschauAdresse = new URL(vorschau.src, Astro.site).href;
     <meta property="og:locale" content="de_DE" />
     <meta property="og:url" content={kanonisch} />
     <meta property="og:image" content={vorschauAdresse} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content={String(vorschauBreite)} />
+    <meta property="og:image:height" content={String(vorschauHoehe)} />
     <meta property="og:image:alt" content="Caroline sitzt auf einem hellen Boden und lacht." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="generator" content={Astro.generator} />

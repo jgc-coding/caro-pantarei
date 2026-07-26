@@ -12,9 +12,24 @@ interface Props {
   bild: ImageMetadata;
   alt: string;
   welt: 'still' | 'wild';
+  /**
+   * Welcher Teil des Fotos sichtbar bleibt. Die Karte schneidet hochformatige Bilder
+   * stark in der Hoehe — ohne Angabe landet der Schnitt in der Mitte und kappt Koepfe.
+   */
+  bildPosition?: string;
 }
 
-const { titel, unterzeile, text, ziel, linktext, bild, alt, welt } = Astro.props;
+const {
+  titel,
+  unterzeile,
+  text,
+  ziel,
+  linktext,
+  bild,
+  alt,
+  welt,
+  bildPosition = '50% 50%',
+} = Astro.props;
 ---
 
 <article class="wegkarte einblenden" data-welt={welt}>
@@ -26,6 +41,7 @@ const { titel, unterzeile, text, ziel, linktext, bild, alt, welt } = Astro.props
     sizes="(max-width: 55rem) 92vw, 30rem"
     format="webp"
     quality={78}
+    style={`object-position: ${bildPosition}`}
   />
   <div>
     <p class="marke-zeile">{unterzeile}</p>

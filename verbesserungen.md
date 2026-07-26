@@ -57,6 +57,15 @@ Stand: 2026-07-25 (Runde 1 ausgewertet und umgesetzt, Fokus: alles)
       `TECH-STACK.md` pinnt Astro bewusst auf `^5`; ein Sprung auf 7 gehoert geplant, nicht
       per `npm audit fix --force` erzwungen.
 
+- [ ] **V12** (C) Caro um zwei, drei weitere Fotos von sich allein bitten
+      Gefahr: Von sechs gelieferten Fotos zeigt genau EINES Caroline allein
+      (`caro-sitzend.jpg`). Ueberall sonst ist mindestens eine fremde Person im Bild —
+      das begrenzt die Gestaltung und verschaerft zugleich V2 (Bildfreigaben).
+      Beleg: Sichtung aller sechs Dateien am 2026-07-26. Auf der Startseite musste dafuer
+      die gesamte Bildzuordnung umgestellt werden, damit kein Foto zweimal auf derselben
+      Seite steht. Ein Portraet im Hochformat und ein ruhiges Arbeitsbild ohne fremde
+      Gesichter wuerden beides loesen · Aufwand: S (fuer Caro) · Risiko: —
+
 - [ ] **V11** (D) Jahreszahl im Fuss friert beim Bauen ein
       Gefahr: `© 2026` entsteht beim Bauen, nicht beim Besuch. Wird die Seite 2027 nicht neu
       gebaut, steht dort weiter 2026 und wirkt verlassen.

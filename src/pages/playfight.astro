@@ -70,6 +70,9 @@ const eckdaten = [
         </div>
       </div>
       <div class="gespann__bild">
+        {/* Querformat im hochformatigen Bogen: Es bleiben nur 640 der 1280 Bildpunkte
+            Breite uebrig. Mittig geschnitten faellt Caroline ganz heraus — 60 % holt
+            beide Gesichter ins Bild. */}
         <Image
           class="bild--bogen einblenden atmet"
           src={bildBegegnung}
@@ -79,6 +82,7 @@ const eckdaten = [
           format="webp"
           quality={80}
           loading="eager"
+          style="object-position: 62% 40%"
         />
       </div>
     </div>
@@ -139,6 +143,7 @@ const eckdaten = [
           sizes="(max-width: 55rem) 88vw, 24rem"
           format="webp"
           quality={78}
+          style="object-position: 50% 58%"
         />
       </div>
     </div>
@@ -215,6 +220,7 @@ const eckdaten = [
           sizes="(max-width: 55rem) 80vw, 22rem"
           format="webp"
           quality={78}
+          style="object-position: 45% 45%"
         />
       </div>
     </div>

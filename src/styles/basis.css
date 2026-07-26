@@ -453,10 +453,13 @@ main > .abschnitt:first-child {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+/* Beim Zeigen wird die Farbe TIEFER, nicht schwarz. Der fruehere Wechsel auf
+   --farbe-tinte sprang von 5.47:1 auf 14.23:1 — der Knopf sah dabei aus, als waere
+   er kaputtgegangen. */
 .knopf:hover,
 .knopf:focus-visible {
-  background: var(--farbe-tinte);
-  border-color: var(--farbe-tinte);
+  background: var(--akzent-dunkel);
+  border-color: var(--akzent-dunkel);
 }
 
 .knopf--still {
@@ -466,7 +469,8 @@ main > .abschnitt:first-child {
 
 .knopf--still:hover,
 .knopf--still:focus-visible {
-  background: var(--akzent-tief);
+  background: var(--akzent-dunkel);
+  border-color: var(--akzent-dunkel);
   color: var(--farbe-grund);
 }
 
@@ -490,10 +494,11 @@ main > .abschnitt:first-child {
   padding-bottom: 0.15em;
 }
 
+/* Auch hier: tiefer statt schwarz — sonst wechselt der Link beim Zeigen die Familie. */
 .weiter:hover,
 .weiter:focus-visible {
-  color: var(--farbe-tinte);
-  border-bottom-color: var(--farbe-tinte);
+  color: var(--akzent-dunkel);
+  border-bottom-color: var(--akzent-dunkel);
 }
 
 /* Der Pfeil rueckt beim Zeigen ein Stueck vor — eine Einladung, kein Effekt. */

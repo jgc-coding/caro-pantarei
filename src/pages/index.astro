@@ -11,7 +11,7 @@ import { marke, pfad } from '../config/marke';
 import bildCaro from '../assets/bilder/caro-sitzend.jpg';
 import bildHaende from '../assets/bilder/haende-halten.jpg';
 import bildBegegnung from '../assets/bilder/begegnung-zwei.jpg';
-import bildKreis from '../assets/bilder/kreis-gespraech.jpg';
+import bildBeruehrung from '../assets/bilder/beruehrung-stehend.jpg';
 ---
 
 <Grundgeruest
@@ -36,13 +36,14 @@ import bildKreis from '../assets/bilder/kreis-gespraech.jpg';
       <div class="gespann__bild">
         <Image
           class="bild--bogen einblenden atmet"
-          src={bildCaro}
-          alt="Caroline sitzt im Schneidersitz auf einem hellen Boden und lacht."
+          src={bildHaende}
+          alt="Caroline sitzt einer Person gegenüber und hält lachend deren Hände."
           widths={[420, 640, 853]}
           sizes="(max-width: 55rem) 88vw, 28rem"
           format="webp"
           quality={80}
           loading="eager"
+          style="object-position: 50% 30%"
         />
       </div>
     </div>
@@ -82,8 +83,9 @@ import bildKreis from '../assets/bilder/kreis-gespraech.jpg';
         text="Gespräch und Körperarbeit in einer Sitzung. Wir hören zu, was Dein Körper zu erzählen hat — ohne etwas wegmachen zu wollen."
         ziel={pfad('/pantarei')}
         linktext="Mehr über Pantarei"
-        bild={bildHaende}
-        alt="Zwei Menschen sitzen sich gegenüber und halten die Hände ineinander."
+        bild={bildBeruehrung}
+        alt="Caroline legt einer stehenden Person mit geschlossenen Augen die Hand auf die Schulter."
+        bildPosition="50% 6%"
       />
       <Wegkarte
         welt="wild"
@@ -94,6 +96,7 @@ import bildKreis from '../assets/bilder/kreis-gespraech.jpg';
         linktext="Mehr über Playfight"
         bild={bildBegegnung}
         alt="Zwei Menschen gehen lachend in die Hocke und schauen sich an."
+        bildPosition="55% 42%"
       />
     </div>
   </Abschnitt>
@@ -102,14 +105,18 @@ import bildKreis from '../assets/bilder/kreis-gespraech.jpg';
   <Abschnitt flaeche>
     <div class="gespann gespann--bild-links">
       <div class="gespann__bild">
+        {/* Neben „Ich bin Caroline." gehoert Caroline — und sonst niemand. Hier stand
+            vorher ein Gruppenbild. Der Schnitt ist nach oben gezogen, damit ihr Gesicht
+            im Kreis mittig sitzt statt am oberen Rand zu kleben. */}
         <Image
           class="bild--kreis einblenden"
-          src={bildKreis}
-          alt="Eine Gruppe sitzt im Kreis auf dem Boden, eine Person spricht."
+          src={bildCaro}
+          alt="Caroline sitzt im Schneidersitz auf einem hellen Boden und lacht."
           widths={[380, 560, 760]}
           sizes="(max-width: 55rem) 80vw, 22rem"
           format="webp"
           quality={78}
+          style="object-position: 50% 18%"
         />
       </div>
       <div>

@@ -24,9 +24,14 @@
      Eyebrows, Knoepfe und Links auf jeder Seite. Aktuell 5.47:1 bzw. 4.85:1.
      Beim Tauschen der CI nachrechnen, sonst wird der Hauptknopf im Sonnenlicht unlesbar. */
   --farbe-still-tief: #6e617f;
+  /* Nur fuer Hover: dieselbe Farbe, eine Stufe tiefer. NICHT nach Schwarz wechseln —
+     ein lavendelfarbener Knopf, der beim Zeigen fast schwarz wird, wirkt wie ein Fehler.
+     Cremetext darauf: 7.09:1 (Ruhezustand 5.47:1) — der Sprung ist spuerbar, aber sanft. */
+  --farbe-still-dunkel: #5c5169;
   /* wild = Playfight. Warmer Ton. */
   --farbe-wild: #c4714e;
   --farbe-wild-tief: #a55938;
+  --farbe-wild-dunkel: #8a4a2e; /* Cremetext darauf: 6.49:1 */
 
   /* --- Linien und Hinweise ------------------------------------------------ */
   --farbe-linie: rgb(42 39 36 / 14%);
@@ -52,9 +57,11 @@
 [data-welt='still'] {
   --akzent: var(--farbe-still);
   --akzent-tief: var(--farbe-still-tief);
+  --akzent-dunkel: var(--farbe-still-dunkel);
 }
 
 [data-welt='wild'] {
   --akzent: var(--farbe-wild);
   --akzent-tief: var(--farbe-wild-tief);
+  --akzent-dunkel: var(--farbe-wild-dunkel);
 }

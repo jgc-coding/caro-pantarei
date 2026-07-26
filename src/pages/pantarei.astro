@@ -39,15 +39,19 @@ const eckdaten = [
         </div>
       </div>
       <div class="gespann__bild">
+        {/* Dasselbe Motiv wie auf der Wegkarte der Startseite: Wer dort klickt, kommt
+            hier an und erkennt das Bild wieder. Schnitt nach oben, weil die untere
+            Bildhaelfte nur Hosenbeine zeigt. */}
         <Image
           class="bild--bogen einblenden atmet"
           src={bildBeruehrung}
-          alt="Eine Person legt einer stehenden Person mit geschlossenen Augen die Hand auf die Schulter."
+          alt="Caroline legt einer stehenden Person mit geschlossenen Augen die Hand auf die Schulter."
           widths={[420, 640, 853]}
           sizes="(max-width: 55rem) 88vw, 26rem"
           format="webp"
           quality={80}
           loading="eager"
+          style="object-position: 50% 12%"
         />
       </div>
     </div>
@@ -135,11 +139,12 @@ const eckdaten = [
         <Image
           class="bild--bogen einblenden"
           src={bildHaende}
-          alt="Zwei Menschen sitzen im Schneidersitz und halten die Hände ineinander."
+          alt="Caroline sitzt einer Person gegenüber und hält lachend deren Hände."
           widths={[380, 560, 853]}
           sizes="(max-width: 55rem) 88vw, 24rem"
           format="webp"
           quality={78}
+          style="object-position: 50% 34%"
         />
       </div>
     </div>

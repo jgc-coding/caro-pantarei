@@ -2,6 +2,39 @@
 
 Alle nennenswerten Aenderungen dieses Projekts. Neueste zuerst.
 
+## v0.5.0 — 2026-07-26
+
+Rueckmeldung von Gabriel: Bildausschnitte, ein Solo-Foto bei „Ueber mich", Knopf-Hover.
+
+**Knoepfe werden beim Zeigen tiefer statt schwarz**
+- Neue Token `--farbe-still-dunkel` (#5C5169) und `--farbe-wild-dunkel` (#8A4A2E),
+  angesprochen ueber `--akzent-dunkel`. Der bisherige Wechsel auf `--farbe-tinte` sprang
+  von 5.47:1 auf 14.23:1 Kontrast — der lavendelfarbene Knopf sah dabei aus, als waere er
+  kaputtgegangen. Jetzt 7.09:1: spuerbar dunkler, erkennbar dieselbe Farbe.
+- Gilt fuer `.knopf`, `.knopf--still` und den Textlink `.weiter`.
+
+**Bildausschnitte**
+- Jedes Bild bekommt ein bewusstes `object-position`. Vorher schnitt der Browser mittig,
+  wodurch bei den Wegkarten (4/3 aus hochformatigen Fotos, nur 640 von 1280 Bildpunkten
+  Hoehe bleiben) Koepfe wegfielen und Hosenbeine das Bild fuellten.
+- Playfight-Auftakt: Das Querformat verliert im Bogen die Haelfte seiner Breite. Mittig
+  geschnitten fiel Caroline vollstaendig aus dem Bild — mit 62 % sind beide Gesichter drin.
+- `Wegkarte.astro` hat dafuer den neuen Regler `bildPosition`.
+
+**Fotos neu zugeordnet**
+- Die Ueber-mich-Sektion der Startseite zeigte ein Gruppenbild neben „Ich bin Caroline."
+  Dort steht jetzt das einzige Foto, auf dem Caroline allein ist.
+- Damit dadurch kein Bild doppelt auf einer Seite landet: Auftakt der Startseite jetzt
+  `haende-halten` (Caroline lacht), Wegkarte Pantarei `beruehrung-stehend`.
+- Neue Ordnung: **Jede Wegkarte zeigt das Bild der Seite, zu der sie fuehrt.** Geprueft:
+  keine Seite verwendet ein Foto zweimal.
+
+**Vorschaubild fuers Teilen**
+- Masse werden jetzt aus dem Bild abgeleitet statt fest eingetragen. Die Angabe lautete
+  1200x630, die erzeugte Datei war real 853x900 — Astro vergroessert nie ueber die
+  Quellaufloesung hinaus. Jetzt stimmen `<meta>` und Datei nachweislich ueberein.
+- Der Schnitt sitzt oben statt mittig; vorher waere Carolines Gesicht am Kinn abgeschnitten.
+
 ## v0.4.0 — 2026-07-25
 
 Design-Verfeinerung: mehr Finesse, kleine dezente Spielereien — alle aus einem Motiv

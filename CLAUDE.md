@@ -63,6 +63,15 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
 - **Theming ueber `data-*`**: `data-welt="still"` (Pantarei, Lavendel) bzw.
   `data-welt="wild"` (Playfight, Ton) am Abschnitt oder `<body>` schaltet die Akzentfarbe.
   Nie eine Akzentfarbe direkt in ein Bauteil schreiben.
+- **Jedes Bild braucht einen bewussten Ausschnitt** (`style="object-position: X% Y%"`).
+  Der Bogen (3/4) und die Wegkarte (4/3) schneiden hochformatige Fotos hart: Bei der
+  Wegkarte bleiben von 1280 Bildpunkten Hoehe nur 640 uebrig. Ohne Angabe schneidet der
+  Browser mittig und kappt Koepfe. Beim Bildtausch neu bestimmen, nie den Standard lassen.
+- **Hover macht die Akzentfarbe tiefer, nie schwarz** (`--akzent-dunkel`). Ein
+  lavendelfarbener Knopf, der beim Zeigen auf `--farbe-tinte` springt, wirkt kaputt.
+- **Jede Wegkarte zeigt das Bild der Seite, zu der sie fuehrt** — wer klickt, erkennt
+  das Motiv wieder. Beim Bildtausch auf einer Unterseite die Karte auf der Startseite
+  mitziehen.
 - **Bilder: `src/assets/bilder/` ist die einzige Quelle der Website.** `Bildmaterial/`
   ist die unangetastete Ablage dessen, was Caro geliefert hat — daraus wird kopiert, nie
   umgekehrt. Kommen neue oder korrigierte Fotos, muessen BEIDE Ordner nachgezogen werden;

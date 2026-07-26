@@ -4,8 +4,9 @@
 
 Website fuer Caro (vermutlich „Caroline Schulz"), die zwei Dinge anbietet:
 **Pantarei-Koerperarbeit** (ruhige Einzelsitzung) und **Playfight nach Matteo Tangi**
-(Gruppen-Praxis). Erstes Pilot-/Referenzprojekt von JGC Lumen. Statische Seite, sieben
-Unterseiten, kein Backend.
+(Gruppen-Praxis). Erstes Pilot-/Referenzprojekt von JGC Lumen. Statische Seite,
+kein Backend: Start, Pantarei, Playfight, Ueber mich, Kontakt, Impressum, Datenschutz
+und eine eigene 404-Seite.
 
 ## Tech-Stack
 
@@ -33,10 +34,10 @@ Unterseiten, kein Backend.
 Push auf `main` → GitHub Actions baut und veroeffentlicht auf GitHub Pages.
 Live: https://jgc-coding.github.io/caro-pantarei/ · Repo: `jgc-coding/caro-pantarei`
 
-`ENTWURF` in `src/config/marke.ts` steht auf `true`: Alle Seiten tragen `noindex`, und
-`robots.txt` verbietet das Einlesen. Die Seite ist damit nur ueber die bekannte Adresse
-erreichbar, nicht ueber eine Suche. **Erst auf `false` stellen, wenn Impressum,
-Datenschutz und die Bildfreigaben stehen.**
+Der Schalter `ENTWURF` in `src/config/marke.ts` steuert die Sichtbarkeit: Solange er
+`true` ist, tragen alle Seiten `noindex` und `robots.txt` verbietet das Einlesen — die
+Seite ist dann nur ueber die bekannte Adresse erreichbar, nicht ueber eine Suche.
+**Auf `false` erst umstellen, wenn Impressum, Datenschutz und die Bildfreigaben stehen.**
 
 ## Die zwei Tauschstellen
 
@@ -134,3 +135,7 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   `--farbe-offen` in `ci.css` erfuellen aktuell 4.5:1 auf Leinen UND auf Sand. Die erste
   Fassung lag bei 4.38:1 bzw. 2.92:1 und war auf dem Handy im Sonnenlicht kaum lesbar.
   Beim CI-Tausch also nicht nur schauen, sondern rechnen.
+- **Astro vergroessert Bilder nie ueber die Quellaufloesung hinaus.** Angeforderte Masse
+  sind eine Obergrenze, keine Zusage. Fest eingetragene `og:image`-Masse gingen dadurch
+  auseinander (1200x630 behauptet, 853x900 geliefert). Masse fuer Social-Vorschauen immer
+  aus `bild.width`/`bild.height` ableiten, nie hinschreiben.

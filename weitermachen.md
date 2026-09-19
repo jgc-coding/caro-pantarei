@@ -49,6 +49,25 @@ Beschreibungen und Belege stehen in `verbesserungen.md` — hier nur die Nummern
 8. **I4** — Redaktionsbereich (Sveltia CMS), von Gabriel ausdruecklich vorgemerkt, aber
    erst sinnvoll, wenn die Seite steht.
 
+## Was Gabriel selbst tun muss
+
+Am 19.09.2026 von der Hub-Tafel hierher gezogen. Die Tafel nimmt seither nur
+noch, was Gabriel selbst eintraegt oder ausdruecklich beauftragt. Wo oben im
+Text von der Hub-Karte oder einem Hub-Sammelpunkt die Rede ist, sind diese
+Punkte gemeint.
+
+- [ ] Entwurf mit Caro durchgehen und Rückmeldung einholen (seit 2026-07-26)
+- [ ] Bildfreigaben aller erkennbaren Personen einholen - ohne sie bleibt die Seite auf noindex (seit 2026-07-26)
+- [ ] Von Caro die offenen Angaben einsammeln: Anschrift, Rechtsform, E-Mail, Telefon, Preise, Orte, Zeiten (seit 2026-07-26)
+- [ ] Caro fragen, ob die Heilpraktiker-Erlaubnis des Gesundheitsamts vorliegt (seit 2026-07-26)
+- [ ] Playfight-Termine und den Link zur Online-Registration von Caro besorgen (seit 2026-07-26)
+- [ ] Caro um zwei bis drei Fotos bitten, auf denen sie allein ist (seit 2026-07-26)
+- [ ] Mit Caro einen eigenen Claim-Satz und den Inhalt für 'Weitere Angebote' klären (seit 2026-07-26)
+- [ ] Claude Rueckmeldung geben (1 Punkte) (seit 2026-09-07)
+  - Kommt ein echtes Kontaktformular? (dann Konto bei Formspree oder Web3Forms anlegen)
+- [ ] Impressum und Datenschutz anwaltlich gegenlesen lassen, bevor die Seite auffindbar wird (seit 2026-07-26)
+- [ ] Klären, ob Caro Klienten-Stimmen zeigen will (Texte plus schriftliche Freigabe) (seit 2026-07-26)
+
 ## Aktuelle Stolperfallen
 
 - **Nach jedem Deploy hart neu laden** (Strg+Umschalt+R), sonst zeigt der Browser die

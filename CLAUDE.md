@@ -2,7 +2,7 @@
 
 **Prozess-Stufe: Produkt** — volles Programm (Version, CHANGELOG, Regressionscheck).
 
-Website fuer Caro (vermutlich „Caroline Schulz"), die zwei Dinge anbietet:
+Website fuer Caro (voller Name: `marke.name` in `src/config/marke.ts`), die zwei Dinge anbietet:
 **Pantarei-Koerperarbeit** (ruhige Einzelsitzung) und **Playfight nach Matteo Tangi**
 (Gruppen-Praxis). Erstes Pilot-/Referenzprojekt von JGC Lumen. Statische Seite,
 kein Backend: Start, Pantarei, Playfight, Ueber mich, Kontakt, Impressum, Datenschutz
@@ -83,11 +83,11 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   eigenem Schreibrhythmus. Sparsam einsetzen — wenn sie ueberall steht, wirkt sie nirgends.
 - **Wellen-Marke** (`WellenMarke.astro`): Inline-SVG, Farbe ueber `currentColor` — sie
   faerbt sich mit `data-welt` um. Steht in Kopfzeile und Fusszeile, sonst nirgends.
-  Platzhalter mit Haltung, bis Caro ein echtes Logo hat.
-- **Der Atem:** Genau EIN Bild je Seite (das erste, Klasse `atmet`) hebt und senkt sich
+  Platzhalter mit Haltung: Liefert Caro ein Logo, ersetzt es die Marke an beiden Stellen.
+- **Der Atem:** Hoechstens EIN Bild je Seite (das erste, Klasse `atmet`) hebt und senkt sich
   um ~1 % in 8 s. Nie auf mehrere Bilder ausweiten — der Reiz liegt darin, dass man es
   kaum sieht. Animiert wird `scale`, nie `transform` (das gehoert der Einblendung).
-- **Genau EIN kursives `<em>`-Wort je Seite** in einer Ueberschrift („Schön, dass *Du*
+- **Hoechstens EIN kursives `<em>`-Wort je Seite** in einer Ueberschrift („Schön, dass *Du*
   da bist."). Mehr als eines, und die Betonung ist keine mehr.
 - Bewegung nur an diesen Stellen (Zeilenleiter, Einblendung, Atem, Hover) und immer
   hinter `prefers-reduced-motion`.
@@ -105,8 +105,10 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
 
 ## Stolperfallen
 
-- **Astro auf `^5` gepinnt.** Ein blankes `npm install` oder `npm update` wuerde Astro 7
-  ziehen. Nicht ungefragt hochziehen (gleiche Falle wie im Achievewear-Blog).
+- **Astro auf `^5` gepinnt.** `npm install` und `npm update` bleiben innerhalb dieser Spanne.
+  Die neueste Hauptversion zieht erst `npm install astro` ohne Versionsangabe (oder
+  `astro@latest`), weil das die Spanne in `package.json` neu schreibt. Nicht ungefragt
+  hochziehen (gleiche Falle wie im Achievewear-Blog).
 - `astro.config.mjs` liest `SITE_URL` und `BASE_PATH` aus der Umgebung. Lokal Defaults
   (`http://localhost:4321`, Base `/`). Fuer GitHub Pages muessen beide gesetzt werden,
   sonst brechen alle Pfade — Muster stammt aus dem Achievewear-Blog.
@@ -123,10 +125,10 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
 - Chrome friert laufende CSS-Uebergaenge ein, wenn sein Fenster verdeckt ist. Screenshots
   wirken dann blass oder leer. Zum Pruefen `data-animiert` am `<html>` entfernen — das ist
   derselbe Zustand, den auch Nutzer mit „weniger Bewegung" sehen.
-- **GitHub Pages muss einmalig von aussen eingeschaltet werden**, der Workflow kann das
-  nicht: `gh api repos/jgc-coding/caro-pantarei/pages -X POST -f build_type=workflow`.
-  Der Schluessel eines Workflows darf veroeffentlichen, aber nicht anlegen. Hier erledigt;
-  bei einem kuenftigen neuen Repo ist es wieder der erste Schritt.
+- **GitHub Pages laeuft hier mit `build_type=workflow`.** Einschalten kann das nur jemand
+  von aussen, nicht der Workflow selbst — sein Schluessel darf veroeffentlichen, aber nicht
+  anlegen. Bei einem neuen Repo ist das der erste Schritt:
+  `gh api repos/<besitzer>/<repo>/pages -X POST -f build_type=workflow`.
 - **`BASE_PATH` unter Git Bash immer quoten.** Unquotiert macht Git Bash aus
   `/caro-pantarei` still `C:/Program Files/Git/caro-pantarei` — `npm run pruefe:links`
   meldete daraufhin 85 gesunde Links als kaputt. Das Skript bricht bei so einem Wert

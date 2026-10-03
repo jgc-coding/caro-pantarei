@@ -59,6 +59,7 @@ Punkte gemeint.
 - [ ] Entwurf mit Caro durchgehen und Rückmeldung einholen (seit 2026-07-26)
 - [ ] Bildfreigaben aller erkennbaren Personen einholen - ohne sie bleibt die Seite auf noindex (seit 2026-07-26)
 - [ ] Von Caro die offenen Angaben einsammeln: Anschrift, Rechtsform, E-Mail, Telefon, Preise, Orte, Zeiten (seit 2026-07-26)
+- [ ] Caro ihren vollen Namen bestätigen lassen: „Caroline Schulz" ist aus dem Briefing geraten und steht ungeprüft im Kopf, im Fuß, in jedem Seitentitel und in der Datenschutzerklärung. Danach das TODO in `src\config\marke.ts:38` entfernen (seit 2026-10-03)
 - [ ] Caro fragen, ob die Heilpraktiker-Erlaubnis des Gesundheitsamts vorliegt (seit 2026-07-26)
 - [ ] Playfight-Termine und den Link zur Online-Registration von Caro besorgen (seit 2026-07-26)
 - [ ] Caro um zwei bis drei Fotos bitten, auf denen sie allein ist (seit 2026-07-26)

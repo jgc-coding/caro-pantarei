@@ -45,7 +45,7 @@ Alles, was sich beim Klienten aendert, liegt an genau **zwei** Orten. Kein Wert 
 
 | Was | Wo |
 |---|---|
-| Name, Claim, Kontakt, Orte, Preise, Termine, Registrationslink | `src/config/marke.ts` |
+| Name, Claim, Kontakt, Orte, Preise, Termine, Registrationslink, Stimmen | `src/config/marke.ts` |
 | CI-Farben und Schriftnamen | `src/styles/ci.css` |
 
 Kommen echte CI-Farben von Caro: nur die Variablen im `:root`-Block von `ci.css` tauschen,
@@ -102,6 +102,9 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   Platzhalter in `marke.ts` (Praefix `PLATZHALTER:`), nie als geratener Wert.
 - Bilder mit erkennbaren fremden Personen duerfen erst online, wenn schriftliche
   Einwilligungen vorliegen.
+- **Erfahrungsberichte bleiben woertlich**, auch Schreibweise und Zeichensetzung — es sind
+  die Worte anderer Menschen (Entscheidung Gabriel, 2026-10-17). Online nur mit
+  Einverstaendnis der Person, und nur mit dem Namen, den sie freigegeben hat.
 
 ## Stolperfallen
 

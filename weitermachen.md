@@ -1,35 +1,41 @@
 # Weitermachen — Caro Pantarei Website
 
-Stand: 2026-07-26 · Version **v0.5.0** · live unter
+Stand: 2026-10-17 · Version **v0.6.0** · live unter
 https://jgc-coding.github.io/caro-pantarei/ (auf `noindex`, nur ueber die Adresse erreichbar)
 
 ## Stand
 
-Projekt in dieser Session von null aufgebaut und viermal ausgeliefert.
+Diese Session: Caros erste Rueckmeldungen seit dem Entwurf eingearbeitet und ausgeliefert.
 
-- **v0.1.0** Projekt angelegt (Stufe Produkt), Astro 5, acht Seiten, Farbwelt
-  „Lavendel & Leinen" aus Caros eigenem Bildmaterial abgeleitet, Erkennungsmerkmal
-  **Zeilenleiter** aus ihrem Schreibrhythmus, zwei Welten `still`/`wild` per `data-welt`.
-- **v0.2.0** Deploy nach GitHub Pages, Entwurf gegen Suchmaschinen gesperrt.
-- **v0.3.0/0.3.1** Ergebnisse der ersten `/improve`-Runde: Kontraste korrigiert, eigene
-  404-Seite, Datenschutz ausformuliert, Impressum vervollstaendigt, Vorschaubild fuers
-  Teilen, Link-Waechter (`npm run pruefe:links`), Kontaktformular (abgeschaltet).
-- **v0.4.0** Design-Finesse: Wellen-Marke, Atem, sich zeichnende Zeilenleiter-Linie,
-  ein kursives Wort je Seite, Mikro-Bewegungen.
-- **v0.5.0** Rueckmeldung Gabriel: bewusste Bildausschnitte ueberall, Solo-Foto in der
-  Ueber-mich-Sektion, Hover vertieft die Akzentfarbe statt nach Schwarz zu springen.
+- **v0.6.0** Rubrik „Erfahrungen": zwei woertliche Stimmen (Katharina, Sòi) auf der
+  Startseite, Katharina zusaetzlich auf der Pantarei-Seite nach „Nachspüren". Neues
+  Bauteil `Stimme.astro`, Texte in `marke.ts` (`stimmen`). Schreibweise bewusst NICHT
+  korrigiert — Gabriels Entscheidung. Einverstaendnisse liegen laut Caro vor.
+- Antwort an Caro zur Domain **klarverbunden.com** geschrieben (bei united-domains
+  registriert, inkl. Mail). Umstellung wartet auf die DNS-Eintraege, siehe Schritt 9.
+- inbewe-Logo fuer eine kuenftige Rubrik „Partner*innen" in `Bildmaterial/` abgelegt.
+  Wer inbewe ist, war per Websuche nicht zu finden.
 
-Recherche-Ergebnis, das im Konzept offen war: „Tangi" ist der Begruender **Matteo Tangi**.
+Frueher: v0.1.0 Aufbau, v0.2.0 Deploy, v0.3.x `/improve`-Runde, v0.4.0 Design-Finesse,
+v0.5.0 Bildausschnitte — Details im `CHANGELOG.md`.
 
-Arbeitsverzeichnis sauber, `main` = `origin/main`, Tag `v0.5.0` zeigt auf den
-ausgelieferten Stand.
+Ausgeliefert und geprueft: GitHub-Build gruen, live zeigt der Fuss v0.6.0, beide Stimmen
+stehen auf der Seite, `noindex` und `robots.txt` greifen weiter. Tag `v0.6.0` liegt auf
+GitHub. Rueckkehrpunkt vor dieser Session: `4316ece`.
 
-## Offen
+## Aktuelle Stolperfallen
 
-Nichts halb Gebautes. Der Code ist vollstaendig, gepruefft und ausgeliefert — die Seite
-wartet ausschliesslich auf Angaben von Caro. Alle fehlenden Werte stehen sichtbar
-markiert in `src/config/marke.ts` (Praefix `PLATZHALTER:`); das Impressum zaehlt seine
-offenen Pflichtfelder selbst.
+- **Nach jedem Deploy hart neu laden** (Strg+Umschalt+R), sonst zeigt der Browser die
+  alte CSS-Datei und Aenderungen scheinen zu fehlen.
+- **Commit-Nachrichten und Tag-Texte ueber eine Datei geben** (`git commit -F <datei>`).
+- **Sichtpruefung ohne sichtbare Browser-Pane:** gebauten Stand ueber `caro-vorschau`
+  starten, dann Headless-Chrome mit `--force-prefers-reduced-motion` und
+  `--virtual-time-budget=4000` fotografieren; Ausschnitt per `System.Drawing` zuschneiden.
+  Hat diese Session zuverlaessig funktioniert, die Pane-Screenshots nicht.
+- GitHub baut ab 19.10.2026 auf Ubuntu 26 (Hinweis im Workflow-Lauf). Scheitert danach
+  ein Deploy ohne Code-Aenderung, zuerst daran denken.
+- Live-Check nach einem Deploy: `gh run watch <id> --repo jgc-coding/caro-pantarei
+  --exit-status`, dann die Seite per `curl` auf Stichproben pruefen.
 
 ## Naechste Schritte (Claude)
 
@@ -52,21 +58,29 @@ Beschreibungen und Belege stehen in `verbesserungen.md` — hier nur die Nummern
    Eintraege stehen: `public/CNAME` anlegen, in `deploy.yml` `SITE_URL` und `BASE_PATH=/`
    setzen, im Repo die Custom Domain eintragen, HTTPS erzwingen. Eintraege: vier A-Records
    `@` auf 185.199.108.153 / .109.153 / .110.153 / .111.153, CNAME `www` auf
-   `jgc-coding.github.io`. Mail-Eintraege (MX) und Nameserver NICHT anfassen.
+   `jgc-coding.github.io`. Mail-Eintraege (MX) und Nameserver NICHT anfassen; die
+   „Domain-Weiterleitung" von united-domains ist der falsche Weg. `ENTWURF` bleibt dabei
+   `true`. Danach den Pflichttest „Bauen wie auf dem Server" mit den neuen Werten.
 10. **Rubrik Partner*innen** — Logo liegt als `Bildmaterial/partner-inbewe-logo.jpg`
-    (JPG mit weissem Kasten). Wartet auf Gabriels Nachlieferung, siehe unten.
+    (JPG 1220x744 mit weissem Kasten). Vorschlag an Gabriel: ruhige Reihe unten auf
+    „Über mich". Wartet auf Gabriels Nachlieferung, siehe unten.
+
+## Offen
+
+Nichts halb Gebautes. Alle fehlenden Werte stehen sichtbar markiert in
+`src/config/marke.ts` (Praefix `PLATZHALTER:`); das Impressum zaehlt seine offenen
+Pflichtfelder selbst.
 
 ## Was Gabriel selbst tun muss
 
-Am 19.09.2026 von der Hub-Tafel hierher gezogen. Die Tafel nimmt seither nur
-noch, was Gabriel selbst eintraegt oder ausdruecklich beauftragt. Wo oben im
-Text von der Hub-Karte oder einem Hub-Sammelpunkt die Rede ist, sind diese
-Punkte gemeint.
+Seit 19.09.2026 stehen diese Punkte hier statt auf der Hub-Tafel.
 
+- [ ] [blockiert Claude] Domain: Von Caro klären, wer die Eintraege bei united-domains setzt, ob die Adresse mit oder ohne www laufen soll, und welche E-Mail-Adresse sie angelegt hat (seit 2026-10-17)
+- [ ] [blockiert Claude] Partner*innen: Von Caro holen, wer inbewe ist, Link, Logo als PNG/SVG mit durchsichtigem Hintergrund, Einverstaendnis von inbewe, weitere Partner*innen (seit 2026-10-17)
 - [ ] Entwurf mit Caro durchgehen und Rückmeldung einholen (seit 2026-07-26)
 - [ ] Bildfreigaben aller erkennbaren Personen einholen - ohne sie bleibt die Seite auf noindex (seit 2026-07-26)
 - [ ] Von Caro die offenen Angaben einsammeln: Anschrift, Rechtsform, E-Mail, Telefon, Preise, Orte, Zeiten (seit 2026-07-26)
-- [ ] Caro ihren vollen Namen bestätigen lassen: „Caroline Schulz" ist aus dem Briefing geraten und steht ungeprüft im Kopf, im Fuß, in jedem Seitentitel und in der Datenschutzerklärung. Danach das TODO in `src\config\marke.ts:38` entfernen (seit 2026-10-03)
+- [ ] Caro ihren vollen Namen bestätigen lassen: „Caroline Schulz" ist aus dem Briefing geraten und steht ungeprüft im Kopf, im Fuß, in jedem Seitentitel und in der Datenschutzerklärung. Danach das TODO bei `name` in `src\config\marke.ts` entfernen (seit 2026-10-03)
 - [ ] Caro fragen, ob die Heilpraktiker-Erlaubnis des Gesundheitsamts vorliegt (seit 2026-07-26)
 - [ ] Playfight-Termine und den Link zur Online-Registration von Caro besorgen (seit 2026-07-26)
 - [ ] Caro um zwei bis drei Fotos bitten, auf denen sie allein ist (seit 2026-07-26)
@@ -74,19 +88,3 @@ Punkte gemeint.
 - [ ] Claude Rueckmeldung geben (1 Punkte) (seit 2026-09-07)
   - Kommt ein echtes Kontaktformular? (dann Konto bei Formspree oder Web3Forms anlegen)
 - [ ] Impressum und Datenschutz anwaltlich gegenlesen lassen, bevor die Seite auffindbar wird (seit 2026-07-26)
-- [ ] Domain: Von Caro klären, wer die Eintraege bei united-domains setzt, ob die Adresse mit oder ohne www laufen soll, und welche E-Mail-Adresse sie angelegt hat (seit 2026-10-17)
-- [ ] Partner*innen: Von Caro holen, wer inbewe ist, Link, Logo als PNG/SVG mit durchsichtigem Hintergrund, Einverstaendnis von inbewe, weitere Partner*innen (seit 2026-10-17)
-
-## Aktuelle Stolperfallen
-
-- **Nach jedem Deploy hart neu laden** (Strg+Umschalt+R), sonst zeigt der Browser die
-  alte CSS-Datei und Aenderungen scheinen zu fehlen.
-- **Commit-Nachrichten mit Anfuehrungszeichen ueber eine Datei geben**
-  (`git commit -F <datei>`). Ein `@'...'@`-Block mit `"` darin ist diese Session zweimal
-  zerbrochen — beim zweiten Mal landete dabei ein Tag auf dem falschen Commit.
-- **Screenshots sind in dieser Umgebung unzuverlaessig**, solange das Chrome-Fenster
-  verdeckt ist (Details in der CLAUDE.md). Im Zweifel im Seitenmodell messen statt dem
-  Bild zu glauben — Deckkraft, Bildpunkte per Canvas, `getBoundingClientRect`.
-- Der Live-Check nach einem Deploy laeuft am schnellsten so: Workflow-Status per
-  `gh run list --repo jgc-coding/caro-pantarei --limit 1`, dann die Seite per `curl`
-  auf Stichproben pruefen.

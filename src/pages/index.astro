@@ -6,6 +6,7 @@ import Zeilenleiter from '../components/Zeilenleiter.astro';
 import Wegkarte from '../components/Wegkarte.astro';
 import Knopf from '../components/Knopf.astro';
 import Platzhalter from '../components/Platzhalter.astro';
+import Stimme from '../components/Stimme.astro';
 import { marke, pfad } from '../config/marke';
 
 import bildCaro from '../assets/bilder/caro-sitzend.jpg';
@@ -150,15 +151,14 @@ import bildBeruehrung from '../assets/bilder/beruehrung-stehend.jpg';
     </div>
   </Abschnitt>
 
-  <!-- Stimmen — noch nichts freigegeben -->
-  <Abschnitt flaeche eng>
-    <div class="schmal">
-      <p class="marke-zeile">Stimmen</p>
-      <h2 style="margin-bottom: var(--raum-4)">Was Menschen berichten</h2>
-      <Platzhalter
-        text="Möchtest Du Klienten-Stimmen zeigen? Dann brauchen wir Text und schriftliche Freigabe der Person."
-        block
-      />
+  <!-- Erfahrungen — woertlich, Texte und Regeln in marke.ts -->
+  <Abschnitt flaeche>
+    <div class="abschnitt__kopf">
+      <p class="marke-zeile">Erfahrungen</p>
+      <h2>Was Menschen berichten</h2>
+    </div>
+    <div class="stimmen">
+      {marke.stimmen.map((stimme) => <Stimme text={stimme.text} name={stimme.name} />)}
     </div>
   </Abschnitt>
 

@@ -33,6 +33,37 @@ export function ohnePraefix(wert: string): string {
   return wert.replace(PLATZHALTER, '').trim();
 }
 
+/** Ein Erfahrungsbericht von Klient*innen. */
+export interface Stimme {
+  /** Woertlich, wie geliefert — auch Schreibweise und Zeichensetzung. */
+  text: string;
+  /** Nur der Vorname, so wie die Person ihn freigegeben hat. */
+  name: string;
+  /** Um welches Angebot es geht. */
+  angebot: 'pantarei' | 'playfight';
+}
+
+/**
+ * Erfahrungsberichte. WOERTLICH, auch die Schreibweise: Gabriel hat am 2026-10-17
+ * ausdruecklich entschieden, nichts zu korrigieren — es sind die Worte anderer Menschen.
+ * Die Einverstaendnisse der Personen liegen laut Caro vor.
+ *
+ * Die Startseite zeigt alle. Die Pantarei-Seite zeigt zusaetzlich die ERSTE Stimme mit
+ * `angebot: 'pantarei'` — die Reihenfolge hier entscheidet also, welche dort steht.
+ */
+const stimmen: readonly Stimme[] = [
+  {
+    text: 'Caroline hat mich mit ihrer strahlenden Präsenz feinfühlig, lebendig und liebevoll begleitet in einer schwierigen Phase meines Lebens. In den Sessions tauchten immer wieder hilfreiche innere Bilder auf und angestaute Spannungen in meinem Körper kamen ins Schmelzen. Danach fühlte ich mich deutlich leichter und wieder „auf Kurs“. Von Herzen danke!',
+    name: 'Katharina',
+    angebot: 'pantarei',
+  },
+  {
+    text: 'Pantarei ist toll! Caroline ist super einfühlsam und holt einen dort ab wo man gerade steht. Sie beherrscht diese Methode sehr gut und legt ihr ganzes Herz mit hinein. Kann es nur jedem empfehlen um bei sich selbst wieder anzukommen und damit die Gefühle wieder in’s fließen kommen. Lieben Dank an Dich, Caroline',
+    name: 'Sòi',
+    angebot: 'pantarei',
+  },
+];
+
 export const marke = {
   // --- Identitaet ----------------------------------------------------------
   /** TODO: von Caro bestaetigen lassen. Aktuell Annahme aus dem Briefing. */
@@ -95,6 +126,10 @@ export const marke = {
 
   // --- Weitere Angebote ----------------------------------------------------
   weitereAngebote: offen('Was gehört unter „Weitere Angebote"? Inhalt noch offen'),
+
+  // --- Stimmen -------------------------------------------------------------
+  /** Erfahrungsberichte — Text und Regeln stehen oben bei `stimmen`. */
+  stimmen,
 } as const;
 
 /**

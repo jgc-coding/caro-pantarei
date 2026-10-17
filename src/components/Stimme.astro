@@ -1,0 +1,24 @@
+---
+/**
+ * Ein Erfahrungsbericht: woertliches Zitat mit Vornamen.
+ *
+ * Der Text wird hier NIE angepasst, auch nicht die Schreibweise — es sind die Worte
+ * eines anderen Menschen. Einzige Zier ist das grosse Anfuehrungszeichen in der
+ * Akzentfarbe. Bewusst KEINE senkrechte Haarlinie: Die gehoert der Zeilenleiter, und
+ * die soll das einzige Bauteil mit diesem Merkmal bleiben.
+ */
+interface Props {
+  text: string;
+  name: string;
+}
+
+const { text, name } = Astro.props;
+---
+
+<figure class="stimme einblenden">
+  <span class="stimme__zeichen" aria-hidden="true">„</span>
+  <blockquote class="stimme__text">
+    <p>{text}</p>
+  </blockquote>
+  <figcaption class="stimme__name">{name}</figcaption>
+</figure>

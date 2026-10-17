@@ -133,6 +133,10 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   `/caro-pantarei` still `C:/Program Files/Git/caro-pantarei` — `npm run pruefe:links`
   meldete daraufhin 85 gesunde Links als kaputt. Das Skript bricht bei so einem Wert
   inzwischen ab statt zu raten, aber der Aufruf bleibt trotzdem falsch.
+- **Im Worktree zeigt `npm run dev` Ersatzschriften.** `node_modules` liegt dort im
+  Hauptordner, und Vite verweigert die Schriftdateien von ausserhalb mit 403. Fuer
+  Sichtpruefungen den gebauten Stand nehmen: `npm run build` ohne `SITE_URL`/`BASE_PATH`,
+  dann die Startkonfiguration `caro-vorschau` (Port 4322).
 - **Farben, die Text tragen, muessen nachgerechnet werden.** `--farbe-still-tief` und
   `--farbe-offen` in `ci.css` erfuellen aktuell 4.5:1 auf Leinen UND auf Sand. Die erste
   Fassung lag bei 4.38:1 bzw. 2.92:1 und war auf dem Handy im Sonnenlicht kaum lesbar.

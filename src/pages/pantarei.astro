@@ -5,6 +5,7 @@ import Abschnitt from '../components/Abschnitt.astro';
 import Zeilenleiter from '../components/Zeilenleiter.astro';
 import Knopf from '../components/Knopf.astro';
 import Platzhalter from '../components/Platzhalter.astro';
+import Stimme from '../components/Stimme.astro';
 import { marke, pfad, istOffen } from '../config/marke';
 
 import bildBeruehrung from '../assets/bilder/beruehrung-stehend.jpg';
@@ -17,6 +18,9 @@ const eckdaten = [
   { titel: 'Preis', wert: marke.pantarei.preis },
   { titel: 'Kennenlernen', wert: marke.pantarei.kennenlernen },
 ];
+
+// Die erste Pantarei-Stimme aus marke.ts. Gibt es keine, entfaellt der Block ganz.
+const stimme = marke.stimmen.find((s) => s.angebot === 'pantarei');
 ---
 
 <Grundgeruest
@@ -148,6 +152,15 @@ const eckdaten = [
         />
       </div>
     </div>
+
+    {/* Nach „Nachspüren" spricht jemand, der es erlebt hat. */}
+    {
+      stimme && (
+        <div class="schmal" style="margin-top: var(--raum-7)">
+          <Stimme text={stimme.text} name={stimme.name} />
+        </div>
+      )
+    }
   </Abschnitt>
 
   <!-- Rahmen -->

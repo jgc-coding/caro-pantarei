@@ -48,6 +48,13 @@ Beschreibungen und Belege stehen in `verbesserungen.md` — hier nur die Nummern
 7. **I1** — Uebersicht „Was noch fehlt" fuer Caro; von Gabriel bisher nicht angefordert.
 8. **I4** — Redaktionsbereich (Sveltia CMS), von Gabriel ausdruecklich vorgemerkt, aber
    erst sinnvoll, wenn die Seite steht.
+9. **Domain klarverbunden.com** (Caro, bei united-domains inkl. Mail) — sobald dort die
+   Eintraege stehen: `public/CNAME` anlegen, in `deploy.yml` `SITE_URL` und `BASE_PATH=/`
+   setzen, im Repo die Custom Domain eintragen, HTTPS erzwingen. Eintraege: vier A-Records
+   `@` auf 185.199.108.153 / .109.153 / .110.153 / .111.153, CNAME `www` auf
+   `jgc-coding.github.io`. Mail-Eintraege (MX) und Nameserver NICHT anfassen.
+10. **Rubrik Partner*innen** — Logo liegt als `Bildmaterial/partner-inbewe-logo.jpg`
+    (JPG mit weissem Kasten). Wartet auf Gabriels Nachlieferung, siehe unten.
 
 ## Was Gabriel selbst tun muss
 
@@ -67,7 +74,8 @@ Punkte gemeint.
 - [ ] Claude Rueckmeldung geben (1 Punkte) (seit 2026-09-07)
   - Kommt ein echtes Kontaktformular? (dann Konto bei Formspree oder Web3Forms anlegen)
 - [ ] Impressum und Datenschutz anwaltlich gegenlesen lassen, bevor die Seite auffindbar wird (seit 2026-07-26)
-- [ ] Klären, ob Caro Klienten-Stimmen zeigen will (Texte plus schriftliche Freigabe) (seit 2026-07-26)
+- [ ] Domain: Von Caro klären, wer die Eintraege bei united-domains setzt, ob die Adresse mit oder ohne www laufen soll, und welche E-Mail-Adresse sie angelegt hat (seit 2026-10-17)
+- [ ] Partner*innen: Von Caro holen, wer inbewe ist, Link, Logo als PNG/SVG mit durchsichtigem Hintergrund, Einverstaendnis von inbewe, weitere Partner*innen (seit 2026-10-17)
 
 ## Aktuelle Stolperfallen
 

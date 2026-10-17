@@ -2,6 +2,26 @@
 
 Alle nennenswerten Aenderungen dieses Projekts. Neueste zuerst.
 
+## v0.6.0 — 2026-10-17
+
+Caro hat die ersten zwei Erfahrungsberichte geliefert, samt Einverstaendnis der Personen.
+
+**Rubrik „Erfahrungen" mit echten Stimmen**
+- Neues Bauteil `Stimme.astro`: woertliches Zitat, grosses Anfuehrungszeichen in der
+  Akzentfarbe, Vorname mit dem kurzen Strich der Marke-Zeile. Bewusst ohne senkrechte
+  Haarlinie — die bleibt das Erkennungsmerkmal der Zeilenleiter.
+- Startseite: Der Platzhalter „Stimmen" ist ersetzt durch beide Berichte nebeneinander,
+  am Handy untereinander.
+- Pantarei-Seite: Nach dem Schritt „Nachspüren" steht die erste Pantarei-Stimme.
+- Die Texte stehen in `marke.ts` (`stimmen`), jede mit dem Angebot, um das es geht.
+  Sie sind **woertlich** uebernommen, auch Schreibweise und Zeichensetzung — so von
+  Gabriel entschieden.
+
+**Sonstiges**
+- Startkonfiguration `caro-vorschau` (Port 4322) fuer die Vorschau des gebauten Stands.
+- Das inbewe-Logo fuer eine kuenftige Rubrik „Partner*innen" liegt in `Bildmaterial/`,
+  ist aber noch nicht eingebaut.
+
 ## v0.5.0 — 2026-07-26
 
 Rueckmeldung von Gabriel: Bildausschnitte, ein Solo-Foto bei „Ueber mich", Knopf-Hover.

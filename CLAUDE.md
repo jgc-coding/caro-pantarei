@@ -78,6 +78,10 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   umgekehrt. Kommen neue oder korrigierte Fotos, muessen BEIDE Ordner nachgezogen werden;
   wer nur `Bildmaterial/` aktualisiert, sieht auf der Website weiter die alten Bilder,
   ohne dass irgendetwas warnt.
+- **HD-Originale liegen nur lokal:** `Bildmaterial/Playfight HD/` (27 Kamerafotos,
+  6240 x 4160, ~300 MB) ist per `.gitignore` ausgenommen — das Repo ist oeffentlich.
+  Nach `src/assets/bilder/` kommt nur eine verkleinerte Fassung (lange Kante ~2000 px),
+  nie das Original.
 - **Zeilenleiter** ist das Erkennungsmerkmal der Seite: gestapelte kurze Zeilen mit
   senkrechter Haarlinie, die sich beim Hereinscrollen von oben zeichnet. Kommt aus Caros
   eigenem Schreibrhythmus. Sparsam einsetzen — wenn sie ueberall steht, wirkt sie nirgends.

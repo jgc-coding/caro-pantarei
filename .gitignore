@@ -18,5 +18,9 @@ Desktop.ini
 *.log
 npm-debug.log*
 
+# Caros HD-Originale (~300 MB, erkennbare Personen) — nur lokal, nie ins oeffentliche Repo.
+# Auf die Website kommen verkleinerte Fassungen ueber src/assets/bilder/.
+Bildmaterial/Playfight HD/
+
 # Claude Code — hier liegen vollstaendige Code-Kopien
 .claude/worktrees/

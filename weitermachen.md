@@ -11,8 +11,18 @@ Session 2026-10-21 (Kurzauftrag vom Handy):
   stehen jetzt in zwei hoehengleichen Spalten statt im Raster.
 - **Drive-Ordner „Playfight Bilder HD"** ist erreichbar, aber NUR ueber Gabriels Chrome
   (Google-Konto angemeldet, Ordner ist „Für mich freigegeben"). Ohne Anmeldung antwortet
-  Google mit 401 — `curl`/WebFetch kommen nicht dran. Inhalt: 27 JPGs DSCF5905 bis
-  DSCF6444, Playfight-Workshop mit mehreren Personen. Noch nichts heruntergeladen.
+  Google mit 401 — `curl`/WebFetch kommen nicht dran. Herunterladen ging ueber das
+  Ordner-Menue → „Herunterladen" (ZIP in `~\Downloads`).
+- **Die 27 HD-Originale liegen in `Bildmaterial/Playfight HD/`** (nur lokal, siehe
+  CLAUDE.md). Fuenf der sechs Website-Bilder sind kleine Kopien daraus:
+  `begegnung-zwei` = DSCF6131, `beruehrung-stehend` = DSCF5964, `caro-sitzend` = DSCF6269,
+  `gruppe-liegend` = DSCF5905, `haende-halten` = DSCF6193; `kreis-gespraech` ist ein
+  Ausschnitt aus DSCF6444. Ein neues Solo-Foto von Caro ist NICHT dabei (V12 bleibt offen).
+- **Vorschlag an Gabriel, wartet auf Freigabe:** Playfight-Auftakt und Wegkarte auf der
+  Startseite → DSCF6156 (Caro und ein Teilnehmer Stirn an Stirn, Hochformat, Ausschnitt
+  etwa `50% 30%`). Alle sechs vorhandenen Bilder gegen ihre HD-Fassung tauschen, Motive
+  und Ausschnitte bleiben. DSCF6042 fuer die Rituale verworfen: im Bogen bleibt unten
+  zu viel leerer Boden.
 
 Session 2026-10-17: Caros erste Rueckmeldungen seit dem Entwurf eingearbeitet und ausgeliefert.
 
@@ -50,9 +60,9 @@ GitHub. Rueckkehrpunkt vor dieser Session: `4316ece`.
 
 Beschreibungen und Belege stehen in `verbesserungen.md` — hier nur die Nummern.
 
-0. **Playfight-Fotos aus Drive** — nach Gabriels Freigabe zum Herunterladen: per Chrome
-   holen, unveraendert nach `Bildmaterial/`, die besten nach `src/assets/bilder/`
-   (Regeln zu Ausschnitt und Wegkarte in der CLAUDE.md). Fremde Personen im Bild → V2.
+0. **HD-Fotos einbauen** — nach Gabriels Freigabe des Vorschlags (siehe Stand): Fassungen
+   mit langer Kante ~2000 px nach `src/assets/bilder/`, Ausschnitte neu pruefen
+   (Regeln in der CLAUDE.md). Fremde Personen im Bild → V2.
 1. **V1** — sobald Caros Angaben da sind: `marke.ts` fuellen. Zwei Dateien, ca. 10 Minuten.
 2. **V2** — sobald die Bildfreigaben vorliegen: gemeinsam mit V1 `ENTWURF` in
    `src/config/marke.ts` auf `false` stellen. Vorher nicht.

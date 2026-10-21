@@ -154,3 +154,8 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   sind eine Obergrenze, keine Zusage. Fest eingetragene `og:image`-Masse gingen dadurch
   auseinander (1200x630 behauptet, 853x900 geliefert). Masse fuer Social-Vorschauen immer
   aus `bild.width`/`bild.height` ableiten, nie hinschreiben.
+- **Caros Google-Drive-Ordner sind nicht oeffentlich**, sondern fuer Gabriels Google-Konto
+  freigegeben: `curl`/WebFetch bekommen 401. Zugriff nur ueber Gabriels angemeldeten
+  Chrome (claude-in-chrome); Herunterladen ueber das Menue am Ordnernamen →
+  „Herunterladen" (ZIP landet in `~\Downloads`). Ist Download, also vorher Gabriel fragen.
+  Den Freigabe-Link nie ins Repo schreiben — es ist oeffentlich.

@@ -5,55 +5,34 @@ https://jgc-coding.github.io/caro-pantarei/ (auf `noindex`, nur ueber die Adress
 
 ## Stand
 
-Session 2026-10-21 (Kurzauftrag vom Handy):
+Session 2026-10-21 (Kurzauftraege vom Handy), alles ausgeliefert und live geprueft:
 
-- **v0.6.1** dritte Stimme (Toni) auf der Startseite, Absaetze erhalten; die Stimmen
-  stehen jetzt in zwei hoehengleichen Spalten statt im Raster.
-- **Drive-Ordner „Playfight Bilder HD"** ist erreichbar, aber NUR ueber Gabriels Chrome
-  (Google-Konto angemeldet, Ordner ist „Für mich freigegeben"). Ohne Anmeldung antwortet
-  Google mit 401 — `curl`/WebFetch kommen nicht dran. Herunterladen ging ueber das
-  Ordner-Menue → „Herunterladen" (ZIP in `~\Downloads`).
-- **Die 27 HD-Originale liegen in `Bildmaterial/Playfight HD/`** (nur lokal, siehe
-  CLAUDE.md). Fuenf der sechs Website-Bilder sind kleine Kopien daraus:
-  `begegnung-zwei` = DSCF6131, `beruehrung-stehend` = DSCF5964, `caro-sitzend` = DSCF6269,
-  `gruppe-liegend` = DSCF5905, `haende-halten` = DSCF6193; `kreis-gespraech` ist ein
-  Ausschnitt aus DSCF6444. Ein neues Solo-Foto von Caro ist NICHT dabei (V12 bleibt offen).
-- **v0.7.0** HD-Fotos eingebaut (von Gabriel freigegeben): Playfight-Auftakt und
-  Wegkarte zeigen `stirn-an-stirn.jpg` (DSCF6156), die fuenf anderen Fotos sind
-  HD-Fassungen (1200 x 1800, ohne EXIF), alle Bildbreiten bis 1200 px. DSCF6042 fuer die
-  Rituale verworfen: im Bogen bleibt unten zu viel leerer Boden.
-- `src/assets/bilder/begegnung-zwei.jpg` wird seitdem nirgends mehr genutzt (Astro
-  liefert es nicht aus). Liegt noch da — Loeschen nur mit Gabriels Okay.
+- **v0.6.1** dritte Stimme (Toni) auf der Startseite, Absaetze erhalten. Die Stimmen
+  stehen jetzt in zwei hoehengleichen Spalten (`columns`) statt im Raster.
+- **Caros Drive-Ordner „Playfight Bilder HD"** heruntergeladen: 27 Kamerafotos liegen in
+  `Bildmaterial/Playfight HD/` (nur lokal, siehe CLAUDE.md). Fuenf der bisherigen
+  Website-Bilder waren kleine Kopien daraus. Ein NEUES Solo-Foto von Caro ist nicht dabei:
+  Das einzige Bild von ihr allein (DSCF6269) ist das bekannte `caro-sitzend`.
+- **v0.7.0** Playfight-Auftakt und Playfight-Wegkarte zeigen `stirn-an-stirn.jpg`
+  (DSCF6156, von Gabriel freigegeben). Alle Fotos sind HD-Fassungen (1200 x 1800, ohne
+  EXIF), `widths` reichen bis 1200 px. Vorschaubild beim Teilen jetzt 1200 x 900.
+- `begegnung-zwei.jpg` geloescht (mit Gabriels Okay); das Original DSCF6131 liegt weiter
+  in `Bildmaterial/Playfight HD/`.
+- Verworfen: DSCF6042 fuer die Rituale — im Bogen bleibt unten zu viel leerer Boden.
+- Neu in `verbesserungen.md`: **V13** (kein Seiten-Symbol im Browser-Tab).
 
-Session 2026-10-17: Caros erste Rueckmeldungen seit dem Entwurf eingearbeitet und ausgeliefert.
-
-- **v0.6.0** Rubrik „Erfahrungen": zwei woertliche Stimmen (Katharina, Sòi) auf der
-  Startseite, Katharina zusaetzlich auf der Pantarei-Seite nach „Nachspüren". Neues
-  Bauteil `Stimme.astro`, Texte in `marke.ts` (`stimmen`). Schreibweise bewusst NICHT
-  korrigiert — Gabriels Entscheidung. Einverstaendnisse liegen laut Caro vor.
-- Antwort an Caro zur Domain **klarverbunden.com** geschrieben (bei united-domains
-  registriert, inkl. Mail). Umstellung wartet auf die DNS-Eintraege, siehe Schritt 9.
-- inbewe-Logo fuer eine kuenftige Rubrik „Partner*innen" in `Bildmaterial/` abgelegt.
-  Wer inbewe ist, war per Websuche nicht zu finden.
-
-Frueher: v0.1.0 Aufbau, v0.2.0 Deploy, v0.3.x `/improve`-Runde, v0.4.0 Design-Finesse,
-v0.5.0 Bildausschnitte — Details im `CHANGELOG.md`.
-
-Ausgeliefert und geprueft: GitHub-Build gruen, live zeigt der Fuss v0.6.0, beide Stimmen
-stehen auf der Seite, `noindex` und `robots.txt` greifen weiter. Tag `v0.6.0` liegt auf
-GitHub. Rueckkehrpunkt vor dieser Session: `4316ece`.
+Rueckkehrpunkt vor dem Aufraeumen: `68a6b14`. Tags `v0.6.1` und `v0.7.0` liegen auf GitHub.
+Frueher: v0.1.0 bis v0.6.0 — Details im `CHANGELOG.md`.
 
 ## Aktuelle Stolperfallen
 
 - **Nach jedem Deploy hart neu laden** (Strg+Umschalt+R), sonst zeigt der Browser die
   alte CSS-Datei und Aenderungen scheinen zu fehlen.
-- **Commit-Nachrichten und Tag-Texte ueber eine Datei geben** (`git commit -F <datei>`).
-- **Sichtpruefung ohne sichtbare Browser-Pane:** gebauten Stand ueber `caro-vorschau`
-  starten, dann Headless-Chrome mit `--force-prefers-reduced-motion` und
-  `--virtual-time-budget=4000` fotografieren; Ausschnitt per `System.Drawing` zuschneiden.
-  Hat diese Session zuverlaessig funktioniert, die Pane-Screenshots nicht.
-- GitHub baut ab 19.10.2026 auf Ubuntu 26 (Hinweis im Workflow-Lauf). Scheitert danach
-  ein Deploy ohne Code-Aenderung, zuerst daran denken.
+- **Sichtpruefung:** gebauten Stand per `npm run preview -- --port 4322` starten, dann
+  der MCP-Browser „handy" (Playwright, 412 x 839 bzw. `browser_resize` 1280 x 900).
+  Vorher `data-animiert` am `<html>` entfernen. Ein Element-Screenshot des atmenden
+  Bilds (`img.atmet`) scheitert mit „element is not stable" — dann den Viewport
+  fotografieren.
 - Live-Check nach einem Deploy: `gh run watch <id> --repo jgc-coding/caro-pantarei
   --exit-status`, dann die Seite per `curl` auf Stichproben pruefen.
 
@@ -70,18 +49,19 @@ Beschreibungen und Belege stehen in `verbesserungen.md` — hier nur die Nummern
 4. **V12** — neue Solo-Fotos einbauen, sobald geliefert; dabei Bildausschnitte und die
    Wegkarten-Zuordnung neu bestimmen (Regeln stehen in der CLAUDE.md).
 5. **V11** — Jahreszahl im Fuss, kleine Sache, jederzeit machbar.
-6. **V3** — Astro 7 beobachten, nicht ungefragt springen.
-7. **I1** — Uebersicht „Was noch fehlt" fuer Caro; von Gabriel bisher nicht angefordert.
-8. **I4** — Redaktionsbereich (Sveltia CMS), von Gabriel ausdruecklich vorgemerkt, aber
+6. **V13** — Seiten-Symbol (Wellen-Marke als SVG), kleine Sache, jederzeit machbar.
+7. **V3** — Astro 7 beobachten, nicht ungefragt springen.
+8. **I1** — Uebersicht „Was noch fehlt" fuer Caro; von Gabriel bisher nicht angefordert.
+9. **I4** — Redaktionsbereich (Sveltia CMS), von Gabriel ausdruecklich vorgemerkt, aber
    erst sinnvoll, wenn die Seite steht.
-9. **Domain klarverbunden.com** (Caro, bei united-domains inkl. Mail) — sobald dort die
-   Eintraege stehen: `public/CNAME` anlegen, in `deploy.yml` `SITE_URL` und `BASE_PATH=/`
-   setzen, im Repo die Custom Domain eintragen, HTTPS erzwingen. Eintraege: vier A-Records
-   `@` auf 185.199.108.153 / .109.153 / .110.153 / .111.153, CNAME `www` auf
-   `jgc-coding.github.io`. Mail-Eintraege (MX) und Nameserver NICHT anfassen; die
-   „Domain-Weiterleitung" von united-domains ist der falsche Weg. `ENTWURF` bleibt dabei
-   `true`. Danach den Pflichttest „Bauen wie auf dem Server" mit den neuen Werten.
-10. **Rubrik Partner*innen** — Logo liegt als `Bildmaterial/partner-inbewe-logo.jpg`
+10. **Domain klarverbunden.com** (Caro, bei united-domains inkl. Mail) — sobald dort die
+    Eintraege stehen: `public/CNAME` anlegen, in `deploy.yml` `SITE_URL` und `BASE_PATH=/`
+    setzen, im Repo die Custom Domain eintragen, HTTPS erzwingen. Eintraege: vier A-Records
+    `@` auf 185.199.108.153 / .109.153 / .110.153 / .111.153, CNAME `www` auf
+    `jgc-coding.github.io`. Mail-Eintraege (MX) und Nameserver NICHT anfassen; die
+    „Domain-Weiterleitung" von united-domains ist der falsche Weg. `ENTWURF` bleibt dabei
+    `true`. Danach den Pflichttest „Bauen wie auf dem Server" mit den neuen Werten.
+11. **Rubrik Partner*innen** — Logo liegt als `Bildmaterial/partner-inbewe-logo.jpg`
     (JPG 1220x744 mit weissem Kasten). Vorschlag an Gabriel: ruhige Reihe unten auf
     „Über mich". Wartet auf Gabriels Nachlieferung, siehe unten.
 
@@ -97,6 +77,8 @@ Seit 19.09.2026 stehen diese Punkte hier statt auf der Hub-Tafel.
 
 - [ ] [blockiert Claude] Domain: Von Caro klären, wer die Eintraege bei united-domains setzt, ob die Adresse mit oder ohne www laufen soll, und welche E-Mail-Adresse sie angelegt hat (seit 2026-10-17)
 - [ ] [blockiert Claude] Partner*innen: Von Caro holen, wer inbewe ist, Link, Logo als PNG/SVG mit durchsichtigem Hintergrund, Einverstaendnis von inbewe, weitere Partner*innen (seit 2026-10-17)
+- [ ] Version 0.7.0 am Handy anschauen: Startseite „Erfahrungen" (Toni) und Playfight-Seite oben, vorher neu laden (seit 2026-10-21)
+- [ ] ZIP „Playfight Bilder HD-…zip" (317 MB) im Download-Ordner löschen, wird nicht mehr gebraucht (seit 2026-10-21)
 - [ ] Entwurf mit Caro durchgehen und Rückmeldung einholen (seit 2026-07-26)
 - [ ] Bildfreigaben aller erkennbaren Personen einholen - ohne sie bleibt die Seite auf noindex (seit 2026-07-26)
 - [ ] Von Caro die offenen Angaben einsammeln: Anschrift, Rechtsform, E-Mail, Telefon, Preise, Orte, Zeiten (seit 2026-07-26)

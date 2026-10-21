@@ -35,7 +35,10 @@ export function ohnePraefix(wert: string): string {
 
 /** Ein Erfahrungsbericht von Klient*innen. */
 export interface Stimme {
-  /** Woertlich, wie geliefert — auch Schreibweise und Zeichensetzung. */
+  /**
+   * Woertlich, wie geliefert — auch Schreibweise und Zeichensetzung.
+   * Ein `\n` markiert einen Absatz der Person und wird als eigener Absatz gezeigt.
+   */
   text: string;
   /** Nur der Vorname, so wie die Person ihn freigegeben hat. */
   name: string;
@@ -46,7 +49,8 @@ export interface Stimme {
 /**
  * Erfahrungsberichte. WOERTLICH, auch die Schreibweise: Gabriel hat am 2026-10-17
  * ausdruecklich entschieden, nichts zu korrigieren — es sind die Worte anderer Menschen.
- * Die Einverstaendnisse der Personen liegen laut Caro vor.
+ * Die Einverstaendnisse der Personen liegen laut Caro vor. Toni kam am 2026-10-21 von
+ * Caro mit dem Wunsch, den Bericht auf die Seite zu stellen.
  *
  * Die Startseite zeigt alle. Die Pantarei-Seite zeigt zusaetzlich die ERSTE Stimme mit
  * `angebot: 'pantarei'` — die Reihenfolge hier entscheidet also, welche dort steht.
@@ -60,6 +64,11 @@ const stimmen: readonly Stimme[] = [
   {
     text: 'Pantarei ist toll! Caroline ist super einfühlsam und holt einen dort ab wo man gerade steht. Sie beherrscht diese Methode sehr gut und legt ihr ganzes Herz mit hinein. Kann es nur jedem empfehlen um bei sich selbst wieder anzukommen und damit die Gefühle wieder in’s fließen kommen. Lieben Dank an Dich, Caroline',
     name: 'Sòi',
+    angebot: 'pantarei',
+  },
+  {
+    text: 'In ihren Pantarei Sessions kreiert Caroline einen sicheren, offenen und warmherzigen Raum, in dem ich mich gut aufgehoben fühle.\nIhre annehmende und einfühlsame Art ermöglicht es mir, mich auf den Prozess einzulassen und tieferliegenden Themen Raum zu geben.\nZudem schätze ich Carolines Fähigkeit, genau die richtigen Fragen zum richtigen Zeitpunkt zu stellen. Sie helfen mir, mich bei mir zu verankern, neue Perspektiven zu entdecken und in meinem persönlichen Prozess weiterzukommen.\nIch fühle mich unterstützt und ermutigt meinem Fühlen zu vertrauen, ihm Raum zu geben: Von Lachen bis Weinen darf alles sein.\nIch empfehle Caroline von Herzen weiter!',
+    name: 'Toni',
     angebot: 'pantarei',
   },
 ];

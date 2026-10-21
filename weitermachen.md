@@ -1,11 +1,20 @@
 # Weitermachen — Caro Pantarei Website
 
-Stand: 2026-10-17 · Version **v0.6.0** · live unter
+Stand: 2026-10-21 · Version **v0.6.1** · live unter
 https://jgc-coding.github.io/caro-pantarei/ (auf `noindex`, nur ueber die Adresse erreichbar)
 
 ## Stand
 
-Diese Session: Caros erste Rueckmeldungen seit dem Entwurf eingearbeitet und ausgeliefert.
+Session 2026-10-21 (Kurzauftrag vom Handy):
+
+- **v0.6.1** dritte Stimme (Toni) auf der Startseite, Absaetze erhalten; die Stimmen
+  stehen jetzt in zwei hoehengleichen Spalten statt im Raster.
+- **Drive-Ordner „Playfight Bilder HD"** ist erreichbar, aber NUR ueber Gabriels Chrome
+  (Google-Konto angemeldet, Ordner ist „Für mich freigegeben"). Ohne Anmeldung antwortet
+  Google mit 401 — `curl`/WebFetch kommen nicht dran. Inhalt: 27 JPGs DSCF5905 bis
+  DSCF6444, Playfight-Workshop mit mehreren Personen. Noch nichts heruntergeladen.
+
+Session 2026-10-17: Caros erste Rueckmeldungen seit dem Entwurf eingearbeitet und ausgeliefert.
 
 - **v0.6.0** Rubrik „Erfahrungen": zwei woertliche Stimmen (Katharina, Sòi) auf der
   Startseite, Katharina zusaetzlich auf der Pantarei-Seite nach „Nachspüren". Neues
@@ -41,6 +50,9 @@ GitHub. Rueckkehrpunkt vor dieser Session: `4316ece`.
 
 Beschreibungen und Belege stehen in `verbesserungen.md` — hier nur die Nummern.
 
+0. **Playfight-Fotos aus Drive** — nach Gabriels Freigabe zum Herunterladen: per Chrome
+   holen, unveraendert nach `Bildmaterial/`, die besten nach `src/assets/bilder/`
+   (Regeln zu Ausschnitt und Wegkarte in der CLAUDE.md). Fremde Personen im Bild → V2.
 1. **V1** — sobald Caros Angaben da sind: `marke.ts` fuellen. Zwei Dateien, ca. 10 Minuten.
 2. **V2** — sobald die Bildfreigaben vorliegen: gemeinsam mit V1 `ENTWURF` in
    `src/config/marke.ts` auf `false` stellen. Vorher nicht.

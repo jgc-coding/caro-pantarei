@@ -73,6 +73,13 @@ Stand: 2026-07-25 (Runde 1 ausgewertet und umgesetzt, Fokus: alles)
       `dist/index.html` steht die Zahl fest als `© 2026` · Aufwand: S · Risiko: —
       (Ueber der Deckelung von 3 D-Punkten im Chat-Bericht — hier vollstaendig festgehalten.)
 
+- [ ] **V13** (D) Kein Seiten-Symbol im Browser-Tab
+      Gefahr: Der Tab zeigt das leere Standard-Symbol, und jeder Seitenaufruf erzeugt eine
+      vergebliche Anfrage nach `favicon.ico`. Wirkt unfertig, sobald die Seite auffindbar ist.
+      Beleg: kein `rel="icon"` in `dist/index.html`, die Vorschau meldet 404 auf
+      `/favicon.ico` (2026-10-21). Naheliegend: die Wellen-Marke als SVG-Symbol ·
+      Aufwand: S · Risiko: —
+
 ## Ideen
 
 - **I1** (Abrundung) Uebersicht „Was noch fehlt" fuer Caro — Aufwand: S

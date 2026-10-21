@@ -2,6 +2,21 @@
 
 Alle nennenswerten Aenderungen dieses Projekts. Neueste zuerst.
 
+## v0.6.1 — 2026-10-21
+
+Caro hat einen dritten Erfahrungsbericht geliefert.
+
+**Dritte Stimme: Toni**
+- Woertlich in `marke.ts` (`stimmen`), steht auf der Startseite. Die Pantarei-Seite zeigt
+  weiter die erste Pantarei-Stimme (Katharina).
+- Tonis Absaetze bleiben erhalten: Ein Zeilenumbruch im Text wird in `Stimme.astro` zu
+  einem eigenen Absatz, etwas enger gesetzt als im Fliesstext.
+
+**Stimmen in ausgeglichenen Spalten**
+- Die Startseite ordnet die Stimmen jetzt in zwei Spalten, die der Browser in der Hoehe
+  ausgleicht. Im bisherigen Raster stand die lange dritte Stimme allein in einer neuen
+  Zeile, daneben blieb eine grosse Luecke. Am Handy weiter eine Spalte.
+
 ## v0.6.0 — 2026-10-17
 
 Caro hat die ersten zwei Erfahrungsberichte geliefert, samt Einverstaendnis der Personen.

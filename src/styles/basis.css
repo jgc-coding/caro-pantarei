@@ -872,11 +872,20 @@ textarea.feld__eingabe {
    betonte Wort je Seite reserviert, und eine ganze Spalte kursiver Text liest sich
    muehsam. */
 
+/* Zwei Spalten, die der Browser in der Hoehe ausgleicht (statt Zeilen eines Rasters):
+   Stimmen sind unterschiedlich lang, im Raster stand eine lange Stimme allein in der
+   letzten Zeile und daneben klaffte eine Luecke. Gelesen wird je Spalte von oben. */
 .stimmen {
-  display: grid;
-  gap: var(--raum-6) clamp(2rem, 1rem + 4vw, 4.5rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-  align-items: start;
+  columns: 20rem 2;
+  column-gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+}
+
+.stimmen > .stimme {
+  break-inside: avoid;
+}
+
+.stimmen > .stimme + .stimme {
+  margin-top: var(--raum-6);
 }
 
 .stimme {
@@ -900,6 +909,11 @@ textarea.feld__eingabe {
   font-size: var(--gr-vorlauf);
   line-height: 1.6;
   color: var(--farbe-tinte);
+}
+
+/* Absaetze einer Stimme enger als im Fliesstext — es bleibt EINE Stimme. */
+.stimme__text p + p {
+  margin-top: var(--raum-2);
 }
 
 /* Der Name traegt denselben kurzen Strich wie die Marke-Zeile — ein bekanntes Zeichen,

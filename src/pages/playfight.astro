@@ -6,7 +6,7 @@ import Knopf from '../components/Knopf.astro';
 import Platzhalter from '../components/Platzhalter.astro';
 import { marke, pfad, istOffen } from '../config/marke';
 
-import bildBegegnung from '../assets/bilder/begegnung-zwei.jpg';
+import bildStirn from '../assets/bilder/stirn-an-stirn.jpg';
 import bildGruppe from '../assets/bilder/gruppe-liegend.jpg';
 import bildKreis from '../assets/bilder/kreis-gespraech.jpg';
 
@@ -70,19 +70,19 @@ const eckdaten = [
         </div>
       </div>
       <div class="gespann__bild">
-        {/* Querformat im hochformatigen Bogen: Es bleiben nur 640 der 1280 Bildpunkte
-            Breite uebrig. Mittig geschnitten faellt Caroline ganz heraus — 60 % holt
-            beide Gesichter ins Bild. */}
+        {/* Stirn an Stirn: Kraft, Kontakt und Lachen in einem Bild. Hochformat wie der
+            Bogen, es faellt kaum etwas weg. Dieselbe Aufnahme steht auf der Wegkarte der
+            Startseite — beim Tausch dort mitziehen. */}
         <Image
           class="bild--bogen einblenden atmet"
-          src={bildBegegnung}
-          alt="Zwei Menschen gehen einander gegenüber in die Hocke und lachen."
-          widths={[420, 640, 853]}
+          src={bildStirn}
+          alt="Caroline und ein Teilnehmer stützen sich auf den Boden, Stirn an Stirn, und lächeln."
+          widths={[420, 640, 853, 1200]}
           sizes="(max-width: 55rem) 88vw, 26rem"
           format="webp"
           quality={80}
           loading="eager"
-          style="object-position: 62% 40%"
+          style="object-position: 50% 30%"
         />
       </div>
     </div>
@@ -139,7 +139,7 @@ const eckdaten = [
           class="bild--bogen einblenden"
           src={bildGruppe}
           alt="Mehrere Menschen liegen auf dem Boden, halten ihre Füße und lachen."
-          widths={[380, 560, 853]}
+          widths={[380, 560, 853, 1200]}
           sizes="(max-width: 55rem) 88vw, 24rem"
           format="webp"
           quality={78}
@@ -216,7 +216,7 @@ const eckdaten = [
           class="bild--kreis einblenden"
           src={bildKreis}
           alt="Eine Gruppe sitzt im Kreis auf dem Boden und spricht miteinander."
-          widths={[360, 560, 760]}
+          widths={[360, 560, 760, 1100]}
           sizes="(max-width: 55rem) 80vw, 22rem"
           format="webp"
           quality={78}

@@ -80,8 +80,10 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   ohne dass irgendetwas warnt.
 - **HD-Originale liegen nur lokal:** `Bildmaterial/Playfight HD/` (27 Kamerafotos,
   6240 x 4160, ~300 MB) ist per `.gitignore` ausgenommen — das Repo ist oeffentlich.
-  Nach `src/assets/bilder/` kommt nur eine verkleinerte Fassung (lange Kante ~2000 px),
-  nie das Original.
+  Nach `src/assets/bilder/` kommt nur eine verkleinerte Fassung (lange Kante 1800 px,
+  JPEG q85, OHNE EXIF — die Originale tragen Kameramodell, Seriennummer und Aufnahmezeit; GPS war
+  2026-10-21 nicht enthalten), nie das
+  Original. Die Bildbreiten in `widths` reichen bis 1200 px; mehr gibt die Quelle nicht her.
 - **Zeilenleiter** ist das Erkennungsmerkmal der Seite: gestapelte kurze Zeilen mit
   senkrechter Haarlinie, die sich beim Hereinscrollen von oben zeichnet. Kommt aus Caros
   eigenem Schreibrhythmus. Sparsam einsetzen — wenn sie ueberall steht, wirkt sie nirgends.

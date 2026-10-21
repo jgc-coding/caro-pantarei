@@ -2,6 +2,28 @@
 
 Alle nennenswerten Aenderungen dieses Projekts. Neueste zuerst.
 
+## v0.7.0 — 2026-10-21
+
+Caro hat das Playfight-Shooting in voller Aufloesung geteilt (27 Fotos ueber Google Drive).
+
+**Neues Auftaktbild fuer Playfight**
+- `stirn-an-stirn.jpg` (DSCF6156): Caroline und ein Teilnehmer, Stirn an Stirn, die Haende
+  auf dem Boden. Steht oben auf der Playfight-Seite und auf der Playfight-Wegkarte der
+  Startseite. Es ersetzt `begegnung-zwei.jpg` — das war ein Querformat, von dem im
+  hochformatigen Bogen nur die Haelfte der Breite uebrig blieb.
+
+**Alle Fotos scharf**
+- Die fuenf uebrigen Website-Fotos sind jetzt Fassungen aus den Originalen statt kleiner
+  Kopien (1200 x 1800 statt 853 x 1280), ohne Kamera- und Ortsdaten. Motive und
+  Ausschnitte bleiben gleich.
+- Die Bilder werden zusaetzlich in 1200 bzw. 1100 Pixel Breite erzeugt. Handys mit
+  hoher Pixeldichte bekommen damit ein scharfes Bild statt eines hochgerechneten.
+- Das Vorschaubild beim Teilen eines Links zeigt jetzt 1200 x 900 statt 853 x 900.
+
+**Ablage**
+- Die HD-Originale liegen in `Bildmaterial/Playfight HD/` und sind per `.gitignore`
+  vom oeffentlichen Repo ausgenommen.
+
 ## v0.6.1 — 2026-10-21
 
 Caro hat einen dritten Erfahrungsbericht geliefert.

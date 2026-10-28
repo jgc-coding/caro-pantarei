@@ -54,13 +54,21 @@ Beschreibungen und Belege stehen in `verbesserungen.md` — hier nur die Nummern
 8. **I1** — Uebersicht „Was noch fehlt" fuer Caro; von Gabriel bisher nicht angefordert.
 9. **I4** — Redaktionsbereich (Sveltia CMS), von Gabriel ausdruecklich vorgemerkt, aber
    erst sinnvoll, wenn die Seite steht.
-10. **Domain klarverbunden.com** (Caro, bei united-domains inkl. Mail) — sobald dort die
-    Eintraege stehen: `public/CNAME` anlegen, in `deploy.yml` `SITE_URL` und `BASE_PATH=/`
-    setzen, im Repo die Custom Domain eintragen, HTTPS erzwingen. Eintraege: vier A-Records
-    `@` auf 185.199.108.153 / .109.153 / .110.153 / .111.153, CNAME `www` auf
-    `jgc-coding.github.io`. Mail-Eintraege (MX) und Nameserver NICHT anfassen; die
-    „Domain-Weiterleitung" von united-domains ist der falsche Weg. `ENTWURF` bleibt dabei
-    `true`. Danach den Pflichttest „Bauen wie auf dem Server" mit den neuen Werten.
+10. **Domain caroline-schulz.com** (Caros Entscheidung vom 2026-10-28, ersetzt
+    klarverbunden.com). Liegt seit 2026-10-15 in Caros Konto bei united-domains, nichts
+    kaufen. Stand 2026-10-28: `@` und `www` zeigen per A-Record auf die Parkseite
+    89.31.143.90, MX liegt bei united-domains. Claude darf sich dort nicht selbst anmelden;
+    die Eintraege setzt Gabriel (oder Gabriel meldet Chrome an, dann traegt Claude ein).
+    Eintraege: die beiden Parkseiten-A-Records ERSETZEN (nicht ergaenzen), dann vier
+    A-Records `@` auf 185.199.108.153 / .109.153 / .110.153 / .111.153 und CNAME `www` auf
+    `jgc-coding.github.io`. MX und Nameserver NICHT anfassen; eine aktive
+    „Domain-Weiterleitung" ausschalten. Erst wenn `Resolve-DnsName` die GitHub-Adressen
+    liefert: in `deploy.yml` `SITE_URL=https://caroline-schulz.com` und `BASE_PATH=/`,
+    Custom Domain per `gh api repos/jgc-coding/caro-pantarei/pages -X PUT -f
+    cname=caroline-schulz.com` setzen (eine `public/CNAME` ignoriert GitHub bei
+    Workflow-Deploys), HTTPS erzwingen, sobald das Zertifikat da ist. Vorher den
+    Pflichttest „Bauen wie auf dem Server" mit den neuen Werten. `ENTWURF` bleibt `true`.
+    Die Zugangsdaten stehen nur im Chat, nie im Repo.
 11. **Rubrik Partner*innen** — Logo liegt als `Bildmaterial/partner-inbewe-logo.jpg`
     (JPG 1220x744 mit weissem Kasten). Vorschlag an Gabriel: ruhige Reihe unten auf
     „Über mich". Wartet auf Gabriels Nachlieferung, siehe unten.
@@ -75,7 +83,8 @@ Pflichtfelder selbst.
 
 Seit 19.09.2026 stehen diese Punkte hier statt auf der Hub-Tafel.
 
-- [ ] [blockiert Claude] Domain: Von Caro klären, wer die Eintraege bei united-domains setzt, ob die Adresse mit oder ohne www laufen soll, und welche E-Mail-Adresse sie angelegt hat (seit 2026-10-17)
+- [ ] [blockiert Claude] Domain caroline-schulz.com: bei united-domains anmelden und die Eintraege aus Schritt 10 setzen, oder Chrome am PC anmelden und Claude eintragen lassen (seit 2026-10-28)
+- [ ] Caro bitten, ihr united-domains-Passwort zu aendern, sobald die Domain laeuft — es stand im Chat (seit 2026-10-28)
 - [ ] [blockiert Claude] Partner*innen: Von Caro holen, wer inbewe ist, Link, Logo als PNG/SVG mit durchsichtigem Hintergrund, Einverstaendnis von inbewe, weitere Partner*innen (seit 2026-10-17)
 - [ ] Version 0.7.0 am Handy anschauen: Startseite „Erfahrungen" (Toni) und Playfight-Seite oben, vorher neu laden (seit 2026-10-21)
 - [ ] ZIP „Playfight Bilder HD-…zip" (317 MB) im Download-Ordner löschen, wird nicht mehr gebraucht (seit 2026-10-21)

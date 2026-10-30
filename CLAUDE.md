@@ -26,13 +26,21 @@ und eine eigene 404-Seite.
 - Vorschau des Baus: `npm run preview`
 - Pruefen: `npm run check` (= `astro check`, auch Inhalt von `.claude/pruefen.txt`)
 - Bauen wie auf dem Server (Pflichttest vor jedem Deploy-Umbau):
-  `$env:SITE_URL='https://jgc-coding.github.io'; $env:BASE_PATH='/caro-pantarei'; npm run build`
+  `$env:SITE_URL='https://caroline-schulz.com'; $env:BASE_PATH='/'; npm run build`
 - Links der gebauten Ausgabe pruefen: `npm run pruefe:links` (laeuft auch im Deploy mit)
 
 ## Deploy
 
 Push auf `main` → GitHub Actions baut und veroeffentlicht auf GitHub Pages.
-Live: https://jgc-coding.github.io/caro-pantarei/ · Repo: `jgc-coding/caro-pantarei`
+Live: https://caroline-schulz.com/ · Repo: `jgc-coding/caro-pantarei`. Die alte Adresse
+https://jgc-coding.github.io/caro-pantarei/ leitet GitHub dorthin weiter.
+
+**Domain:** Caros eigene, bei united-domains (Konto gehoert Caro, Mail laeuft dort mit).
+DNS: vier A-Records der Hauptdomain auf 185.199.108.153 / .109.153 / .110.153 / .111.153,
+CNAME `www` auf `jgc-coding.github.io`. MX, SPF-TXT, DKIM und die autoconfig-/
+autodiscover-Eintraege gehoeren zur Mail und bleiben unangetastet. Die Domain steht in
+den Pages-Einstellungen des Repos (`gh api repos/jgc-coding/caro-pantarei/pages`), nicht
+in einer `public/CNAME` — die ignoriert GitHub bei Workflow-Deploys.
 
 Der Schalter `ENTWURF` in `src/config/marke.ts` steuert die Sichtbarkeit: Solange er
 `true` ist, tragen alle Seiten `noindex` und `robots.txt` verbietet das Einlesen — die
@@ -159,3 +167,9 @@ leitet sie nur ab und macht sie im Seitenfuss sichtbar — damit die Zahl nicht 
   Chrome (claude-in-chrome); Herunterladen ueber das Menue am Ordnernamen →
   „Herunterladen" (ZIP landet in `~\Downloads`). Ist Download, also vorher Gabriel fragen.
   Den Freigabe-Link nie ins Repo schreiben — es ist oeffentlich.
+- **united-domains aendert beim Speichern des Hauptdomain-A-Records still den
+  Sammeleintrag `*` mit.** Zeigt `*` auf GitHub, kann jeder Fremde unter einer beliebigen
+  Unteradresse von Caros Domain eine eigene GitHub-Seite ausliefern. Nach jeder Aenderung
+  pruefen: `Resolve-DnsName x.caroline-schulz.com -Server ns.udag.de -DnsOnly` muss
+  89.31.143.90 liefern, nicht 185.199.x. Claude darf sich dort nicht selbst anmelden;
+  Gabriel meldet Chrome an, dann traegt Claude ein.

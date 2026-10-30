@@ -2,6 +2,18 @@
 
 Alle nennenswerten Aenderungen dieses Projekts. Neueste zuerst.
 
+## v0.8.0 — 2026-10-30
+
+Caro hat sich fuer die Domain caroline-schulz.com entschieden.
+
+**Eigene Adresse**
+- Die Website liegt jetzt unter https://caroline-schulz.com/ statt in einem Unterordner
+  bei GitHub. Wer www davor tippt, landet ebenfalls dort.
+- Die alte Adresse https://jgc-coding.github.io/caro-pantarei/ leitet auf die neue weiter.
+- Sitemap, Vorschaubild beim Teilen und alle internen Links nutzen die neue Adresse.
+- Die Seite bleibt ein Entwurf: Suchmaschinen sind weiter ausgesperrt.
+- Caros E-Mail bei united-domains ist davon nicht beruehrt.
+
 ## v0.7.0 — 2026-10-21
 
 Caro hat das Playfight-Shooting in voller Aufloesung geteilt (27 Fotos ueber Google Drive).

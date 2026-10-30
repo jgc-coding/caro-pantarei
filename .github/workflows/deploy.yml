@@ -18,9 +18,10 @@ concurrency:
 
 env:
   # Einzige Quelle fuer URL und Base-Pfad (siehe CLAUDE.md).
-  # Bei eigener Domain spaeter: SITE_URL=https://<domain> und BASE_PATH=/
-  SITE_URL: https://jgc-coding.github.io
-  BASE_PATH: /caro-pantarei
+  # Eigene Domain seit v0.8.0, darum liegt die Seite an der Wurzel.
+  # Die Domain selbst steht in den Pages-Einstellungen des Repos, nicht in einer CNAME-Datei.
+  SITE_URL: https://caroline-schulz.com
+  BASE_PATH: /
 
 jobs:
   build:

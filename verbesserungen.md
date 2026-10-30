@@ -80,6 +80,16 @@ Stand: 2026-07-25 (Runde 1 ausgewertet und umgesetzt, Fokus: alles)
       `/favicon.ico` (2026-10-21). Naheliegend: die Wellen-Marke als SVG-Symbol ·
       Aufwand: S · Risiko: —
 
+- [ ] **V14** (C) caroline-schulz.com im GitHub-Konto als bestaetigte Domain eintragen
+      Gefahr: Wird die Pages-Seite einmal abgeschaltet oder das Repo umbenannt, zeigen die
+      DNS-Eintraege weiter auf GitHub. Dann kann ein Fremder die Domain fuer seine eigene
+      GitHub-Seite beanspruchen und unter Caros Namen etwas ausliefern.
+      Beleg: `gh api repos/jgc-coding/caro-pantarei/pages` meldet
+      `protected_domain_state: null` (2026-10-30). Weg: in den Pages-Einstellungen des
+      Kontos `jgc-coding` die Domain hinzufuegen, GitHub nennt einen TXT-Eintrag, den
+      Claude bei united-domains eintraegt, sobald Gabriel Chrome dort angemeldet hat ·
+      Aufwand: S · Risiko: gering, solange die Seite laeuft
+
 ## Ideen
 
 - **I1** (Abrundung) Uebersicht „Was noch fehlt" fuer Caro — Aufwand: S

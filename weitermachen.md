@@ -1,9 +1,21 @@
 # Weitermachen — Caro Pantarei Website
 
-Stand: 2026-10-21 · Version **v0.7.0** · live unter
-https://jgc-coding.github.io/caro-pantarei/ (auf `noindex`, nur ueber die Adresse erreichbar)
+Stand: 2026-10-30 · Version **v0.8.0** · live unter
+https://caroline-schulz.com/ (auf `noindex`, nur ueber die Adresse erreichbar)
 
 ## Stand
+
+Session 2026-10-28/30, ausgeliefert und live geprueft:
+
+- **v0.8.0** eigene Domain caroline-schulz.com (Caros Wahl, ersetzt klarverbunden.com,
+  das bei united-domains in Kuendigung steht). DNS bei united-domains gesetzt, als Gabriel
+  Chrome dort angemeldet hatte. Custom Domain in den Pages-Einstellungen, Zertifikat fuer
+  beide Adressen erteilt, HTTPS erzwungen. Live geprueft: Startseite und Unterseiten 200,
+  404-Seite 404, http, www und die alte github.io-Adresse leiten per 301 auf
+  https://caroline-schulz.com/ weiter, Schrift und Bilder laden, `noindex` und
+  `robots.txt` greifen. Mail-Eintraege bei united-domains unangetastet (nachgeprueft).
+- Die Falle mit dem Sammeleintrag `*` steht jetzt in der CLAUDE.md.
+- Neu in `verbesserungen.md`: **V14** (Domain im GitHub-Konto bestaetigen).
 
 Session 2026-10-21 (Kurzauftraege vom Handy), alles ausgeliefert und live geprueft:
 
@@ -54,21 +66,8 @@ Beschreibungen und Belege stehen in `verbesserungen.md` — hier nur die Nummern
 8. **I1** — Uebersicht „Was noch fehlt" fuer Caro; von Gabriel bisher nicht angefordert.
 9. **I4** — Redaktionsbereich (Sveltia CMS), von Gabriel ausdruecklich vorgemerkt, aber
    erst sinnvoll, wenn die Seite steht.
-10. **Domain caroline-schulz.com** (Caros Entscheidung vom 2026-10-28, ersetzt
-    klarverbunden.com). Liegt seit 2026-10-15 in Caros Konto bei united-domains, nichts
-    kaufen. Stand 2026-10-28: `@` und `www` zeigen per A-Record auf die Parkseite
-    89.31.143.90, MX liegt bei united-domains. Claude darf sich dort nicht selbst anmelden;
-    die Eintraege setzt Gabriel (oder Gabriel meldet Chrome an, dann traegt Claude ein).
-    Eintraege: die beiden Parkseiten-A-Records ERSETZEN (nicht ergaenzen), dann vier
-    A-Records `@` auf 185.199.108.153 / .109.153 / .110.153 / .111.153 und CNAME `www` auf
-    `jgc-coding.github.io`. MX und Nameserver NICHT anfassen; eine aktive
-    „Domain-Weiterleitung" ausschalten. Erst wenn `Resolve-DnsName` die GitHub-Adressen
-    liefert: in `deploy.yml` `SITE_URL=https://caroline-schulz.com` und `BASE_PATH=/`,
-    Custom Domain per `gh api repos/jgc-coding/caro-pantarei/pages -X PUT -f
-    cname=caroline-schulz.com` setzen (eine `public/CNAME` ignoriert GitHub bei
-    Workflow-Deploys), HTTPS erzwingen, sobald das Zertifikat da ist. Vorher den
-    Pflichttest „Bauen wie auf dem Server" mit den neuen Werten. `ENTWURF` bleibt `true`.
-    Die Zugangsdaten stehen nur im Chat, nie im Repo.
+10. **V14** — Domain im GitHub-Konto bestaetigen, beim naechsten Mal, wenn Gabriel Chrome
+    bei united-domains anmeldet.
 11. **Rubrik Partner*innen** — Logo liegt als `Bildmaterial/partner-inbewe-logo.jpg`
     (JPG 1220x744 mit weissem Kasten). Vorschlag an Gabriel: ruhige Reihe unten auf
     „Über mich". Wartet auf Gabriels Nachlieferung, siehe unten.
@@ -83,8 +82,9 @@ Pflichtfelder selbst.
 
 Seit 19.09.2026 stehen diese Punkte hier statt auf der Hub-Tafel.
 
-- [ ] [blockiert Claude] Domain caroline-schulz.com: bei united-domains anmelden und die Eintraege aus Schritt 10 setzen, oder Chrome am PC anmelden und Claude eintragen lassen (seit 2026-10-28)
-- [ ] Caro bitten, ihr united-domains-Passwort zu aendern, sobald die Domain laeuft — es stand im Chat (seit 2026-10-28)
+- [ ] Caro bitten, ihr united-domains-Passwort zu aendern — die Domain laeuft, das Passwort stand im Chat (seit 2026-10-28)
+- [ ] Bei united-domains in Chrome abmelden, die Sitzung ist noch offen (seit 2026-10-30)
+- [ ] https://caroline-schulz.com/ am Handy anschauen und Caro die neue Adresse schicken (seit 2026-10-30)
 - [ ] [blockiert Claude] Partner*innen: Von Caro holen, wer inbewe ist, Link, Logo als PNG/SVG mit durchsichtigem Hintergrund, Einverstaendnis von inbewe, weitere Partner*innen (seit 2026-10-17)
 - [ ] Version 0.7.0 am Handy anschauen: Startseite „Erfahrungen" (Toni) und Playfight-Seite oben, vorher neu laden (seit 2026-10-21)
 - [ ] ZIP „Playfight Bilder HD-…zip" (317 MB) im Download-Ordner löschen, wird nicht mehr gebraucht (seit 2026-10-21)
